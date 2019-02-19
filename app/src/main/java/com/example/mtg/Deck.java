@@ -1,7 +1,10 @@
 package com.example.mtg;
 
-public class Deck {
-    public Deck(){
+import java.util.ArrayList;
 
+public class Deck {
+    ArrayList<Card> deck;
+    public Deck(){
+        deck = new ArrayList<>();
     }
 }

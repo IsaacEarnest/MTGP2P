@@ -33,13 +33,11 @@ public class SendData {
             }
         }.start();
     }
-<<<<<<< HEAD
 
 
 
-=======
-    /*
->>>>>>> a70d1be93b01621c7e1df445ab85168ffe91230e
+
+
     private void showIncoming(final String msg) {
         activity.runOnUiThread(new Runnable() {
             @Override
@@ -48,6 +46,6 @@ public class SendData {
             }
         });
     }
-*/
+
 
 }

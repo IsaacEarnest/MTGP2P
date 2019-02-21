@@ -8,8 +8,7 @@ import android.util.Log;
 import java.io.IOException;
 
 public class RecieveData {
-<<<<<<< HEAD
-<<<<<<< HEAD
+
     public static String TAG = "RECIEVEDATA";
 
     private Activity activity;
@@ -52,8 +51,5 @@ public class RecieveData {
     }
 
 
-=======
->>>>>>> a70d1be93b01621c7e1df445ab85168ffe91230e
-=======
->>>>>>> a70d1be93b01621c7e1df445ab85168ffe91230e
+
 }

@@ -30,8 +30,7 @@ public class MainActivity extends AppCompatActivity {
     private void openActivityCreateLobby() {
         Intent intent = new Intent(this, ActivityCreateLobby.class);
         startActivity(intent);
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 
     }
 
@@ -43,9 +42,5 @@ public class MainActivity extends AppCompatActivity {
     private void onActivityJoinLobby() {
         Intent intent = new Intent(this, ActivityJoinLobby.class);
         startActivity(intent);
-=======
->>>>>>> a70d1be93b01621c7e1df445ab85168ffe91230e
-=======
->>>>>>> a70d1be93b01621c7e1df445ab85168ffe91230e
     }
 }

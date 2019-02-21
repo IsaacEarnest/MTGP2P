@@ -29,9 +29,5 @@ public class MainActivity extends AppCompatActivity {
     private void openActivityCreateLobby() {
         Intent intent = new Intent(this, ActivityCreateLobby.class);
         startActivity(intent);
-<<<<<<< HEAD
-
-=======
->>>>>>> 7a5c534f6919bd9fd7f686b159052027634750d9
     }
 }

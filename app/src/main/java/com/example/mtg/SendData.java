@@ -1,8 +1,17 @@
 package com.example.mtg;
 
+import android.content.Context;
+
 import java.net.Socket;
 
 public class SendData {
+    Context activity;
+    String className;
+    public SendData(Context activity, String name){
+        this.activity = activity;
+        className = name;
+    }
+    
     public void send(final String message, final String host, final int port) {
         new Thread() {
             @Override
@@ -24,4 +33,14 @@ public class SendData {
             }
         }.start();
     }
+    private void showIncoming(final String msg) {
+        .this.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                incoming.setText(msg);
+            }
+        });
+    }
+
+
 }

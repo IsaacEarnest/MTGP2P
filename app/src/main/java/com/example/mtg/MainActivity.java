@@ -2,6 +2,7 @@ package com.example.mtg;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
     Deck p1Library, p2Library, p1Hand, p2Hand, p1Graveyard, p2Graveyard;

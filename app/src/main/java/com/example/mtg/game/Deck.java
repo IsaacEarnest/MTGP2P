@@ -1,4 +1,6 @@
-package com.example.mtg;
+package com.example.mtg.game;
+
+import com.example.mtg.game.Card;
 
 import java.util.ArrayList;
 

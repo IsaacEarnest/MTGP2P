@@ -1,4 +1,7 @@
-package com.example.mtg;
+package com.example.mtg.game;
+
+import com.example.mtg.game.Card;
+import com.example.mtg.game.Deck;
 
 public class Game {
     //code placed in here may be moved to main, but working on it here to avoid GitHub's problems

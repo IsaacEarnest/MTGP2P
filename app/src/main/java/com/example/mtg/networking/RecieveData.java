@@ -1,8 +1,6 @@
-package com.example.mtg;
+package com.example.mtg.networking;
 
 import android.app.Activity;
-import android.os.Handler;
-import android.os.Looper;
 import android.util.Log;
 
 import java.io.IOException;

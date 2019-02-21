@@ -1,4 +1,4 @@
-package com.example.mtg;
+package com.example.mtg.networking;
 
 import java.io.BufferedReader;
 import java.io.IOException;

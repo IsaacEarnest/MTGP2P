@@ -1,4 +1,4 @@
-package com.example.mtg;
+package com.example.mtg.game;
 
 import android.graphics.drawable.Drawable;
 

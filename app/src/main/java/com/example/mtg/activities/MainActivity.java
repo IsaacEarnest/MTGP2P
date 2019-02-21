@@ -1,10 +1,14 @@
-package com.example.mtg;
+package com.example.mtg.activities;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
+
+import com.example.mtg.R;
+import com.example.mtg.game.Deck;
+import com.example.mtg.activities.ActivityCreateLobby;
+import com.example.mtg.activities.ActivityJoinLobby;
 
 public class MainActivity extends AppCompatActivity {
     Deck p1Library, p2Library, p1Hand, p2Hand, p1Graveyard, p2Graveyard;

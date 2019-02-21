@@ -1,7 +1,10 @@
-package com.example.mtg;
+package com.example.mtg.activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.example.mtg.R;
+import com.example.mtg.networking.SendData;
 
 public class ActivityJoinLobby extends AppCompatActivity {
 

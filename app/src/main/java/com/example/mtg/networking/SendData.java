@@ -1,7 +1,6 @@
-package com.example.mtg;
+package com.example.mtg.networking;
 
 import android.app.Activity;
-import android.content.Context;
 
 import java.net.Socket;
 

@@ -1,8 +1,11 @@
-package com.example.mtg;
+package com.example.mtg.activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
+
+import com.example.mtg.R;
+import com.example.mtg.networking.RecieveData;
 
 public class ActivityCreateLobby extends AppCompatActivity {
 

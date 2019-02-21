@@ -1,4 +1,4 @@
-package com.example.mtg;
+package com.example.mtg.game;
 
 public class Permanent {
     boolean canAtk,canBlock,isFlying,isVigilance;

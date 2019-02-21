@@ -1,4 +1,4 @@
-package com.example.mtg;
+package com.example.mtg.networking;
 
 import android.app.AlertDialog;
 import android.content.Context;

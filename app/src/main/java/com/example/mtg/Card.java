@@ -4,7 +4,7 @@ import android.graphics.drawable.Drawable;
 
 public class Card {
     enum Type{
-        LAND, CREATURE, ENCHANTMENT, INSTANT, SORCERY, ARTIFACT
+        LAND, CREATURE, ENCHANTMENT, INSTANT, SORCERY
     }
     enum CostColor{
         RED, BLUE, GREEN, WHITE, BLACK

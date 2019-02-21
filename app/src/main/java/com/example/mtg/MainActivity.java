@@ -10,11 +10,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        try {
-            myIpView.setText(Utilities.getLocalIpAddress());
-        } catch (SocketException e) {
-            Log.e("MainActivity", "Threw exception when finding ip address");
-        }
+        
 
         gameStart();
     }

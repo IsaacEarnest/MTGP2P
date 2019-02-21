@@ -6,28 +6,29 @@ public class Card {
     enum Type{
         LAND, CREATURE, ENCHANTMENT, INSTANT, SORCERY
     }
-    enum CostColor{
-        RED, BLUE, GREEN, WHITE, BLACK
-    }
     String name;
     Type type;
-    CostColor color;
+    int cost;
     Drawable card;
-    public Card(String name, Type type,CostColor c , Drawable card){
+    public Card(String name, Type type,int cost , Drawable card){
         this.name = name;
         this.type = type;
-        this.color = c;
+        this.cost = cost;
         this.card = card;
     }
-    public CostColor getColor(){
-        return color;
+    public int getCost(){
+        return cost;
     }
     public String toString(){
-        return name+"_"+type+"_"+color+"_"+card;
+        return name+"_"+type+"_"+cost+"_"+card;
     }
 
     public boolean equals(Card other) {
         return false;
+    }
+
+    public Type getType() {
+        return type;
     }
 
     @Override

@@ -27,7 +27,7 @@ public class Card {
     }
 
     public boolean equals(Card other) {
-
+        return false;
     }
 
     @Override

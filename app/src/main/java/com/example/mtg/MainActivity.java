@@ -17,10 +17,11 @@ public class MainActivity extends AppCompatActivity {
         gameStart();
     }
     public void gameStart(){
-        p1Library.shuffle();
+        //p1Library.shuffle();
 
     }
 
+    //This is called in the xml file
     public void createLobby(View view) {
         openActivityCreateLobby();
 
@@ -30,8 +31,21 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, ActivityCreateLobby.class);
         startActivity(intent);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
+    }
+
+    //This is called in the xml file
+    public void joinLobby(View view) {
+        onActivityJoinLobby();
+    }
+
+    private void onActivityJoinLobby() {
+        Intent intent = new Intent(this, ActivityJoinLobby.class);
+        startActivity(intent);
 =======
->>>>>>> 7a5c534f6919bd9fd7f686b159052027634750d9
+>>>>>>> a70d1be93b01621c7e1df445ab85168ffe91230e
+=======
+>>>>>>> a70d1be93b01621c7e1df445ab85168ffe91230e
     }
 }

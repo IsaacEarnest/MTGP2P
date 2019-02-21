@@ -3,18 +3,41 @@ package com.example.mtg;
 import android.graphics.drawable.Drawable;
 
 public class Card {
-    String type;
-    enum CostColor{
-        RED, BLUE, GREEN, WHITE, BLACK;
+    enum Type{
+        LAND, CREATURE, ENCHANTMENT, INSTANT, SORCERY, ARTIFACT
     }
-    CostColor cost;
+    enum CostColor{
+        RED, BLUE, GREEN, WHITE, BLACK
+    }
+    String name;
+    Type type;
+    CostColor color;
     Drawable card;
-    public Card(String type,CostColor c , Drawable card){
+    public Card(String name, Type type,CostColor c , Drawable card){
+        this.name = name;
         this.type = type;
-        this.cost = c;
+        this.color = c;
         this.card = card;
     }
-    public int getCost(){
+    public CostColor getColor(){
+        return color;
+    }
+    public String toString(){
+        return name+"_"+type+"_"+color+"_"+card;
+    }
+
+    public boolean equals(Card other) {
+
+    }
+
+    @Override
+    public int hashCode() {
+        return toString().hashCode();
+    }
+    public void setOnCastEffect(){
+
+    }
+    public void setOnAtkEffect(){
 
     }
 

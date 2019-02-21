@@ -4,10 +4,18 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 public class MainActivity extends AppCompatActivity {
-
+    Deck p1Library, p2Library, p1Hand, p2Hand, p1Graveyard, p2Graveyard;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+        gameStart();
+    }
+    public void gameStart(){
+        p1Library.shuffle();
+        createHand();
+        mulligan();
     }
 }

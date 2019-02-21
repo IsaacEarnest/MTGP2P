@@ -15,4 +15,21 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <Button
+        android:id="@+id/createGame"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="Create"
+        app:layout_constraintBottom_toTopOf="@+id/joinGame"
+        tools:layout_editor_absoluteX="161dp" />
+
+    <Button
+        android:id="@+id/joinGame"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Join"
+        tools:layout_editor_absoluteX="161dp"
+        tools:layout_editor_absoluteY="551dp" />
+
 </android.support.constraint.ConstraintLayout>

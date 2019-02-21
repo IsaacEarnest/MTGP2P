@@ -1,7 +1,9 @@
 package com.example.mtg;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
@@ -16,7 +18,16 @@ public class MainActivity extends AppCompatActivity {
     }
     public void gameStart(){
         p1Library.shuffle();
-        createHand();
-        mulligan();
+    }
+
+    public void createLobby(View view) {
+        openActivityCreateLobby();
+
+    }
+
+    private void openActivityCreateLobby() {
+        Intent intent = new Intent(this, ActivityCreateLobby.class);
+        startActivity(intent);
+
     }
 }

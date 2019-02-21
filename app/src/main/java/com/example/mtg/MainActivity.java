@@ -29,7 +29,5 @@ public class MainActivity extends AppCompatActivity {
     private void openActivityCreateLobby() {
         Intent intent = new Intent(this, ActivityCreateLobby.class);
         startActivity(intent);
-
-
     }
 }

@@ -9,6 +9,7 @@ import com.example.mtg.R;
 import com.example.mtg.game.Deck;
 import com.example.mtg.activities.ActivityCreateLobby;
 import com.example.mtg.activities.ActivityJoinLobby;
+import com.example.mtg.networking.Singleton;
 
 public class MainActivity extends AppCompatActivity {
     Deck p1Library, p2Library, p1Hand, p2Hand, p1Graveyard, p2Graveyard;
@@ -16,9 +17,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Singleton.getInstance();
 
 
-        gameStart();
+        //gameStart();
     }
     public void gameStart(){
         //p1Library.shuffle();

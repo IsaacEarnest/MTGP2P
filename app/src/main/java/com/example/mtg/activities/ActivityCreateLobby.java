@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 import com.example.mtg.R;
-import com.example.mtg.networking.RecieveData;
 
 public class ActivityCreateLobby extends AppCompatActivity {
 
@@ -19,8 +18,6 @@ public class ActivityCreateLobby extends AppCompatActivity {
         connectionStatus = findViewById(R.id.connectionStatus);
 
 
-        RecieveData recieveData = new RecieveData(this);
-        recieveData.openConnection();
 
 
 

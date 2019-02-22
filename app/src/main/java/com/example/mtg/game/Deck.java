@@ -4,6 +4,8 @@ import com.example.mtg.game.Card;
 
 import java.util.ArrayList;
 
+import static java.lang.Math.min;
+
 
 //testing
 public class Deck {
@@ -16,6 +18,9 @@ public class Deck {
     public void addCard(Card c){
         deck.add(c);
         cards++;
+    }
+    public Card getCard(int index){
+        return deck.get(index);
     }
     public int getCardsLeft(){
         return cards;
@@ -30,5 +35,32 @@ public class Deck {
             shuffled.add(deck.remove((int)(Math.random()*i)));
         }
         deck = shuffled;
+    }
+    @Override
+    public String toString(){
+        StringBuilder sb = new StringBuilder();
+        for (Card c:deck) {
+            sb.append(c.toString()+" ");
+        }
+        String cards = sb.toString();
+        return cards;
+    }
+    @Override
+    public boolean equals(Object other) {
+        if(other instanceof Deck){
+            Deck that = (Deck) other;
+            for (int i = 0; i < min(that.getCardsLeft(),this.cards); i++) {
+                if(this.deck.get(i)!= that.getCard(i)){
+                    return false;
+                }
+            }
+            return true;
+        }else {
+            return false;
+        }
+    }
+    @Override
+    public int hashCode() {
+        return toString().hashCode();
     }
 }

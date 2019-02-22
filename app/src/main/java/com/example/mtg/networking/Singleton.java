@@ -39,7 +39,6 @@ public class Singleton {
     public void listen(ServerListener serverListener) throws IOException {
         server.addListener(serverListener);
         server.listen();
-
     }
 
 

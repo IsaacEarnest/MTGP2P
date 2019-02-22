@@ -72,14 +72,6 @@ public class RecieveDataTest {
         //open the socket and send the message
         Socket test = new Socket("localhost", Server.APP_PORT);
         Communication.sendOver(test, testMsg);
-
-
-
-
-
-
-
-
     }
 
 

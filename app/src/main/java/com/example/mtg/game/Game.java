@@ -78,7 +78,7 @@ public class Game {
         return state;
     }
 
-    public boolean canPlayCard(Card c){
+    public boolean isPlayable(Card c){
         if(mana >= c.getCost()) {
             if (state == State.PRECOMBATMAIN || state == State.POSTCOMBATMAIN) {
                 if(c.getType() == Card.Type.LAND && landPlayed == true) {
@@ -92,4 +92,10 @@ public class Game {
         }
         return false;
     }
+
+    public void playCard(Card c){
+        Card.Type type =c.getType();
+
+    }
+
 }

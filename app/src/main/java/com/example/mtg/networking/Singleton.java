@@ -1,6 +1,6 @@
 package com.example.mtg.networking;
 
-import android.util.Log;
+
 
 import java.io.IOException;
 
@@ -16,19 +16,35 @@ public class Singleton {
     }
 
     private Singleton() {
+        try {
+            server = new Server();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         createServer();
     }
 
     private void createServer(){
-            try {
-                server = new Server();
-            } catch (IOException e) {
-                //Log.e(TAG, "Could not start server");
-                System.out.println("bad things");
-                e.printStackTrace();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
 
+                    server.addListener(new ServerListener() {
+                        @Override
+                        public void notifyMessage(String msg) {
+                            //TODO: handle IP address
+                        }
+                    });
+                    server.listen();
+                } catch (IOException e) {
+                    //Log.e(TAG, "Could not start server");
+                    System.out.println("bad things");
+                    e.printStackTrace();
+
+                }
             }
-
+        }).start();
 
     }
 
@@ -36,9 +52,9 @@ public class Singleton {
         return server;
     }
 
-    public void listen(ServerListener serverListener) throws IOException {
+    public void addlistener(ServerListener serverListener) {
         server.addListener(serverListener);
-        server.listen();
+        //server.addlistener();
     }
 
 

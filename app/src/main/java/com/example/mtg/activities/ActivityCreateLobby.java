@@ -10,11 +10,12 @@ import com.example.mtg.networking.Communication;
 import com.example.mtg.networking.Server;
 import com.example.mtg.networking.ServerListener;
 import com.example.mtg.networking.Singleton;
+import com.example.mtg.networking.Utilities;
 
 import java.io.IOException;
 import java.net.Socket;
 
-public class ActivityCreateLobby extends AppCompatActivity {
+public class ActivityCreateLobby extends AppCompatActivity implements ServerListener {
 
     public TextView connectionStatus;
 
@@ -24,22 +25,20 @@ public class ActivityCreateLobby extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_lobby);
         //call the recieve data method and update the user
+        setUpGUI();
+        implementListener();
+    }
+
+    private void setUpGUI(){
         connectionStatus = findViewById(R.id.connectionStatus);
+    }
 
-        Singleton s = Singleton.getInstance();
-        try {
-            s.listen(new ServerListener() {
-                @Override
-                public void notifyMessage(String msg) {
-                    showIncoming(msg);
-                }
+    private void implementListener(){
 
-            });
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Singleton.getInstance().addlistener(this);
 
     }
+
     private void showIncoming(final String msg) {
         runOnUiThread(new Runnable() {
             @Override
@@ -51,6 +50,12 @@ public class ActivityCreateLobby extends AppCompatActivity {
     }
 
     public void acceptRequest(View view) {
+        try {
+            Socket socket = new Socket(Utilities.getLocalIpAddress(), Server.APP_PORT);
+            Communication.sendOver(socket, "I HAVE ACCEPTED: "+ Utilities.getLocalIpAddress());
+        } catch (IOException e) {
+            Utilities.notifyProblem(this, "WAS UNABLE TO CONNECT TO PORT");
+        }
 
     }
 
@@ -60,5 +65,11 @@ public class ActivityCreateLobby extends AppCompatActivity {
         // and if connectionStatus is the correct message it will go to the next screen
 
         //need to pass IP address to the next activity
+    }
+
+    @Override
+    public void notifyMessage(String msg) {
+        //TODO: actually parse this!
+        showIncoming(msg);
     }
 }

@@ -56,7 +56,8 @@ public class Card {
     }
     public Card parse(String str){
         String[] parsed = str.split("_");
-        return new Card(parsed[0],parsed[1],Integer.parseInt(parsed[2]),parsed[3].);
+        return null;
+        //return new Card(parsed[0],parsed[1],Integer.parseInt(parsed[2]),parsed[3]);
     }
     @Override
     public boolean equals(Object other) {

@@ -40,7 +40,7 @@ public class Deck {
         String[] parsed = str.split(";");
         Deck d = new Deck();
         for (String s:parsed) {
-            d.addCard()
+           // d.addCard();
         }
         return d;
     }

@@ -84,17 +84,8 @@ public class Card {
     }
     public Card parse(String str){
         String[] parsed = str.split("_");
-<<<<<<< HEAD
-        return new Card(parsed[0],Type.CREATURE.toType(parsed[1]),Integer.parseInt(parsed[2]));
-=======
-
-
         return new Card(parsed[0],Type.CREATURE.toType(parsed[1]),Integer.parseInt(parsed[2]));
 
-
-        //return new Card(parsed[0],parsed[1],Integer.parseInt(parsed[2]),parsed[3]);
-
->>>>>>> cb2027790f809c8e6070ed2ffd258d40364bf6d4
     }
     @Override
     public boolean equals(Object other) {

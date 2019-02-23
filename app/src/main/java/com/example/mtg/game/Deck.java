@@ -36,11 +36,19 @@ public class Deck {
         }
         deck = shuffled;
     }
+    public Deck parse(String str){
+        String[] parsed = str.split(";");
+        Deck d = new Deck();
+        for (String s:parsed) {
+            d.addCard()
+        }
+        return d;
+    }
     @Override
     public String toString(){
         StringBuilder sb = new StringBuilder();
         for (Card c:deck) {
-            sb.append(c.toString()+" ");
+            sb.append(c.toString()+";");
         }
         String cards = sb.toString();
         return cards;

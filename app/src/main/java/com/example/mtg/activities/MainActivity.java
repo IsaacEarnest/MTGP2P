@@ -22,7 +22,6 @@ public class MainActivity extends AppCompatActivity {
     }
     public void gameStart(){
         //p1Library.shuffle();
-
     }
 
     //This is called in the xml file

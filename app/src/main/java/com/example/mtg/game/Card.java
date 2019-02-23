@@ -54,6 +54,10 @@ public class Card {
     public String toString(){
         return name+"_"+type+"_"+cost+"_"+card;
     }
+    public Card parse(String str){
+        String[] parsed = str.split("_");
+        return new Card(parsed[0],parsed[1],Integer.parseInt(parsed[2]),parsed[3].);
+    }
     @Override
     public boolean equals(Object other) {
         if(other instanceof Card){

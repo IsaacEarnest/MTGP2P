@@ -1,8 +1,11 @@
 package com.example.mtg.activities;
 
+import android.nfc.Tag;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -15,9 +18,11 @@ import com.example.mtg.networking.Utilities;
 
 import java.io.IOException;
 import java.net.Socket;
+import java.sql.Connection;
 
 
 public class ActivityJoinLobby extends AppCompatActivity implements ServerListener {
+    private static final String TAG = "JOINLOBBY";
     private TextView joinStatus;
     private EditText IPnumber;
 
@@ -38,6 +43,17 @@ public class ActivityJoinLobby extends AppCompatActivity implements ServerListen
         IPnumber = findViewById(R.id.IPnumber);
     }
 
+    private void send(final String ip) {
+        Socket test = null;
+        try {
+            test = new Socket(ip, Server.APP_PORT);
+            Communication.sendOver(test, "I RECEIVED YOUR REQUEST");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
     private void implementListener(){
             Singleton.getInstance().addlistener(this);
 
@@ -53,17 +69,6 @@ public class ActivityJoinLobby extends AppCompatActivity implements ServerListen
     }
 
 
-    public void joinLobby(View view) {
-        String ip = IPnumber.getText().toString();
-        try {
-            Socket socket = new Socket(ip, Server.APP_PORT);
-            Communication.sendOver(socket, "MY IP IS: "+ ip);
-        } catch (IOException e) {
-            Utilities.notifyProblem(this, "WAS UNABLE TO CONNECT TO PORT");
-        }
-
-    }
-
     public void playGameP2(View view) {
         //TODO: implement the PlayGame Button P2
         //this will check the text of joinStatus
@@ -74,6 +79,28 @@ public class ActivityJoinLobby extends AppCompatActivity implements ServerListen
 
     @Override
     public void notifyMessage(String msg) {
+
+    }
+
+    public void requestConnection(View view) {
+        final String ip = IPnumber.getText().toString();
+        Log.d(TAG, ip);
+        createSocket(ip);
+    }
+
+    private void createSocket(final String ip) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Socket socket = new Socket(ip, Server.APP_PORT);
+                    Communication.sendOver(socket, "I GOT YOUR MESSAGE");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+
 
     }
 }

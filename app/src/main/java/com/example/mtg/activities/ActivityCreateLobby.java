@@ -50,13 +50,17 @@ public class ActivityCreateLobby extends AppCompatActivity implements ServerList
     }
 
     public void acceptRequest(View view) {
-        try {
-            Socket socket = new Socket(Utilities.getLocalIpAddress(), Server.APP_PORT);
-            Communication.sendOver(socket, "I HAVE ACCEPTED: "+ Utilities.getLocalIpAddress());
-        } catch (IOException e) {
-            Utilities.notifyProblem(this, "WAS UNABLE TO CONNECT TO PORT");
-        }
-
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Socket socket = new Socket(Communication.RECIEVINGIP, Server.APP_PORT);
+                    Communication.sendOver(socket, "I ACCEPT YOUR REQUEST");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
     }
 
     public void playGameP1(View view) {

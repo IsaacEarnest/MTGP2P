@@ -1,7 +1,5 @@
 package com.example.mtg.game;
 
-import android.graphics.drawable.Drawable;
-
 public class Card {
     enum Type{
         LAND{
@@ -10,11 +8,23 @@ public class Card {
                 //increase mana by 1, remove from hand
 
             }
+            @Override
+            Type toType(String str){
+                if(str.equals("LAND"))
+                    return LAND;
+                else return CREATURE.toType(str);
+            }
         },
         CREATURE{
             @Override
             void playCard(Card c) {
                 //add to stack
+            }
+            @Override
+            Type toType(String str){
+                if(str.equals("CREATURE"))
+                    return CREATURE;
+                else return ENCHANTMENT.toType(str);
             }
         },
         ENCHANTMENT{
@@ -22,11 +32,23 @@ public class Card {
             void playCard(Card c) {
                 //add to stack
             }
+            @Override
+            Type toType(String str){
+                if(str.equals("ENCHANTMENT"))
+                    return ENCHANTMENT;
+                else return INSTANT.toType(str);
+            }
         },
         INSTANT{
             @Override
             void playCard(Card c) {
                 //add to stack
+            }
+            @Override
+            Type toType(String str){
+                if(str.equals("INSTANT"))
+                    return INSTANT;
+                else return SORCERY.toType(str);
             }
         },
         SORCERY{
@@ -34,35 +56,42 @@ public class Card {
             void playCard(Card c) {
                 //add to stack
             }
+            @Override
+            Type toType(String str){
+                if(str.equals("SORCERY"))
+                    return SORCERY;
+                else return LAND.toType(str);
+            }
         };
         abstract void playCard(Card c);
+        abstract Type toType(String str);
     }
+
     String name;
     Type type;
     int cost;
-    Drawable card;
-    public Card(String name, Type type,int cost , Drawable card){
+    public Card(String name, Type type,int cost){
         this.name = name;
         this.type = type;
         this.cost = cost;
-        this.card = card;
     }
     public int getCost(){
         return cost;
     }
     @Override
     public String toString(){
-        return name+"_"+type+"_"+cost+"_"+card;
+        return name+"_"+type+"_"+cost;
     }
     public Card parse(String str){
         String[] parsed = str.split("_");
-        return new Card(parsed[0],parsed[1],Integer.parseInt(parsed[2]),parsed[3].);
+
+        return new Card(parsed[0],Type.CREATURE.toType(parsed[1]),Integer.parseInt(parsed[2]));
     }
     @Override
     public boolean equals(Object other) {
         if(other instanceof Card){
             Card that = (Card) other;
-            return this.name.equals(that.name) && this.type == that.type && this.cost == that.cost && this.card == that.card;
+            return this.name.equals(that.name) && this.type == that.type && this.cost == that.cost;
         }else {
             return false;
         }

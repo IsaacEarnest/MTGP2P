@@ -10,7 +10,15 @@ public class Game {
     boolean landPlayed = false;
     State state;
     public enum State {
-
+        MULLIGAN{
+          @Override
+          State doSomething(String aParameter){
+              //drawFullHand();
+              //listener for mulligan/keep
+              //drawFullHand();
+              return BEGINNING;
+          }
+        },
         BEGINNING {
             @Override
             State doSomething(String aParameter) {
@@ -69,7 +77,9 @@ public class Game {
 
         abstract State doSomething(String aParameter);
     }
+    //public void drawFullHand(int ){
 
+    }
 
     public void setState(State state) {
         this.state = state;

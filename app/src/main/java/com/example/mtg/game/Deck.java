@@ -36,6 +36,17 @@ public class Deck {
         }
         deck = shuffled;
     }
+<<<<<<< HEAD
+=======
+    public Deck parse(String str){
+        String[] parsed = str.split(";");
+        Deck d = new Deck();
+        for (String s:parsed) {
+           // d.addCard();
+        }
+        return d;
+    }
+>>>>>>> fcdb5ab00fbe66c8fa81348b1e143e45ab1c3896
     @Override
     public String toString(){
         StringBuilder sb = new StringBuilder();

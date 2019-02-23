@@ -8,15 +8,16 @@ import android.widget.TextView;
 
 import com.example.mtg.R;
 import com.example.mtg.networking.Communication;
-import com.example.mtg.networking.SendData;
 import com.example.mtg.networking.Server;
 import com.example.mtg.networking.ServerListener;
 import com.example.mtg.networking.Singleton;
+import com.example.mtg.networking.Utilities;
 
 import java.io.IOException;
 import java.net.Socket;
 
-public class ActivityJoinLobby extends AppCompatActivity {
+
+public class ActivityJoinLobby extends AppCompatActivity implements ServerListener {
     private TextView joinStatus;
     private EditText IPnumber;
 
@@ -25,21 +26,20 @@ public class ActivityJoinLobby extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_join_lobby);
 
+
+        setUpGUI();
+        implementListener();
+
+
+    }
+
+    private void setUpGUI(){
         joinStatus = findViewById(R.id.joinStatus);
         IPnumber = findViewById(R.id.IPnumber);
+    }
 
-
-        Singleton s = Singleton.getInstance();
-        try {
-            s.listen(new ServerListener() {
-                @Override
-                public void notifyMessage(String msg) {
-                    showIncoming(msg);
-                }
-            });
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    private void implementListener(){
+            Singleton.getInstance().addlistener(this);
 
     }
 
@@ -54,15 +54,13 @@ public class ActivityJoinLobby extends AppCompatActivity {
 
 
     public void joinLobby(View view) {
-        String number = IPnumber.getText().toString();
-        String msg = number + ": I want to duel you";
+        String ip = IPnumber.getText().toString();
         try {
-            Socket test = new Socket(number, Server.APP_PORT);
-            Communication.sendOver(test, msg);
+            Socket socket = new Socket(ip, Server.APP_PORT);
+            Communication.sendOver(socket, "MY IP IS: "+ ip);
         } catch (IOException e) {
-            e.printStackTrace();
+            Utilities.notifyProblem(this, "WAS UNABLE TO CONNECT TO PORT");
         }
-
 
     }
 
@@ -72,5 +70,10 @@ public class ActivityJoinLobby extends AppCompatActivity {
         // and if joinStatus is the correct message it will go to the next screen
 
         //need to pass IP address to the next activity
+    }
+
+    @Override
+    public void notifyMessage(String msg) {
+
     }
 }

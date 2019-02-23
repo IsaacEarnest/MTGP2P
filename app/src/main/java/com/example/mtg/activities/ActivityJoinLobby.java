@@ -93,8 +93,10 @@ public class ActivityJoinLobby extends AppCompatActivity implements ServerListen
             @Override
             public void run() {
                 try {
+
                     Socket socket = new Socket(ip, Server.APP_PORT);
                     Communication.sendOver(socket, "I GOT YOUR MESSAGE");
+                    Log.d(TAG, "I CREATED THE SOCKET");
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

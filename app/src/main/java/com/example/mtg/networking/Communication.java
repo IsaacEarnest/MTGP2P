@@ -11,7 +11,6 @@ import java.net.Socket;
  */
 
 public class Communication {
-    public static String RECIEVINGIP;
 
     public static void sendOver(Socket target, String message) throws IOException {
         PrintWriter sockout = new PrintWriter(target.getOutputStream());
@@ -20,7 +19,6 @@ public class Communication {
     }
 
     public static String receive(Socket target) throws IOException {
-        RECIEVINGIP = target.getLocalAddress().getHostAddress();
         BufferedReader sockin = new BufferedReader(new InputStreamReader(target.getInputStream()));
         while (!sockin.ready()) {}
         StringBuilder input = new StringBuilder();

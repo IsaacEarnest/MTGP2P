@@ -19,6 +19,7 @@ import com.example.mtg.networking.Utilities;
 import java.io.IOException;
 import java.net.Socket;
 import java.sql.Connection;
+import java.util.Calendar;
 
 
 public class ActivityJoinLobby extends AppCompatActivity implements ServerListener {
@@ -95,7 +96,7 @@ public class ActivityJoinLobby extends AppCompatActivity implements ServerListen
                 try {
 
                     Socket socket = new Socket(ip, Server.APP_PORT);
-                    Communication.sendOver(socket, "I GOT YOUR MESSAGE");
+                    Communication.sendOver(socket, Calendar.getInstance().getTime().toString());
                     Log.d(TAG, "I CREATED THE SOCKET");
                 } catch (IOException e) {
                     e.printStackTrace();

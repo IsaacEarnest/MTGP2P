@@ -90,19 +90,22 @@ public class ActivityJoinLobby extends AppCompatActivity implements ServerListen
     }
 
     private void createSocket(final String ip) {
-        new Thread(new Runnable() {
+        new Thread() {
             @Override
             public void run() {
                 try {
-
                     Socket socket = new Socket(ip, Server.APP_PORT);
                     Communication.sendOver(socket, Calendar.getInstance().getTime().toString());
-                    Log.d(TAG, "I CREATED THE SOCKET");
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+                Log.d(TAG, "I CREATED THE SOCKET");
+
             }
-        }).start();
+        }.start();
+
+
+
 
 
     }

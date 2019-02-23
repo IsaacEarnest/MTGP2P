@@ -3,6 +3,7 @@ package com.example.mtg.networking;
 
 
 import java.io.IOException;
+import java.net.Socket;
 
 public class Singleton {
     private static final String TAG = "SINGLETON";
@@ -56,6 +57,8 @@ public class Singleton {
         server.addListener(serverListener);
         //server.addlistener();
     }
+
+
 
 
 

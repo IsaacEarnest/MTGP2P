@@ -17,6 +17,8 @@ public class SocketEchoThread extends Thread {
     private Socket socket;
     private ArrayList<ServerListener> listeners = new ArrayList<>();
 
+    //TODO: change this message header to work for our implementation
+    //this is the message protocol for sending a message for right now
     public static final String REPLY_HEADER = "Connection open.\nI will echo a single message, then close.\n";
 
     public SocketEchoThread(Socket socket, ArrayList<ServerListener> listeners) {

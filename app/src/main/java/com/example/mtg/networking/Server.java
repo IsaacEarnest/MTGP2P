@@ -17,6 +17,7 @@ public class Server {
     private ArrayList<ServerListener> listeners = new ArrayList<>();
 
     public Server() throws IOException {
+        //TCPListener
         accepter = new ServerSocket(APP_PORT);
     }
 

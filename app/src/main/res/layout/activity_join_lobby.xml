@@ -8,49 +8,34 @@
 
     <EditText
         android:id="@+id/IPnumber"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="104dp"
-        android:layout_marginEnd="15dp"
+        android:layout_width="225dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="108dp"
+        android:layout_marginTop="96dp"
         android:ems="10"
         android:hint="IP address"
         android:inputType="numberDecimal"
-        app:layout_constraintEnd_toStartOf="@+id/portNumber"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/portNumber"
-        android:layout_width="140dp"
-        android:layout_height="42dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="104dp"
-        android:layout_marginEnd="27dp"
-        android:ems="10"
-        android:hint="portNumber"
-        android:inputType="numberDecimal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/IPnumber"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/requestConnection"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="52dp"
         android:text="Connect"
+        android:onClick="joinLobby"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.716"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/IPnumber" />
 
     <TextView
         android:id="@+id/joinStatus"
-        android:layout_width="136dp"
-        android:layout_height="42dp"
-        android:layout_marginTop="74dp"
+        android:layout_width="285dp"
+        android:layout_height="37dp"
         android:text="pending status"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.242"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/requestConnection" />
 
@@ -58,10 +43,11 @@
         android:id="@+id/join_PlayGame"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="39dp"
+        android:layout_marginTop="56dp"
         android:text="Play Game"
+        android:onClick="playGameP2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.73"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/joinStatus" />
+        app:layout_constraintTop_toBottomOf="@+id/requestConnection" />
 </android.support.constraint.ConstraintLayout>

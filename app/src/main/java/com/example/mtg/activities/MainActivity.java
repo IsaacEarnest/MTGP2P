@@ -9,6 +9,7 @@ import com.example.mtg.R;
 import com.example.mtg.game.Deck;
 import com.example.mtg.activities.ActivityCreateLobby;
 import com.example.mtg.activities.ActivityJoinLobby;
+import com.example.mtg.game.JSON;
 import com.example.mtg.networking.Singleton;
 
 public class MainActivity extends AppCompatActivity {
@@ -17,7 +18,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        JSON j = new JSON(this);
+        j.parseJSON();
 
         Singleton.getInstance();
 

@@ -96,6 +96,7 @@ public class ActivityJoinLobby extends AppCompatActivity implements ServerListen
                 try {
                     Socket socket = new Socket(ip, Server.APP_PORT);
                     Communication.sendOver(socket, Calendar.getInstance().getTime().toString());
+                    socket.close();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

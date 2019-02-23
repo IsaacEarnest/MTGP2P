@@ -2,6 +2,7 @@ package com.example.mtg.activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -16,6 +17,7 @@ import java.io.IOException;
 import java.net.Socket;
 
 public class ActivityCreateLobby extends AppCompatActivity implements ServerListener {
+    private static final String TAG = "CREATELOBBY";
 
     public TextView connectionStatus;
 
@@ -74,6 +76,7 @@ public class ActivityCreateLobby extends AppCompatActivity implements ServerList
     @Override
     public void notifyMessage(String msg) {
         //TODO: actually parse this!
+        Log.d(TAG, msg);
         showIncoming(msg);
     }
 }

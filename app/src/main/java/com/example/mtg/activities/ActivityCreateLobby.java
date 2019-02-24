@@ -52,6 +52,9 @@ public class ActivityCreateLobby extends AppCompatActivity implements ServerList
     }
 
     public void acceptRequest(View view) {
+        if (connectionStatus.getText().equals("Connection Pending")){
+            Utilities.notifyMessage(this, "No one has connected with you yet");
+        }
 
     }
 

@@ -1,5 +1,6 @@
 package com.example.mtg.activities;
 
+import android.content.Context;
 import android.nfc.Tag;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -84,23 +85,32 @@ public class ActivityJoinLobby extends AppCompatActivity implements ServerListen
     }
 
     public void requestConnection(View view) {
+
         final String ip = IPnumber.getText().toString();
         Log.d(TAG, ip);
-        createSocket(ip);
+        createSocket(ip, this);
     }
 
-    private void createSocket(final String ip) {
+    private void createSocket(final String ip, final Context context) {
         new Thread() {
             @Override
             public void run() {
                 try {
                     Socket socket = new Socket(ip, Server.APP_PORT);
+
                     Communication.sendOver(socket, Calendar.getInstance().getTime().toString());
+
+
                     socket.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
+
+                } catch (final IOException e) {
+                    ActivityJoinLobby.this.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Utilities.notifyException(ActivityJoinLobby.this, e);
+                        }
+                    });
                 }
-                Log.d(TAG, "I CREATED THE SOCKET");
 
             }
         }.start();

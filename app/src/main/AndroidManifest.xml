@@ -13,7 +13,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.ActivityChooseDeck"></activity>
+        <activity android:name=".activities.ActivityGameBoard"></activity>
+        <activity android:name=".activities.ActivityChooseDeck" />
         <activity android:name=".activities.ActivityJoinLobby" />
         <activity android:name=".activities.ActivityCreateLobby" />
         <activity android:name=".activities.MainActivity">

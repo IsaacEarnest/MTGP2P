@@ -1,17 +1,16 @@
 package com.example.mtg.activities;
 
-import android.content.Context;
-import android.nfc.Tag;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.mtg.R;
 import com.example.mtg.networking.Communication;
+import com.example.mtg.networking.IncomingMsg;
+import com.example.mtg.networking.ParseRecieved;
 import com.example.mtg.networking.Server;
 import com.example.mtg.networking.ServerListener;
 import com.example.mtg.networking.Singleton;
@@ -19,8 +18,6 @@ import com.example.mtg.networking.Utilities;
 
 import java.io.IOException;
 import java.net.Socket;
-import java.sql.Connection;
-import java.util.Calendar;
 
 
 public class ActivityJoinLobby extends AppCompatActivity implements ServerListener {
@@ -70,6 +67,9 @@ public class ActivityJoinLobby extends AppCompatActivity implements ServerListen
 
 
     public void playGameP2(View view) {
+        if(joinStatus.getText().toString().equals("OPPONENT AS ACCEPTED YOUR REQUEST")){
+            Utilities.notifyMessage(this, "READY TO PLAY");
+        }
         //TODO: implement the PlayGame Button P2
         //this will check the text of joinStatus
         // and if joinStatus is the correct message it will go to the next screen
@@ -79,43 +79,27 @@ public class ActivityJoinLobby extends AppCompatActivity implements ServerListen
 
     @Override
     public void notifyMessage(String msg) {
+        IncomingMsg incomingMsg = ParseRecieved.getProtocol(msg);
+        if(incomingMsg == IncomingMsg.IP){
+            showIncoming("OPPONENT AS ACCEPTED YOUR REQUEST");
+        }
 
     }
 
     public void requestConnection(View view) {
 
         final String ip = IPnumber.getText().toString();
-        Log.d(TAG, ip);
-        createSocket(ip, this);
+        final String IPprotocol = createIPprotocol(ip);
+        Singleton.getInstance().setOpponentIP(ip);
+        Log.d(TAG, IPprotocol);
+        Singleton.getInstance().sendOverSocket(IPprotocol, this);
     }
 
-    private void createSocket(final String ip, final Context context) {
-        new Thread() {
-            @Override
-            public void run() {
-                try {
-                    Socket socket = new Socket(ip, Server.APP_PORT);
-
-                    Communication.sendOver(socket, Calendar.getInstance().getTime().toString());
-
-
-                    socket.close();
-
-                } catch (final IOException e) {
-                    ActivityJoinLobby.this.runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            Utilities.notifyException(ActivityJoinLobby.this, e);
-                        }
-                    });
-                }
-
-            }
-        }.start();
-
-
-
-
-
+    private String createIPprotocol(String ip){
+        String protocol = "IP:\n" + ip;
+        return protocol;
     }
+
+
+
 }

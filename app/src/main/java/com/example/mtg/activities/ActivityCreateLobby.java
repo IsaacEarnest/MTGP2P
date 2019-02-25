@@ -7,19 +7,17 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.mtg.R;
-import com.example.mtg.networking.Communication;
-import com.example.mtg.networking.Server;
+import com.example.mtg.networking.IncomingMsg;
+import com.example.mtg.networking.ParseRecieved;
 import com.example.mtg.networking.ServerListener;
 import com.example.mtg.networking.Singleton;
 import com.example.mtg.networking.Utilities;
-
-import java.io.IOException;
-import java.net.Socket;
 
 public class ActivityCreateLobby extends AppCompatActivity implements ServerListener {
     private static final String TAG = "CREATELOBBY";
 
     public TextView connectionStatus;
+    public IncomingMsg incomingMsg = IncomingMsg.NONE;
 
 
     @Override
@@ -54,11 +52,16 @@ public class ActivityCreateLobby extends AppCompatActivity implements ServerList
     public void acceptRequest(View view) {
         if (connectionStatus.getText().equals("Connection Pending")){
             Utilities.notifyMessage(this, "No one has connected with you yet");
+        }else{
+            if(incomingMsg == IncomingMsg.IP){
+                Singleton.getInstance().sendOverSocket("IP:\n", this);
+            }
         }
 
     }
 
     public void playGameP1(View view) {
+        Utilities.notifyMessage(this, "READY TO PLAY");
         //TODO: implement the PlayGame Button P1
         //this will check the text of connectionStatus
         // and if connectionStatus is the correct message it will go to the next screen
@@ -68,8 +71,13 @@ public class ActivityCreateLobby extends AppCompatActivity implements ServerList
 
     @Override
     public void notifyMessage(String msg) {
-        //TODO: actually parse this!
         Log.d(TAG, msg);
-        showIncoming(msg);
+        IncomingMsg incomingMsg = ParseRecieved.getProtocol(msg);
+        this.incomingMsg = incomingMsg;
+
+        String rawIP = ParseRecieved.cutMsg(msg);
+        Singleton.getInstance().setOpponentIP(rawIP);
+
+
     }
 }

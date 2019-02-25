@@ -1,5 +1,6 @@
 package com.example.mtg.activities;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -69,7 +70,9 @@ public class ActivityJoinLobby extends AppCompatActivity implements ServerListen
 
     public void playGameP2(View view) {
         if(joinStatus.getText().toString().equals("OPPONENT AS ACCEPTED YOUR REQUEST")){
-            Utilities.notifyMessage(this, "READY TO PLAY");
+            Intent intent = new Intent(this, ActivityChooseDeck.class);
+            startActivity(intent);
+            //Utilities.notifyMessage(this, "READY TO PLAY");
         }
         //TODO: implement the PlayGame Button P2
         //this will check the text of joinStatus

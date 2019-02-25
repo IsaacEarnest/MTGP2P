@@ -1,5 +1,6 @@
 package com.example.mtg.activities;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -55,13 +56,18 @@ public class ActivityCreateLobby extends AppCompatActivity implements ServerList
         }else{
             if(incomingMsg == IncomingMsg.IP){
                 Singleton.getInstance().sendOverSocket("IP:\n", this);
+
             }
         }
 
     }
 
     public void playGameP1(View view) {
-        Utilities.notifyMessage(this, "READY TO PLAY");
+        if(connectionStatus.getText().equals("YOU HAVE BEEN SUCCESSFULLY CONNECTED!")){
+            Intent intent = new Intent(this, ActivityChooseDeck.class);
+            startActivity(intent);
+        }
+        //Utilities.notifyMessage(this, "READY TO PLAY");
         //TODO: implement the PlayGame Button P1
         //this will check the text of connectionStatus
         // and if connectionStatus is the correct message it will go to the next screen
@@ -71,7 +77,7 @@ public class ActivityCreateLobby extends AppCompatActivity implements ServerList
 
     @Override
     public void notifyMessage(String msg) {
-        Log.d(TAG, msg);
+
         IncomingMsg incomingMsg = ParseRecieved.getProtocol(msg);
         this.incomingMsg = incomingMsg;
         showIncoming("YOU HAVE BEEN SUCCESSFULLY CONNECTED!");

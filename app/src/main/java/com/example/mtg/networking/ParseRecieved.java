@@ -8,7 +8,7 @@ public class ParseRecieved {
         RESPONDING,
         NONE;
     }
-    
+
     public static Protocol getProtocol(String msg){
         if(msg.startsWith("IP:")){
             return Protocol.IP;

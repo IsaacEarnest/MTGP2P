@@ -18,7 +18,6 @@ import com.example.mtg.networking.Utilities;
 
 import java.io.IOException;
 import java.net.Socket;
-import java.net.SocketException;
 
 
 public class ActivityJoinLobby extends AppCompatActivity implements ServerListener {
@@ -90,12 +89,7 @@ public class ActivityJoinLobby extends AppCompatActivity implements ServerListen
     public void requestConnection(View view) {
 
         final String ip = IPnumber.getText().toString();
-        String IPprotocol = "none";
-        try {
-            IPprotocol = Utilities.getLocalIpAddress();
-        } catch (SocketException e) {
-            e.printStackTrace();
-        }
+        final String IPprotocol = createIPprotocol(ip);
         Singleton.getInstance().setOpponentIP(ip);
         Log.d(TAG, IPprotocol);
         Singleton.getInstance().sendOverSocket(IPprotocol, this);

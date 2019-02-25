@@ -8,21 +8,21 @@ public class ParseRecieved {
         RESPONDING,
         NONE;
     }
-
-    public static Protocol getProtocol(String msg){
+    public static IncomingMsg getProtocol(String msg){
         if(msg.startsWith("IP:")){
-            return Protocol.IP;
+            return IncomingMsg.IP;
         }else if(msg.startsWith("ATTACKINGCARDS:")){
-            return Protocol.ATTACKINGCARDS;
+            return IncomingMsg.ATTACKINGCARDS;
         }else if(msg.startsWith("CARDPLAYED:")){
-            return Protocol.CARDPLAYED;
+            return IncomingMsg.CARDPLAYED;
         }else if(msg.startsWith("RESPONDING:")){
-            return Protocol.RESPONDING;
-        }else return Protocol.NONE;
+            return IncomingMsg.RESPONDING;
+        }else return IncomingMsg.NONE;
     }
-    public String cutMsg(String msg){
+    public static String cutMsg(String msg){
         String[] split = msg.split(":");
         return split[1];
     }
+
 
 }

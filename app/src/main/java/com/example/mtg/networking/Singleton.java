@@ -2,6 +2,11 @@ package com.example.mtg.networking;
 
 
 
+import android.app.Activity;
+import android.content.Context;
+
+import com.example.mtg.activities.ActivityJoinLobby;
+
 import java.io.IOException;
 import java.net.Socket;
 
@@ -9,6 +14,7 @@ public class Singleton {
     private static final String TAG = "SINGLETON";
     private static final Singleton ourInstance = new Singleton();
     private Server server;
+    private String opponentIP = "none";
 
 
 
@@ -49,6 +55,35 @@ public class Singleton {
 
     }
 
+    public void sendOverSocket(final String message, final Activity activity) {
+        new Thread() {
+            @Override
+            public void run() {
+                try {
+                    Socket socket = new Socket(opponentIP, Server.APP_PORT);
+
+                    Communication.sendOver(socket, message);
+
+                    socket.close();
+
+                } catch (final IOException e) {
+                    activity.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Utilities.notifyException(activity, e);
+                        }
+                    });
+                }
+
+            }
+        }.start();
+
+
+
+
+
+    }
+
     public Server getServer(){
         return server;
     }
@@ -56,6 +91,10 @@ public class Singleton {
     public void addlistener(ServerListener serverListener) {
         server.addListener(serverListener);
         //server.addlistener();
+    }
+
+    public void setOpponentIP(String ip){
+        this.opponentIP = ip;
     }
 
 

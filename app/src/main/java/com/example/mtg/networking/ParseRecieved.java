@@ -1,8 +1,13 @@
 package com.example.mtg.networking;
 
 public class ParseRecieved {
-
-    
+    enum Protocol {
+        IP,
+        ATTACKINGCARDS,
+        CARDPLAYED,
+        RESPONDING,
+        NONE;
+    }
     public static IncomingMsg getProtocol(String msg){
         if(msg.startsWith("IP:")){
             return IncomingMsg.IP;

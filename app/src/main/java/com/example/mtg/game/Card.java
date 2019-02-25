@@ -78,6 +78,9 @@ public class Card {
     public int getCost(){
         return cost;
     }
+    public String getName(){
+        return this.name;
+    }
     @Override
     public String toString(){
         return name+"_"+type+"_"+cost;
@@ -103,6 +106,36 @@ public class Card {
     public Type getType() {
         return type;
     }
+
+    public void onCreaturePlayed(Card c){
+        String s = c.getName();
+        if(s.equals("Nimble Innovator")){
+            //draw 1
+        }else if(s.equals("Angler Drake")){
+            //return creature to owner's hand
+        }
+    }
+    public void onInstantPlayed(Card c){
+        String s = c.getName();
+        if(s.equals("Inspiration")){
+            //draw 2
+        }
+    }
+    public void onEnchantmentPlayed(Card c){
+        String s = c.getName();
+        if(s.equals("Sleep Paralysis")){
+            //tap opposing creature, doesn't untap
+        }else if(s.equals("Tricks of the Trade")){
+            //+2 power, attacks can't be blocked
+        }
+    }
+    public void onSorceryPlayed(Card c){
+        String s = c.getName();
+        if(s.equals("Drag Under")){
+            //return target creature to owner's hand, draw 1
+        }
+    }
+
 
 
 

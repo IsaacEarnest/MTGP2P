@@ -32,8 +32,6 @@ public class ActivityJoinLobby extends AppCompatActivity implements ServerListen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_join_lobby);
-
-
         setUpGUI();
         implementListener();
 

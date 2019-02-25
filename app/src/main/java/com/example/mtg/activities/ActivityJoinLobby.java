@@ -90,9 +90,11 @@ public class ActivityJoinLobby extends AppCompatActivity implements ServerListen
     public void requestConnection(View view) {
 
         final String ip = IPnumber.getText().toString();
-        final String IPprotocol = createIPprotocol(ip);
+        final String brokenstuff = getIP();
+        final String IPprotocol = createIPprotocol(brokenstuff);
+
         Singleton.getInstance().setOpponentIP(ip);
-        String brokenstuff = getIP();
+
         Log.d(TAG, IPprotocol);
         Singleton.getInstance().sendOverSocket(IPprotocol, this);
     }

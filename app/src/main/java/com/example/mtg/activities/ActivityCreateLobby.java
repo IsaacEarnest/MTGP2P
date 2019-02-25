@@ -74,7 +74,7 @@ public class ActivityCreateLobby extends AppCompatActivity implements ServerList
         Log.d(TAG, msg);
         IncomingMsg incomingMsg = ParseRecieved.getProtocol(msg);
         this.incomingMsg = incomingMsg;
-
+        showIncoming("YOU HAVE BEEN SUCCESSFULLY CONNECTED!");
         String rawIP = ParseRecieved.cutMsg(msg);
         Singleton.getInstance().setOpponentIP(rawIP);
 

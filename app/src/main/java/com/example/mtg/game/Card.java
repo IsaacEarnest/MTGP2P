@@ -10,7 +10,7 @@ public class Card {
             }
             @Override
             Type toType(String str){
-                if(str.equals("LAND"))
+                if(str.contains("Land"))
                     return LAND;
                 else return CREATURE.toType(str);
             }
@@ -22,7 +22,7 @@ public class Card {
             }
             @Override
             Type toType(String str){
-                if(str.equals("CREATURE"))
+                if(str.contains("Creature"))
                     return CREATURE;
                 else return ENCHANTMENT.toType(str);
             }
@@ -34,7 +34,7 @@ public class Card {
             }
             @Override
             Type toType(String str){
-                if(str.equals("ENCHANTMENT"))
+                if(str.contains("Enchantment"))
                     return ENCHANTMENT;
                 else return INSTANT.toType(str);
             }
@@ -46,7 +46,7 @@ public class Card {
             }
             @Override
             Type toType(String str){
-                if(str.equals("INSTANT"))
+                if(str.contains("Instant"))
                     return INSTANT;
                 else return SORCERY.toType(str);
             }
@@ -58,23 +58,35 @@ public class Card {
             }
             @Override
             Type toType(String str){
-                if(str.equals("SORCERY"))
+                if(str.contains("Sorcery"))
                     return SORCERY;
                 else return LAND.toType(str);
+            }
+        },
+        ERROR{
+            @Override
+            void playCard(Card c) {}
+            @Override
+            Type toType(String str){
+                return ERROR;
             }
         };
         abstract void playCard(Card c);
         abstract Type toType(String str);
     }
 
-    String name;
-    Type type;
-    int cost;
+    private String name;
+    private Type type;
+    private int cost;
     public Card(String name, Type type,int cost){
         this.name = name;
         this.type = type;
         this.cost = cost;
     }
+    public Card(String data){
+        parse(data);
+    }
+
     public int getCost(){
         return cost;
     }
@@ -85,9 +97,10 @@ public class Card {
     public String toString(){
         return name+"_"+type+"_"+cost;
     }
+
     public Card parse(String str){
         String[] parsed = str.split("_");
-        return new Card(parsed[0],Type.CREATURE.toType(parsed[1]),Integer.parseInt(parsed[2]));
+        return new Card(parsed[0],Type.LAND.toType(parsed[1]),Integer.parseInt(parsed[2]));
 
     }
     @Override

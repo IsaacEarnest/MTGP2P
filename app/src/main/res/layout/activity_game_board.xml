@@ -6,4 +6,117 @@
     android:layout_height="match_parent"
     tools:context=".activities.ActivityGameBoard">
 
+    <TextView
+        android:id="@+id/opponentHP"
+        android:layout_width="89dp"
+        android:layout_height="56dp"
+        android:layout_marginBottom="8dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toTopOf="@+id/imageView2"
+        tools:layout_editor_absoluteX="16dp" />
+
+    <TextView
+        android:id="@+id/playerHP"
+        android:layout_width="89dp"
+        android:layout_height="65dp"
+        android:text="TextView"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="330dp" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="143dp"
+        android:layout_height="219dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="35dp"
+        app:layout_constraintBottom_toTopOf="@+id/playerHP"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.013"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/card_back" />
+
+    <Button
+        android:id="@+id/playLand"
+        android:layout_width="104dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:text="Play Land"
+        app:layout_constraintStart_toStartOf="@+id/playCard"
+        tools:layout_editor_absoluteY="88dp" />
+
+    <Button
+        android:id="@+id/playCard"
+        android:layout_width="108dp"
+        android:layout_height="wrap_content"
+        android:text="Play Card"
+        tools:layout_editor_absoluteX="159dp"
+        tools:layout_editor_absoluteY="136dp" />
+
+    <Button
+        android:id="@+id/nextPhase"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Next Phase"
+        app:layout_constraintStart_toEndOf="@+id/imageView2"
+        tools:layout_editor_absoluteY="181dp" />
+
+    <Button
+        android:id="@+id/confirm"
+        android:layout_width="109dp"
+        android:layout_height="wrap_content"
+        android:text="Confirm"
+        app:layout_constraintStart_toEndOf="@+id/imageView2"
+        tools:layout_editor_absoluteY="236dp" />
+
+    <ImageView
+        android:id="@+id/nextCard"
+        android:layout_width="32dp"
+        android:layout_height="29dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="4dp"
+        app:layout_constraintStart_toEndOf="@+id/playerHP"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2"
+        app:srcCompat="@android:drawable/arrow_down_float" />
+
+    <ImageView
+        android:id="@+id/prevCard"
+        android:layout_width="32dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/imageView2"
+        app:layout_constraintStart_toEndOf="@+id/opponentHP"
+        app:srcCompat="@android:drawable/arrow_up_float" />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        app:srcCompat="@drawable/blue_mana"
+        tools:layout_editor_absoluteX="163dp"
+        tools:layout_editor_absoluteY="346dp" />
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        app:srcCompat="@drawable/red_mana"
+        tools:layout_editor_absoluteX="182dp"
+        tools:layout_editor_absoluteY="25dp" />
+
+    <TextView
+        android:id="@+id/playerMana"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        tools:layout_editor_absoluteX="198dp"
+        tools:layout_editor_absoluteY="353dp" />
+
+    <TextView
+        android:id="@+id/opponentMana"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        tools:layout_editor_absoluteX="218dp"
+        tools:layout_editor_absoluteY="32dp" />
 </android.support.constraint.ConstraintLayout>

@@ -6,31 +6,19 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.example.mtg.R;
-import com.example.mtg.game.Deck;
-import com.example.mtg.activities.ActivityCreateLobby;
-import com.example.mtg.activities.ActivityJoinLobby;
 import com.example.mtg.game.JSON;
 import com.example.mtg.networking.Singleton;
 
 public class MainActivity extends AppCompatActivity {
-    Deck p1Library, p2Library, p1Hand, p2Hand, p1Graveyard, p2Graveyard;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         JSON j = new JSON(this);
-        j.parseJSON();
+        j.parseJSON("blueDeck");
 
         Singleton.getInstance();
-
-
-
-
-
-        //gameStart();
-    }
-    public void gameStart(){
-        //p1Library.shuffle();
     }
 
     //This is called in the xml file

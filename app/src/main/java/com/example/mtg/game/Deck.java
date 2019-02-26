@@ -9,8 +9,8 @@ import static java.lang.Math.min;
 
 //testing
 public class Deck {
-    ArrayList<Card> deck;
-    int cards;
+    private ArrayList<Card> deck;
+    private int cards;
     public Deck(){
         deck = new ArrayList<>();
         cards = 0;
@@ -19,6 +19,18 @@ public class Deck {
         deck.add(c);
         cards++;
     }
+    public boolean contains(Card c){
+        for (Card card:deck) {
+            if(card.equals(c)){
+                return true;
+            }
+        }
+        return false;
+    }
+    public void remove(Card c){
+        deck.remove(c);
+
+    }
     public Card getCard(int index){
         return deck.get(index);
     }
@@ -26,8 +38,12 @@ public class Deck {
         return cards;
     }
     public Card drawCard(){
-        Card c = deck.remove(0);
-        return c;
+        if(cards<0) {
+            cards--;
+            return deck.remove(0);
+        }else{
+            return null;
+        }
     }
     public void shuffle(){
         ArrayList<Card> shuffled = new ArrayList<>();
@@ -40,7 +56,7 @@ public class Deck {
         String[] parsed = str.split(";");
         Deck d = new Deck();
         for (String s:parsed) {
-           // d.addCard();
+           d.addCard(new Card(s));
         }
         return d;
     }

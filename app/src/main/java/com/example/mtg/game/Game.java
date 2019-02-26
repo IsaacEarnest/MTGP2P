@@ -1,14 +1,15 @@
 package com.example.mtg.game;
 
-import com.example.mtg.game.Card;
-import com.example.mtg.game.Deck;
+import com.example.mtg.activities.ActivityGameBoard;
 
 public class Game {
-    //code placed in here may be moved to main, but working on it here to avoid GitHub's problems
-    Deck p1Library, p2Library, p1Hand, p2Hand, p1Graveyard, p2Graveyard;
+    Deck pLibrary, oLibrary, pHand, oHand, pGraveyard, oGraveyard;
     int mana;
     boolean landPlayed = false;
     State state;
+    public Game(String library){
+        //give deck name, call parseJSON(deckname) and it gets all cards in deck as string,
+    }
     public enum State {
         MULLIGAN{
           @Override
@@ -68,6 +69,7 @@ public class Game {
             }
         },
         OPPONENT_TURN {
+            //wait for opponent to send an action for a chance to respond, or
             @Override
             State doSomething(String aParameter) {
 
@@ -77,7 +79,6 @@ public class Game {
 
         abstract State doSomething(String aParameter);
     }
-    //public void drawFullHand(int ){
 
 
 
@@ -105,7 +106,17 @@ public class Game {
 
     public void playCard(Card c){
         Card.Type type =c.getType();
-
+    }
+    public void playLand(Card c){
+        if(pHand.contains(c)){
+            if(c.getType()== Card.Type.LAND){
+                //increase playerMana by 1
+                pHand.remove(c);
+            }
+        }
+    }
+    public Deck getpHand(){
+        return pHand;
     }
 
 }

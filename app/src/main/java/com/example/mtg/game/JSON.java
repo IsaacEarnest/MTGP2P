@@ -60,3 +60,4 @@ public class JSON {
 
     }
 }
+//TODO http://www.magicspoiler.com/mtg-news/amonkhet-welcome-decks/

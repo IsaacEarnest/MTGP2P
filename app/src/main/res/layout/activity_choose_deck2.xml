@@ -11,11 +11,67 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="82dp"
+        android:layout_marginTop="24dp"
         android:text="Choose A Deck"
         android:textColor="@android:color/black"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ListView
+        android:id="@+id/ListView_redDeck"
+        android:layout_width="306dp"
+        android:layout_height="289dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ListView
+        android:id="@+id/ListView_blueDeck"
+        android:layout_width="306dp"
+        android:layout_height="289dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="7dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/choose_redDeck"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="91dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginBottom="18dp"
+        android:text="Use Red Deck"
+        android:onClick="clickRedDeck"
+        app:layout_constraintBottom_toTopOf="@+id/ListView_redDeck"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/choose_blueDeck"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="91dp"
+        android:layout_marginBottom="19dp"
+        android:text="Use Blue Deck"
+        android:onClick="clickBlueDeck"
+        app:layout_constraintBottom_toTopOf="@+id/ListView_blueDeck"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/chooseDeck_PlayGame"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="106dp"
+        android:layout_marginEnd="101dp"
+        android:text="Play Game"
+        android:onClick="clickPlayGame"
+        app:layout_constraintEnd_toStartOf="@+id/choose_blueDeck"
+        app:layout_constraintStart_toEndOf="@+id/choose_redDeck"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 </android.support.constraint.ConstraintLayout>

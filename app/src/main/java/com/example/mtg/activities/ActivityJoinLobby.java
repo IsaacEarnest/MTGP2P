@@ -74,11 +74,6 @@ public class ActivityJoinLobby extends AppCompatActivity implements ServerListen
             startActivity(intent);
             //Utilities.notifyMessage(this, "READY TO PLAY");
         }
-        //TODO: implement the PlayGame Button P2
-        //this will check the text of joinStatus
-        // and if joinStatus is the correct message it will go to the next screen
-
-        //need to pass IP address to the next activity
     }
 
     @Override

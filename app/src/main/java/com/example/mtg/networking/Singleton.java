@@ -56,6 +56,7 @@ public class Singleton {
 
     }
 
+    //this makes the class do two different things create a different class for this
     public void sendOverSocket(final String message, final Activity activity) {
         new Thread() {
             @Override
@@ -72,6 +73,7 @@ public class Singleton {
                     socket.close();
 
                 } catch (final IOException e) {
+                    //implement interface here!!!
                     activity.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
@@ -87,10 +89,6 @@ public class Singleton {
 
 
 
-    }
-
-    public Server getServer(){
-        return server;
     }
 
     public void addlistener(ServerListener serverListener) {

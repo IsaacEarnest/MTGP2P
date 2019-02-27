@@ -67,12 +67,6 @@ public class ActivityCreateLobby extends AppCompatActivity implements ServerList
             Intent intent = new Intent(this, ActivityChooseDeck.class);
             startActivity(intent);
         }
-        //Utilities.notifyMessage(this, "READY TO PLAY");
-        //TODO: implement the PlayGame Button P1
-        //this will check the text of connectionStatus
-        // and if connectionStatus is the correct message it will go to the next screen
-
-        //need to pass IP address to the next activity
     }
 
     @Override

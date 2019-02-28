@@ -110,7 +110,7 @@
 
         android:layout_marginStart="58dp"
         app:layout_constraintStart_toEndOf="@+id/playerHP"
-        app:srcCompat="@drawable/blue_mana"
+        app:srcCompat="@drawable/mana_blue"
         tools:layout_editor_absoluteY="349dp" />
 
 
@@ -124,7 +124,7 @@
         app:layout_constraintEnd_toStartOf="@+id/opponentMana"
         app:layout_constraintStart_toEndOf="@+id/imageView2"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/red_mana" />
+        app:srcCompat="@drawable/mana_red" />
 
     <TextView
         android:id="@+id/playerMana"

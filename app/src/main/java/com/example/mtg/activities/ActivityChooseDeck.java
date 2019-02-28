@@ -20,10 +20,11 @@ public class ActivityChooseDeck extends AppCompatActivity {
     private Button clickPlayGame;
     private ListView listViewRed;
     private ListView listViewBlue;
-    private CustomListViewAdapter adapter;
 
 
-    @Override
+
+
+
     protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_choose_deck2);
@@ -39,6 +40,24 @@ public class ActivityChooseDeck extends AppCompatActivity {
         listViewBlue = findViewById(R.id.ListView_blueDeck);
         listViewRed = findViewById(R.id.ListView_redDeck);
 
+
+
+//        ArrayList<String> a = new ArrayList<>();
+//        for(int i = 0; i < 20;i++){
+//            a.add("a");
+//        }
+
+        CustomListViewAdapter adapter_red = new CustomListViewAdapter(this,
+                R.layout.listview_list_decks, buildRedDeck());
+
+        CustomListViewAdapter adapter_blue = new CustomListViewAdapter(this,
+                R.layout.listview_list_decks, buildBlueDeck());
+
+        listViewBlue.setAdapter(adapter_blue);
+        listViewRed.setAdapter(adapter_red);
+    }
+
+    private ArrayList<Drawable> buildRedDeck(){
         ArrayList<Drawable> k = new ArrayList<>();
         k.add(getImage(this, "red_wrangle"));
         k.add(getImage(this, "red_brazen_scourge"));
@@ -54,17 +73,25 @@ public class ActivityChooseDeck extends AppCompatActivity {
         k.add(getImage(this, "red_shock"));
         k.add(getImage(this, "red_terror_of_the_fairground"));
         k.add(getImage(this, "red_thundering_giant"));
+        return k;
+    }
 
-//        ArrayList<String> a = new ArrayList<>();
-//        for(int i = 0; i < 20;i++){
-//            a.add("a");
-//        }
-
-        adapter = new CustomListViewAdapter(this,
-                R.layout.listview_list_decks, k);
-
-        listViewBlue.setAdapter(adapter);
-        listViewRed.setAdapter(adapter);
+    private ArrayList<Drawable> buildBlueDeck(){
+        ArrayList<Drawable> k = new ArrayList<>();
+        k.add(getImage(this, "blue_air_elemental"));
+        k.add(getImage(this, "blue_ancient_crab"));
+        k.add(getImage(this, "blue_angler_drake"));
+        k.add(getImage(this, "blue_coral_merfolk"));
+        k.add(getImage(this, "blue_drag_under"));
+        k.add(getImage(this, "blue_inspiration"));
+        k.add(getImage(this, "blue_island"));
+        k.add(getImage(this, "blue_nimble_innovator"));
+        k.add(getImage(this, "blue_sleep_paralysis"));
+        k.add(getImage(this, "blue_sphinx_of_magosi"));
+        k.add(getImage(this, "blue_stealer_of_secrets"));
+        k.add(getImage(this, "blue_trick_of_the_trade"));
+        k.add(getImage(this, "blue_wind_drake"));
+        return k;
     }
 
     public static Drawable getImage(Context context, String name) {

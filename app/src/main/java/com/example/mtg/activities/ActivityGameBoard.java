@@ -13,12 +13,10 @@ import com.example.mtg.game.Game;
 
 public class ActivityGameBoard extends AppCompatActivity {
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_board);
-
 
 
     }

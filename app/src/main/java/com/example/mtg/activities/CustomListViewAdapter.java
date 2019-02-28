@@ -1,13 +1,18 @@
 package com.example.mtg.activities;
 
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+
+import com.example.mtg.R;
+import com.example.mtg.networking.Utilities;
 
 import java.util.List;
 
@@ -30,7 +35,7 @@ public class CustomListViewAdapter extends ArrayAdapter<String> {
 
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         String imgURL = getItem(position);
 
 
@@ -39,7 +44,14 @@ public class CustomListViewAdapter extends ArrayAdapter<String> {
         LayoutInflater inflater = LayoutInflater.from(mContext);
         convertView = inflater.inflate(mResource, parent, false);
 
+        ImageView imageView = convertView.findViewById(R.id.listView_card);
 
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Utilities.notifyMessage(mContext, "YOU CLICKED A CARD: " + position);
+            }
+        });
 
 
 

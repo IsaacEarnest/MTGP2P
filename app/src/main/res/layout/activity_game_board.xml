@@ -108,10 +108,9 @@
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:layout_marginStart="58dp"
-        android:layout_marginTop="60dp"
         app:layout_constraintStart_toEndOf="@+id/playerHP"
-        app:layout_constraintTop_toBottomOf="@+id/confirm"
-        app:srcCompat="@drawable/blue_mana" />
+        app:srcCompat="@drawable/blue_mana"
+        tools:layout_editor_absoluteY="349dp" />
 
     <ImageView
         android:id="@+id/imageView6"

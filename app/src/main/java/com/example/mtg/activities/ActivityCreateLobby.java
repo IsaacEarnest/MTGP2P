@@ -32,6 +32,7 @@ public class ActivityCreateLobby extends AppCompatActivity implements ServerList
 
     private void setUpGUI(){
         connectionStatus = findViewById(R.id.connectionStatus);
+
     }
 
     private void implementListener(){

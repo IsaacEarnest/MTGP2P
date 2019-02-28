@@ -1,11 +1,6 @@
 package com.example.mtg.game;
-
-import com.example.mtg.game.Card;
-
 import java.util.ArrayList;
-
 import static java.lang.Math.min;
-
 
 //testing
 public class Deck {

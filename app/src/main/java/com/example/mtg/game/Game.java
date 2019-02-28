@@ -1,19 +1,26 @@
 package com.example.mtg.game;
 
-import com.example.mtg.activities.ActivityGameBoard;
+import java.util.ArrayList;
 
 public class Game {
-    Deck pLibrary, oLibrary, pHand, oHand, pGraveyard, oGraveyard;
+    Player player, opponent;
+    static int timesMulled =0;
+    private String deckColor;
+    //ArrayList<Card> =
     int mana;
     boolean landPlayed = false;
     State state;
     public Game(String library){
+        this.deckColor = library;
         //give deck name, call parseJSON(deckname) and it gets all cards in deck as string,
+        initializeDeck(deckColor);
+
     }
     public enum State {
         MULLIGAN{
           @Override
           State doSomething(String aParameter){
+
               //drawFullHand();
               //listener for mulligan/keep
               //drawFullHand();
@@ -23,6 +30,9 @@ public class Game {
         BEGINNING {
             @Override
             State doSomething(String aParameter) {
+               // if(isGameOver())
+
+
                 //untap();
                 //upkeep();
                 //player.draw(deck);
@@ -75,7 +85,13 @@ public class Game {
 
                 return BEGINNING;
             }
-        },;
+        },
+        GAME_OVER {
+            @Override
+            State doSomething(String aParameter) {
+                return null;
+            }
+        };
 
         abstract State doSomething(String aParameter);
     }
@@ -108,15 +124,30 @@ public class Game {
         Card.Type type =c.getType();
     }
     public void playLand(Card c){
-        if(pHand.contains(c)){
+        if(player.handContains(c)){
             if(c.getType()== Card.Type.LAND){
                 //increase playerMana by 1
-                pHand.remove(c);
+                player.remove(c);
             }
         }
     }
-    public Deck getpHand(){
-        return pHand;
+    public ArrayList getpHand(){
+        return player.getHand();
     }
+    public boolean isGameOver(){
+        //check if either hp value is <1
+        return false;
+    }
+    public void mulligan(){
+        player.drawCard();
+    }
+    public void initializeDeck(String color){
+        if(color.equals("Red")){
+
+        }else if(color.equals("Blue")){
+
+        }
+    }
+
 
 }

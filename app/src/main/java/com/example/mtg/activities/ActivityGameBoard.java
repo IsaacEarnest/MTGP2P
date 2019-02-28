@@ -12,10 +12,14 @@ import com.example.mtg.game.Deck;
 import com.example.mtg.game.Game;
 
 public class ActivityGameBoard extends AppCompatActivity {
+    private String deckColor = "Red";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_board);
+
+        Game game = new Game("Red");
+        game.mulligan();
 
 
     }

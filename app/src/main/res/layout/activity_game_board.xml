@@ -147,4 +147,172 @@
         app:layout_constraintBottom_toTopOf="@+id/playLand"
         app:layout_constraintStart_toEndOf="@+id/imageView6"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="63dp"
+        android:layout_height="79dp"
+        app:srcCompat="@drawable/card_back"
+        tools:layout_editor_absoluteX="305dp"
+        tools:layout_editor_absoluteY="217dp" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="63dp"
+        android:layout_height="79dp"
+        app:srcCompat="@drawable/card_back"
+        tools:layout_editor_absoluteX="517dp"
+        tools:layout_editor_absoluteY="244dp" />
+
+    <ImageView
+        android:id="@+id/imageView8"
+        android:layout_width="63dp"
+        android:layout_height="79dp"
+        app:srcCompat="@drawable/card_back"
+        tools:layout_editor_absoluteX="305dp"
+        tools:layout_editor_absoluteY="217dp" />
+
+    <ImageView
+        android:id="@+id/imageView9"
+        android:layout_width="63dp"
+        android:layout_height="79dp"
+        app:srcCompat="@drawable/card_back"
+        tools:layout_editor_absoluteX="590dp"
+        tools:layout_editor_absoluteY="323dp" />
+
+    <ImageView
+        android:id="@+id/imageView10"
+        android:layout_width="63dp"
+        android:layout_height="79dp"
+        app:srcCompat="@drawable/card_back"
+        tools:layout_editor_absoluteX="517dp"
+        tools:layout_editor_absoluteY="316dp" />
+
+    <ImageView
+        android:id="@+id/imageView11"
+        android:layout_width="63dp"
+        android:layout_height="79dp"
+        app:srcCompat="@drawable/card_back"
+        tools:layout_editor_absoluteX="469dp"
+        tools:layout_editor_absoluteY="333dp" />
+
+    <ImageView
+        android:id="@+id/imageView12"
+        android:layout_width="63dp"
+        android:layout_height="79dp"
+        app:srcCompat="@drawable/card_back"
+        tools:layout_editor_absoluteX="374dp"
+        tools:layout_editor_absoluteY="333dp" />
+
+    <ImageView
+        android:id="@+id/imageView13"
+        android:layout_width="63dp"
+        android:layout_height="79dp"
+        app:srcCompat="@drawable/card_back"
+        tools:layout_editor_absoluteX="616dp"
+        tools:layout_editor_absoluteY="35dp" />
+
+    <ImageView
+        android:id="@+id/imageView15"
+        android:layout_width="63dp"
+        android:layout_height="79dp"
+        app:srcCompat="@drawable/card_back"
+        tools:layout_editor_absoluteX="406dp"
+        tools:layout_editor_absoluteY="244dp" />
+
+    <ImageView
+        android:id="@+id/imageView16"
+        android:layout_width="63dp"
+        android:layout_height="79dp"
+        app:srcCompat="@drawable/card_back"
+        tools:layout_editor_absoluteX="368dp"
+        tools:layout_editor_absoluteY="235dp" />
+
+    <ImageView
+        android:id="@+id/imageView17"
+        android:layout_width="63dp"
+        android:layout_height="79dp"
+        app:srcCompat="@drawable/card_back"
+        tools:layout_editor_absoluteX="454dp"
+        tools:layout_editor_absoluteY="244dp" />
+
+    <ImageView
+        android:id="@+id/imageView18"
+        android:layout_width="63dp"
+        android:layout_height="79dp"
+        app:srcCompat="@drawable/card_back"
+        tools:layout_editor_absoluteX="508dp"
+        tools:layout_editor_absoluteY="87dp" />
+
+    <ImageView
+        android:id="@+id/imageView19"
+        android:layout_width="63dp"
+        android:layout_height="79dp"
+        app:srcCompat="@drawable/card_back"
+        tools:layout_editor_absoluteX="328dp"
+        tools:layout_editor_absoluteY="71dp" />
+
+    <ImageView
+        android:id="@+id/imageView20"
+        android:layout_width="63dp"
+        android:layout_height="79dp"
+        app:srcCompat="@drawable/card_back"
+        tools:layout_editor_absoluteX="391dp"
+        tools:layout_editor_absoluteY="95dp" />
+
+    <ImageView
+        android:id="@+id/imageView21"
+        android:layout_width="63dp"
+        android:layout_height="79dp"
+        app:srcCompat="@drawable/card_back"
+        tools:layout_editor_absoluteX="437dp"
+        tools:layout_editor_absoluteY="61dp" />
+
+    <ImageView
+        android:id="@+id/imageView22"
+        android:layout_width="63dp"
+        android:layout_height="79dp"
+        app:srcCompat="@drawable/card_back"
+        tools:layout_editor_absoluteX="334dp"
+        tools:layout_editor_absoluteY="35dp" />
+
+    <ImageView
+        android:id="@+id/imageView23"
+        android:layout_width="63dp"
+        android:layout_height="79dp"
+        app:srcCompat="@drawable/card_back"
+        tools:layout_editor_absoluteX="391dp"
+        tools:layout_editor_absoluteY="16dp" />
+
+    <ImageView
+        android:id="@+id/imageView24"
+        android:layout_width="63dp"
+        android:layout_height="79dp"
+        app:srcCompat="@drawable/card_back"
+        tools:layout_editor_absoluteX="454dp"
+        tools:layout_editor_absoluteY="10dp" />
+
+    <ImageView
+        android:id="@+id/imageView25"
+        android:layout_width="63dp"
+        android:layout_height="79dp"
+        app:srcCompat="@drawable/card_back"
+        tools:layout_editor_absoluteX="563dp"
+        tools:layout_editor_absoluteY="25dp" />
+
+    <ImageView
+        android:id="@+id/imageView14"
+        android:layout_width="63dp"
+        android:layout_height="79dp"
+        app:srcCompat="@drawable/card_back"
+        tools:layout_editor_absoluteX="305dp"
+        tools:layout_editor_absoluteY="306dp" />
+
+    <ImageView
+        android:id="@+id/imageView7"
+        android:layout_width="63dp"
+        android:layout_height="79dp"
+        app:srcCompat="@drawable/card_back"
+        tools:layout_editor_absoluteX="598dp"
+        tools:layout_editor_absoluteY="235dp" />
 </android.support.constraint.ConstraintLayout>

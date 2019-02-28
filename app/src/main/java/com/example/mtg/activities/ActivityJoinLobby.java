@@ -69,11 +69,11 @@ public class ActivityJoinLobby extends AppCompatActivity implements ServerListen
 
 
     public void playGameP2(View view) {
-        if(joinStatus.getText().toString().equals("OPPONENT AS ACCEPTED YOUR REQUEST")){
+        //if(joinStatus.getText().toString().equals("OPPONENT AS ACCEPTED YOUR REQUEST")){
             Intent intent = new Intent(this, ActivityChooseDeck.class);
             startActivity(intent);
             //Utilities.notifyMessage(this, "READY TO PLAY");
-        }
+        //}
     }
 
     @Override

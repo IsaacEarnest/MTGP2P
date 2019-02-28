@@ -1,24 +1,30 @@
 package com.example.mtg.activities;
 
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 
+import com.example.mtg.R;
+import com.example.mtg.networking.Utilities;
+
 import java.util.List;
 
-public class CustomListViewAdapter extends ArrayAdapter<String> {
+public class CustomListViewAdapter extends ArrayAdapter<Drawable> {
 
     private static final String TAG = "CUSTOMLISTVIEWADAPTER";
 
     private Context mContext;
     private int mResource;
 
-    public CustomListViewAdapter(Context context, int resource, List<String> objects) {
+    public CustomListViewAdapter(Context context, int resource, List<Drawable> objects) {
 
         super(context, resource, objects);
         this.mContext = context;
@@ -30,8 +36,8 @@ public class CustomListViewAdapter extends ArrayAdapter<String> {
 
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        String imgURL = getItem(position);
+    public View getView(final int position, View convertView, ViewGroup parent) {
+        Drawable imgURL = getItem(position);
 
 
 
@@ -39,7 +45,16 @@ public class CustomListViewAdapter extends ArrayAdapter<String> {
         LayoutInflater inflater = LayoutInflater.from(mContext);
         convertView = inflater.inflate(mResource, parent, false);
 
+        ImageView imageView = convertView.findViewById(R.id.listView_card);
+        imageView.setImageDrawable(imgURL);
 
+
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Utilities.notifyMessage(mContext, "YOU CLICKED A CARD: " + position);
+            }
+        });
 
 
 

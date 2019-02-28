@@ -107,11 +107,12 @@
         android:id="@+id/imageView5"
         android:layout_width="35dp"
         android:layout_height="35dp"
-        android:layout_marginStart="72dp"
-        android:layout_marginBottom="32dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+
+        android:layout_marginStart="58dp"
         app:layout_constraintStart_toEndOf="@+id/playerHP"
-        app:srcCompat="@drawable/blue_mana" />
+        app:srcCompat="@drawable/mana_blue"
+        tools:layout_editor_absoluteY="349dp" />
+
 
     <ImageView
         android:id="@+id/imageView6"
@@ -123,7 +124,7 @@
         app:layout_constraintEnd_toStartOf="@+id/opponentMana"
         app:layout_constraintStart_toEndOf="@+id/imageView2"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/red_mana" />
+        app:srcCompat="@drawable/mana_red" />
 
     <TextView
         android:id="@+id/playerMana"

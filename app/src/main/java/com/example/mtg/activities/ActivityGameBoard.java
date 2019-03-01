@@ -48,9 +48,9 @@ public class ActivityGameBoard extends AppCompatActivity {
 
 
 
-//
-//        Game game = new Game("Red");
-//        game.mulligan();
+
+        Game game = new Game("Red");
+        game.mulligan();
 
 
     }

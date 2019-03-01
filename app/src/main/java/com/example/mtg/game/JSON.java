@@ -20,7 +20,7 @@ public class JSON {
     private RequestQueue mRequestQueue;
     private String blueDeck = "https://mtgjson.com/json/decks/AmonkhetWelcomeDeckBlue.json";
     private String redDeck = "https://mtgjson.com/json/decks/AmonkhetWelcomeDeckRed.json";
-
+    private ArrayList<String> cards = new ArrayList<>();
     public static String tag = "JSON";
 
     public JSON (Context con){
@@ -50,12 +50,13 @@ public class JSON {
         }
         Log.d(tag,url);
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
-                new Response.Listener<JSONObject>() {
+                        new Response.Listener<JSONObject>() {
+
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
                             JSONArray jsonArray = response.getJSONArray(name);
-                            ArrayList<String> cards = new ArrayList<>();
+
                             for (int i = 0; i < jsonArray.length(); i++) {
                                 JSONObject hit = jsonArray.getJSONObject(i);
                                 String id = hit.getString("name")+":"+hit.getString("type")+":"+hit.getString("convertedManaCost");
@@ -63,11 +64,13 @@ public class JSON {
                                 cards.add(id);
 
                             }
+
                         } catch (JSONException e) {
                             Log.e(tag,"Oops");
                             e.printStackTrace();
 
                         }
+
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -77,7 +80,7 @@ public class JSON {
         });
         mRequestQueue.add(request);
 
-    return null;
+    return cards;
     }
 }
 //TODO http://www.magicspoiler.com/mtg-news/amonkhet-welcome-decks/ red and blue

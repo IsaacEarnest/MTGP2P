@@ -16,9 +16,16 @@ public class Card {
             }
         },
         CREATURE{
+            int health, power;
             @Override
             void playCard(Card c) {
                 //add to stack
+            }
+            public int getPermanentPower(){
+                return power;
+            }
+            public int getPermanentHealth(){
+                return health;
             }
             @Override
             Type toType(String str){
@@ -148,6 +155,8 @@ public class Card {
             //return target creature to owner's hand, draw 1
         }
     }
+
+
 
 
 

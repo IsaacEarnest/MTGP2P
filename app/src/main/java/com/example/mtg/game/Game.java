@@ -1,17 +1,24 @@
 package com.example.mtg.game;
 
+import com.example.mtg.activities.ActivityGameBoard;
+
 import java.util.ArrayList;
 
 public class Game {
-    Player player, opponent;
-    static int timesMulled =0;
+    private Player player, opponent;
+    private static int timesMulled;
     private String deckColor;
     //ArrayList<Card> =
-    int mana;
-    boolean landPlayed = false;
+    private int mana, opponentHP, playerHP;
+    boolean landPlayed;
     State state;
     public Game(String library){
         this.deckColor = library;
+        landPlayed = false;
+        opponentHP = 20;
+        playerHP = 20;
+        mana = 0;
+        timesMulled = 0;
         //give deck name, call parseJSON(deckname) and it gets all cards in deck as string,
         initializeDeck(deckColor);
 
@@ -30,7 +37,9 @@ public class Game {
         BEGINNING {
             @Override
             State doSomething(String aParameter) {
-               // if(isGameOver())
+                if(isGameOver()){
+
+                }
 
 
                 //untap();
@@ -134,7 +143,8 @@ public class Game {
     public ArrayList getpHand(){
         return player.getHand();
     }
-    public boolean isGameOver(){
+    public static boolean isGameOver(){
+        //return
         //check if either hp value is <1
         return false;
     }

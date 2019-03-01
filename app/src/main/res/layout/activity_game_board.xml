@@ -164,4 +164,76 @@
         app:layout_constraintTop_toBottomOf="@+id/currentCard"
         app:layout_constraintVertical_bias="0.0" />
 
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="88dp"
+        android:layout_height="116dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="28dp"
+        android:layout_marginBottom="12dp"
+        app:layout_constraintBottom_toTopOf="@+id/imageView7"
+        app:layout_constraintEnd_toStartOf="@+id/imageView3"
+        app:layout_constraintStart_toEndOf="@+id/confirm"
+        app:srcCompat="@drawable/red_mountain" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="88dp"
+        android:layout_height="116dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginEnd="28dp"
+        android:layout_marginBottom="12dp"
+        app:layout_constraintBottom_toTopOf="@+id/imageView8"
+        app:layout_constraintEnd_toStartOf="@+id/imageView4"
+        app:layout_constraintStart_toEndOf="@+id/imageView2"
+        app:srcCompat="@drawable/red_mountain" />
+
+    <ImageView
+        android:id="@+id/imageView8"
+        android:layout_width="88dp"
+        android:layout_height="116dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginEnd="28dp"
+        android:layout_marginBottom="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/imageView9"
+        app:layout_constraintStart_toEndOf="@+id/imageView7"
+        app:srcCompat="@drawable/red_mountain" />
+
+    <ImageView
+        android:id="@+id/imageView9"
+        android:layout_width="88dp"
+        android:layout_height="116dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginEnd="28dp"
+        android:layout_marginBottom="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageView8"
+        app:srcCompat="@drawable/red_mountain" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="88dp"
+        android:layout_height="116dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginEnd="28dp"
+        android:layout_marginBottom="12dp"
+        app:layout_constraintBottom_toTopOf="@+id/imageView9"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageView3"
+        app:srcCompat="@drawable/red_mountain" />
+
+    <ImageView
+        android:id="@+id/imageView7"
+        android:layout_width="88dp"
+        android:layout_height="116dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="28dp"
+        android:layout_marginBottom="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/imageView8"
+        app:layout_constraintStart_toEndOf="@+id/confirm"
+        app:srcCompat="@drawable/red_mountain" />
+
 </android.support.constraint.ConstraintLayout>

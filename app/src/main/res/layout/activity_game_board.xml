@@ -10,13 +10,14 @@
         android:id="@+id/opponentHP"
         android:layout_width="89dp"
         android:layout_height="56dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="4dp"
         android:layout_marginTop="12dp"
         android:layout_marginBottom="8dp"
         android:text="TextView"
         app:layout_constraintBottom_toTopOf="@+id/currentCard"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.767" />
 
     <TextView
         android:id="@+id/playerHP"
@@ -34,10 +35,10 @@
         android:id="@+id/currentCard"
         android:layout_width="236dp"
         android:layout_height="319dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="3dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
         app:layout_constraintBottom_toTopOf="@+id/nextCard"
-        app:layout_constraintEnd_toStartOf="@+id/playCard"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lastCard"
         app:srcCompat="@drawable/card_back" />
@@ -88,8 +89,8 @@
         android:layout_width="35dp"
         android:layout_height="35dp"
 
-        android:layout_marginStart="112dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginStart="160dp"
+        android:layout_marginBottom="52dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/playerHP"
         app:srcCompat="@drawable/mana_blue" />
@@ -100,7 +101,7 @@
         android:layout_width="36dp"
         android:layout_height="36dp"
         android:layout_marginStart="23dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="132dp"
         android:layout_marginEnd="1dp"
         app:layout_constraintEnd_toStartOf="@+id/opponentMana"
         app:layout_constraintStart_toEndOf="@+id/currentCard"
@@ -122,20 +123,20 @@
         android:id="@+id/opponentMana"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="1dp"
         android:layout_marginTop="32dp"
         android:layout_marginBottom="37dp"
         android:text="0"
         app:layout_constraintBottom_toTopOf="@+id/playLand"
         app:layout_constraintStart_toEndOf="@+id/imageView6"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.848" />
 
     <Button
         android:id="@+id/lastCard"
         android:layout_width="54dp"
         android:layout_height="37dp"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="133dp"
         android:layout_marginBottom="5dp"
         android:onClick="lastCard"
         android:text="last"
@@ -144,8 +145,7 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/currentCard"
         app:layout_constraintStart_toEndOf="@+id/opponentHP"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/nextCard"
@@ -168,24 +168,18 @@
         android:id="@+id/imageView2"
         android:layout_width="88dp"
         android:layout_height="116dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginEnd="28dp"
-        android:layout_marginBottom="12dp"
-        app:layout_constraintBottom_toTopOf="@+id/imageView7"
-        app:layout_constraintEnd_toStartOf="@+id/imageView3"
-        app:layout_constraintStart_toEndOf="@+id/confirm"
-        app:srcCompat="@drawable/red_mountain" />
+        app:srcCompat="@drawable/red_mountain"
+        tools:layout_editor_absoluteX="676dp"
+        tools:layout_editor_absoluteY="352dp" />
 
     <ImageView
         android:id="@+id/imageView3"
         android:layout_width="88dp"
         android:layout_height="116dp"
-        android:layout_marginStart="28dp"
         android:layout_marginEnd="28dp"
         android:layout_marginBottom="12dp"
         app:layout_constraintBottom_toTopOf="@+id/imageView8"
         app:layout_constraintEnd_toStartOf="@+id/imageView4"
-        app:layout_constraintStart_toEndOf="@+id/imageView2"
         app:srcCompat="@drawable/red_mountain" />
 
     <ImageView
@@ -222,12 +216,8 @@
         android:id="@+id/imageView7"
         android:layout_width="88dp"
         android:layout_height="116dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginEnd="28dp"
-        android:layout_marginBottom="4dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/imageView8"
-        app:layout_constraintStart_toEndOf="@+id/confirm"
-        app:srcCompat="@drawable/red_mountain" />
+        app:srcCompat="@drawable/red_mountain"
+        tools:layout_editor_absoluteX="676dp"
+        tools:layout_editor_absoluteY="480dp" />
 
 </android.support.constraint.ConstraintLayout>

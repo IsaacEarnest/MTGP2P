@@ -42,17 +42,6 @@ public class ActivityJoinLobby extends AppCompatActivity implements ServerListen
         IPnumber = findViewById(R.id.IPnumber);
     }
 
-    private void send(final String ip) {
-        Socket test = null;
-        try {
-            test = new Socket(ip, Server.APP_PORT);
-            Communication.sendOver(test, "I RECEIVED YOUR REQUEST");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-    }
-
     private void implementListener(){
             Singleton.getInstance().addlistener(this);
 
@@ -78,6 +67,9 @@ public class ActivityJoinLobby extends AppCompatActivity implements ServerListen
 
     @Override
     public void notifyMessage(String msg) {
+        //TODO: fix this bug
+        Log.d(TAG, "RECIEVING" +
+                msg);
         IncomingMsg incomingMsg = ParseRecieved.getProtocol(msg);
         if(incomingMsg == IncomingMsg.IP){
             showIncoming("OPPONENT AS ACCEPTED YOUR REQUEST");
@@ -88,13 +80,20 @@ public class ActivityJoinLobby extends AppCompatActivity implements ServerListen
     public void requestConnection(View view) {
 
         final String ip = IPnumber.getText().toString();
-        final String brokenstuff = getIP();
-        final String IPprotocol = createIPprotocol(brokenstuff);
 
-        Singleton.getInstance().setOpponentIP(ip);
+        if(IPnumber.getText().length() == 0){
+            Utilities.notifyProblem(this, "PLEASE TYPE IN A VALID IP ADDRESS!");
+        }else {
+            final String brokenstuff = getIP();
+            final String IPprotocol = createIPprotocol(brokenstuff);
 
-        Log.d(TAG, IPprotocol);
-        Singleton.getInstance().sendOverSocket(IPprotocol, this);
+            Singleton.getInstance().setOpponentIP(ip);
+            Log.d(TAG, "SENDING" + IPprotocol);
+            Singleton.getInstance().sendOverSocket(IPprotocol, this);
+        }
+
+
+
     }
 
     private String createIPprotocol(String ip){

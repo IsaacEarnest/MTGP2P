@@ -30,6 +30,7 @@ public class ActivityGameBoard extends AppCompatActivity {
     private static String TAG = "GAMEBOARD";
     private ArrayList cards;
     private ImageView currentCardIMG;
+    private ImageView testingIMG;
     private PlayersHand playersHandGUI;
 
     @Override
@@ -55,14 +56,8 @@ public class ActivityGameBoard extends AppCompatActivity {
 
 
 
-
-
-
-
-
-        //Game game = new Game("Red");
-       // game.mulligan();
-
+        testingIMG = findViewById(R.id.imageView21);
+        testingIMG.setImageDrawable(ImageHandler.getImage(this, ""));
 
     }
 

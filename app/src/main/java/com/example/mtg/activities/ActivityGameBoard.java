@@ -25,6 +25,7 @@ public class ActivityGameBoard extends AppCompatActivity {
     private String deckColor = "Red";
     private static String TAG = "GAMEBOARD";
     private ImageView currentCardIMG;
+    private ImageView testingIMG;
     private PlayersHand playersHandGUI;
 
     @Override
@@ -45,12 +46,13 @@ public class ActivityGameBoard extends AppCompatActivity {
 
 
 
+        testingIMG = findViewById(R.id.imageView21);
+        testingIMG.setImageDrawable(ImageHandler.getImage(this, ""));
 
 
 
-
-        Game game = new Game("Red");
-        game.mulligan();
+//        Game game = new Game("Red");
+//        game.mulligan();
 
 
     }

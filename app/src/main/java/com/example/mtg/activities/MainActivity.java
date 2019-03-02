@@ -7,16 +7,19 @@ import android.view.View;
 
 import com.example.mtg.R;
 import com.example.mtg.game.JSON;
+import com.example.mtg.game.MasterCardClass;
 import com.example.mtg.networking.Singleton;
 
-public class MainActivity extends AppCompatActivity {
+import java.util.ArrayList;
 
+public class MainActivity extends AppCompatActivity implements JSON.updateList {
+    private ArrayList<String> cards;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        JSON j = new JSON(this);
-        j.parseJSON("blueDeck");
+        //only needs to be called once
+        MasterCardClass.getInstance().loadAllCards(this);
 
         Singleton.getInstance();
     }
@@ -42,5 +45,9 @@ public class MainActivity extends AppCompatActivity {
     private void onActivityJoinLobby() {
         Intent intent = new Intent(this, ActivityJoinLobby.class);
         startActivity(intent);
+    }
+    @Override
+    public void update(String id) {
+        cards.add(id);
     }
 }

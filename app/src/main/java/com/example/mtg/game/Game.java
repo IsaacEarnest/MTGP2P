@@ -8,7 +8,6 @@ public class Game {
     private Player player, opponent;
     private static int timesMulled;
     private String deckColor;
-    //ArrayList<Card> =
     private int mana, opponentHP, playerHP;
     boolean landPlayed;
     State state;
@@ -19,8 +18,9 @@ public class Game {
         playerHP = 20;
         mana = 0;
         timesMulled = 0;
+        player = new Player(library);
         //give deck name, call parseJSON(deckname) and it gets all cards in deck as string,
-        initializeDeck(deckColor);
+        //initializeDeck(deckColor);
 
     }
     public enum State {
@@ -151,13 +151,7 @@ public class Game {
     public void mulligan(){
         player.drawCard();
     }
-    public void initializeDeck(String color){
-        if(color.equals("Red")){
 
-        }else if(color.equals("Blue")){
-
-        }
-    }
 
 
 }

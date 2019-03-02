@@ -16,16 +16,9 @@ public class Card {
             }
         },
         CREATURE{
-            int health, power;
             @Override
             void playCard(Card c) {
                 //add to stack
-            }
-            public int getPermanentPower(){
-                return power;
-            }
-            public int getPermanentHealth(){
-                return health;
             }
             @Override
             Type toType(String str){
@@ -81,7 +74,7 @@ public class Card {
         abstract void playCard(Card c);
         abstract Type toType(String str);
     }
-
+    private int health, power;
     private String name;
     private Type type;
     private int cost;
@@ -156,6 +149,12 @@ public class Card {
         }
     }
 
+    public int getPermanentPower(){
+        return power;
+    }
+    public int getPermanentHealth(){
+        return health;
+    }
 
 
 

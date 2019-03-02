@@ -1,13 +1,15 @@
 package com.example.mtg.game;
 
 public class Permanent {
-    boolean canAtk,canBlock,isFlying,isVigilance;
+    boolean canAtk,canBlock,isFlying;
     int atk, hp;
-    private enum Type{
-        CREATURE, ENCHANTMENT
-    }
-    Type type;
     public Permanent(Card c){
-       // c.
+      // c.
+    }
+    public String battle(Permanent other){
+        if(other.isFlying){
+
+        }
+        return null;
     }
 }

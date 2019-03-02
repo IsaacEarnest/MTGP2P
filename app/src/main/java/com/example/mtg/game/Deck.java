@@ -10,6 +10,10 @@ public class Deck {
         deck = new ArrayList<>();
         cards = 0;
     }
+    public Deck(ArrayList list){
+        deck = list;
+        cards = list.size();
+    }
     public void addCard(Card c){
         deck.add(c);
         cards++;

@@ -1,5 +1,6 @@
 package com.example.mtg.activities;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.media.Image;
@@ -15,7 +16,10 @@ import com.example.mtg.R;
 import com.example.mtg.game.Card;
 import com.example.mtg.game.Deck;
 import com.example.mtg.game.Game;
+import com.example.mtg.game.JSON;
+import com.example.mtg.game.MasterCardClass;
 import com.example.mtg.game.Player;
+import com.example.mtg.game.UpdateLibrary;
 import com.example.mtg.gui.ImageHandler;
 import com.example.mtg.gui.PlayersHand;
 
@@ -24,6 +28,7 @@ import java.util.ArrayList;
 public class ActivityGameBoard extends AppCompatActivity {
     private String deckColor = "Red";
     private static String TAG = "GAMEBOARD";
+    private ArrayList cards;
     private ImageView currentCardIMG;
     private PlayersHand playersHandGUI;
 
@@ -31,6 +36,11 @@ public class ActivityGameBoard extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_board);
+
+        final String tag = "JSON";
+        if(deckColor.equals("Red")) cards = MasterCardClass.getInstance().getRedCards();
+        else cards = MasterCardClass.getInstance().getBlueCards();
+        Log.d(TAG,cards.toString());
 
         Intent intent = getIntent();
         deckColor = intent.getStringExtra(ActivityChooseDeck.DECK_CHOOSE);
@@ -49,8 +59,9 @@ public class ActivityGameBoard extends AppCompatActivity {
 
 
 
-        Game game = new Game("Red");
-        game.mulligan();
+
+        //Game game = new Game("Red");
+       // game.mulligan();
 
 
     }
@@ -64,5 +75,6 @@ public class ActivityGameBoard extends AppCompatActivity {
     public void lastCard(View view) {
         currentCardIMG.setImageDrawable(playersHandGUI.getLast());
     }
+
 }
 

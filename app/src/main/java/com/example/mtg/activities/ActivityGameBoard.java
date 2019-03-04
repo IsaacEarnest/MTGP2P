@@ -38,7 +38,6 @@ public class ActivityGameBoard extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_board);
 
-        final String tag = "JSON";
         if(deckColor.equals("Red")) cards = MasterCardClass.getInstance().getRedCards();
         else cards = MasterCardClass.getInstance().getBlueCards();
         Log.d(TAG,cards.toString());

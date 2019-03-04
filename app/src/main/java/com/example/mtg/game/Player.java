@@ -5,9 +5,9 @@ import com.example.mtg.activities.ActivityGameBoard;
 import java.util.ArrayList;
 
 public class Player {
-    Deck library;
-    ArrayList<Card> hand, graveyard;
-    ArrayList<Permanent> board;
+    private Deck library;
+    private ArrayList<Card> hand, graveyard;
+    private ArrayList<Permanent> board;
     public Player(String library){
         hand = new ArrayList<>();
         graveyard = new ArrayList<>();

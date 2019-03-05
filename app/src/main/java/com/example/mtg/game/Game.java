@@ -1,7 +1,5 @@
 package com.example.mtg.game;
 
-import com.example.mtg.activities.ActivityGameBoard;
-
 import java.util.ArrayList;
 
 public class Game {
@@ -13,7 +11,7 @@ public class Game {
     private String deckColor;
     private static int oMana, pMana, oHP, pHP;
     boolean landPlayed;
-    State state;
+    Phase phase;
     public Game(ArrayList cards, String library){
         this.deckColor = library;
         landPlayed = false;
@@ -24,16 +22,16 @@ public class Game {
         timesMulled = 0;
         oCards = 60;
         player = new Player(cards, library);
-        state = State.MULLIGAN;
+        phase = Phase.MULLIGAN;
 
         //give deck name, call parseJSON(deckname) and it gets all cards in deck as string,
         //initializeDeck(deckColor);
 
     }
-    public enum State {
+    public enum Phase {
         MULLIGAN{
           @Override
-          State nextPhase(){
+          Phase nextPhase(){
               if(!isGameOver()){
                mulligan();
 
@@ -46,7 +44,7 @@ public class Game {
         },
         BEGINNING {
             @Override
-            State nextPhase() {
+            Phase nextPhase() {
                 if(!isGameOver()){
 
                 }
@@ -60,7 +58,7 @@ public class Game {
         },
         PRECOMBATMAIN {
             @Override
-            State nextPhase() {
+            Phase nextPhase() {
                 if(!isGameOver()){
 
                 }
@@ -70,7 +68,7 @@ public class Game {
         },
         COMBAT {
             @Override
-            State nextPhase() {
+            Phase nextPhase() {
                 if(!isGameOver()){
 
                 }
@@ -79,7 +77,7 @@ public class Game {
         },
         POSTCOMBATMAIN {
             @Override
-            State nextPhase() {
+            Phase nextPhase() {
                 if(!isGameOver()){
 
                 }
@@ -89,7 +87,7 @@ public class Game {
         },
         ENDING {
             @Override
-            State nextPhase() {
+            Phase nextPhase() {
                 if(!isGameOver()){
 
                 }
@@ -99,7 +97,7 @@ public class Game {
         },
         RESPONDING {
             @Override
-            State nextPhase() {
+            Phase nextPhase() {
                 if(!isGameOver()){
 
                 }
@@ -109,7 +107,7 @@ public class Game {
         OPPONENT_TURN {
             //wait for opponent to send an action for a chance to respond, or wait until opponent ends their turn
             @Override
-            State nextPhase() {
+            Phase nextPhase() {
                 if(!isGameOver()){
 
                 }
@@ -119,21 +117,25 @@ public class Game {
         },
         GAME_OVER {
             @Override
-            State nextPhase() {
+            Phase nextPhase() {
                 return GAME_OVER;
             }
         };
 
-        abstract State nextPhase();
+        abstract Phase nextPhase();
+    }
+    public Phase toNextPhase(){
+        return phase.nextPhase();
+
     }
 
 
 
-    public void setState(State state) {
-        this.state = state;
+    public void setState(Phase state) {
+        this.phase = state;
     }
-    public State getState() {
-        return state;
+    public Phase getState() {
+        return phase;
     }
     public Player getPlayer(){
         return player;
@@ -141,13 +143,13 @@ public class Game {
 
     public boolean isPlayable(Card c){
         if(pMana >= c.getCost()) {
-            if (state == State.PRECOMBATMAIN || state == State.POSTCOMBATMAIN) {
+            if (phase == Phase.PRECOMBATMAIN || phase == Phase.POSTCOMBATMAIN) {
                 if(c.getType() == Card.Type.LAND && landPlayed == true) {
                     return false;
                 }
                 return true;
             }
-            else if (c.getType() == Card.Type.INSTANT && state == State.RESPONDING) {
+            else if (c.getType() == Card.Type.INSTANT && phase == Phase.RESPONDING) {
                 return true;
             }
         }
@@ -217,6 +219,7 @@ public class Game {
             player.getLibrary().addCard((Card)player.getHand().remove(0));
         }
     }
+
 
 
 

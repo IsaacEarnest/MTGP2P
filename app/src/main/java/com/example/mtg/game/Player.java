@@ -8,11 +8,12 @@ public class Player {
     private Deck library;
     private ArrayList<Card> hand, graveyard;
     private ArrayList<Permanent> board;
-    public Player(ArrayList cards, String library){
+    public Player(ArrayList cards, String lib){
         hand = new ArrayList<>();
         graveyard = new ArrayList<>();
         board = new ArrayList<>();
-        initializeDeck(cards, library);
+        initializeDeck(cards, lib);
+        library.shuffle();
     }
     public void remove(Card c){
         if(handContains(c)){

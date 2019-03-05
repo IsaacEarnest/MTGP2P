@@ -1,5 +1,7 @@
 package com.example.mtg.game;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 
 public class Game {
@@ -20,7 +22,7 @@ public class Game {
         pMana = 0;
         oMana = 0;
         timesMulled = 0;
-        oCards = 60;
+        oCards = 30;
         player = new Player(cards, library);
         phase = Phase.MULLIGAN;
 
@@ -36,9 +38,6 @@ public class Game {
                mulligan();
 
               }
-              //drawFullHand();
-              //listener for mulligan/keep
-              //drawFullHand();
               return BEGINNING;
           }
         },
@@ -127,6 +126,7 @@ public class Game {
     public void toNextPhase(){
         phase = phase.nextPhase();
 
+
     }
 
 
@@ -207,10 +207,12 @@ public class Game {
         return (pHP<1||oHP<1||player.getLibrary().getCardsLeft()<1||oCards<1);
     }
     public static void mulligan(){
+
         for (int i = 0; i < (7-timesMulled); i++) {
             player.drawCard();
-            timesMulled++;
+
         }
+        //timesMulled++;
 
     }
     public static void returnCards(){

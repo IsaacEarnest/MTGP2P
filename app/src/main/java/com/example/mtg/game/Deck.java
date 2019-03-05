@@ -46,7 +46,7 @@ public class Deck {
     }
     public void shuffle(){
         ArrayList<Card> shuffled = new ArrayList<>();
-        for(int i = deck.size(); i>0;i--){
+        for(int i = cards; i>0;i--){
             shuffled.add(deck.remove((int)(Math.random()*i)));
         }
         deck = shuffled;

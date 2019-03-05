@@ -38,4 +38,7 @@ public class PlayersHand {
         return hand.get(currentCard);
     }
 
+    public Drawable getcurrent() {
+        return hand.get(currentCard);
+    }
 }

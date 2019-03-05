@@ -34,7 +34,6 @@ public class ActivityGameBoard extends AppCompatActivity implements ServerListen
         setContentView(R.layout.activity_game_board);
 
 
-
         Intent intent = getIntent();
         deckColor = intent.getStringExtra(ActivityChooseDeck.DECK_CHOOSE);
         Log.d(TAG, deckColor);
@@ -42,14 +41,20 @@ public class ActivityGameBoard extends AppCompatActivity implements ServerListen
         if(deckColor.equals("red")) cards = MasterCardClass.getInstance().getRedCards();
         else cards = MasterCardClass.getInstance().getBlueCards();
 
+        Log.d(TAG,cards.toString());
+
+
+
 
         ImageHandler imageHandler = new ImageHandler(this);
+        //get array of Cards
         ArrayList<Drawable> red = imageHandler.buildRedDeck();
         playersHandGUI = new PlayersHand(red);
 
 
         //this is for testing purposes
         currentCardIMG = findViewById(R.id.currentCard);
+        //card.getDrawablename(),
         currentCardIMG.setImageDrawable(playersHandGUI.getFirst());
 
         game = new Game(cards, deckColor);
@@ -95,6 +100,7 @@ public class ActivityGameBoard extends AppCompatActivity implements ServerListen
 
     @Override
     public void notifyMessage(String msg) {
+        //parse name
         //if its an attacking player
         //check with cards, do math
         //return object of the deck, players field, the other players field
@@ -103,6 +109,7 @@ public class ActivityGameBoard extends AppCompatActivity implements ServerListen
 
     //called in xml file
     public void playLand(View view) {
+
         // move land to field
     }
 

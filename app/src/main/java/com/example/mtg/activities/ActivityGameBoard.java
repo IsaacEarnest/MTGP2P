@@ -59,8 +59,7 @@ public class ActivityGameBoard extends AppCompatActivity implements ServerListen
         currentCardIMG = findViewById(R.id.currentCard);
         currentCardIMG.setImageDrawable(playersHandGUI.getFirst());
 
-        game = new Game(deckColor);
-        //button
+        game = new Game(cards, deckColor);
 
 
         //this is for testing purposes

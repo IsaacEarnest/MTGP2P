@@ -27,7 +27,7 @@ import com.example.mtg.networking.ServerListener;
 import java.util.ArrayList;
 
 public class ActivityGameBoard extends AppCompatActivity implements ServerListener {
-    private String deckColor = "Red";
+    private String deckColor;
     private static String TAG = "GAMEBOARD";
     private ArrayList cards;
     private ImageView currentCardIMG;
@@ -40,23 +40,27 @@ public class ActivityGameBoard extends AppCompatActivity implements ServerListen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_board);
 
-        if(deckColor.equals("Red")) cards = MasterCardClass.getInstance().getRedCards();
-        else cards = MasterCardClass.getInstance().getBlueCards();
-        Log.d(TAG,cards.toString());
-
         Intent intent = getIntent();
         deckColor = intent.getStringExtra(ActivityChooseDeck.DECK_CHOOSE);
         Log.d(TAG, deckColor);
 
+        if(deckColor.equals("red")) cards = MasterCardClass.getInstance().getRedCards();
+        else cards = MasterCardClass.getInstance().getBlueCards();
+        Log.d(TAG,cards.toString());
+
+
+
 
 
         ImageHandler imageHandler = new ImageHandler(this);
+        //get array of Cards
         ArrayList<Drawable> red = imageHandler.buildRedDeck();
         playersHandGUI = new PlayersHand(red);
 
 
         //this is for testing purposes
         currentCardIMG = findViewById(R.id.currentCard);
+        //card.getDrawablename(),
         currentCardIMG.setImageDrawable(playersHandGUI.getFirst());
 
         game = new Game(cards, deckColor);
@@ -86,6 +90,7 @@ public class ActivityGameBoard extends AppCompatActivity implements ServerListen
 
     @Override
     public void notifyMessage(String msg) {
+        //parse name
         //if its an attacking player
         //check with cards, do math
         //return object of the deck, players field, the other players field
@@ -94,6 +99,7 @@ public class ActivityGameBoard extends AppCompatActivity implements ServerListen
 
     //called in xml file
     public void playLand(View view) {
+
         // move land to field
     }
 

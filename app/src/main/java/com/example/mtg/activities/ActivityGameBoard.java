@@ -42,7 +42,7 @@ public class ActivityGameBoard extends AppCompatActivity implements ServerListen
 
         if(deckColor.equals("Red")) cards = MasterCardClass.getInstance().getRedCards();
         else cards = MasterCardClass.getInstance().getBlueCards();
-        Log.d(TAG,cards.toString());
+       // Log.d(TAG,cards.toString());
 
         Intent intent = getIntent();
         deckColor = intent.getStringExtra(ActivityChooseDeck.DECK_CHOOSE);
@@ -60,7 +60,7 @@ public class ActivityGameBoard extends AppCompatActivity implements ServerListen
 
 
         testingIMG = findViewById(R.id.imageView21);
-        testingIMG.setImageDrawable(ImageHandler.getImage(this, ""));
+        testingIMG.setImageDrawable(ImageHandler.getImage(this, "red_land"));
 
     }
 

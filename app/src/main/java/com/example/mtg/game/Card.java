@@ -59,8 +59,20 @@ public class Card {
         this.type = type;
         this.cost = cost;
     }
+    public Card(String name, Type type,int cost, int atk, int hp){
+        this.name = name;
+        this.type = type;
+        this.cost = cost;
+        this.power = atk;
+        this.health = hp;
+    }
     public Card(String data){
-        parse(data);
+        Card c = parse(data);
+        name = c.getName();
+        type = c.getType();
+        cost = c.getCost();
+        power = c.getPermanentPower();
+        health = c.getPermanentHealth();
     }
 
     public int getCost(){
@@ -71,12 +83,17 @@ public class Card {
     }
     @Override
     public String toString(){
-        return name+"_"+type+"_"+cost;
+        return name+":"+type+":"+cost;
     }
 
     public Card parse(String str){
-        String[] parsed = str.split("_");
-        return new Card(parsed[0],Type.LAND.toType(parsed[1]),Integer.parseInt(parsed[2]));
+        String[] parsed = str.split(":");
+        if(Type.LAND.toType(parsed[1])== Type.CREATURE)
+            return new Card(parsed[0],Type.LAND.toType(parsed[1]),(int)Double.parseDouble(parsed[2]), Integer.parseInt(parsed[3]), Integer.parseInt(parsed[4]));
+        //Shivan Dragon:Creature:6.0:1:5:5
+        else {
+            return new Card(parsed[0], Type.LAND.toType(parsed[1]),(int)Double.parseDouble(parsed[2]));
+        }
 
     }
     @Override

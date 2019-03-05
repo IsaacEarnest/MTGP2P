@@ -35,12 +35,17 @@ public class Player {
         }
         return false;
     }
-    public void initializeDeck(ArrayList cards, String color){
+    public void initializeDeck(ArrayList<String> cards, String color){
         library = new Deck();
-        if(color.equals("Red")){
-            
-        }else if(color.equals("Blue")){
 
+        if(color.equals("Red")){
+            for(int i = 0; i<(cards.size()/2);i++){
+                library.addCard(new Card(cards.get(i)));
+            }
+        }else if(color.equals("Blue")){
+            for(int i = (cards.size()/2); i<cards.size();i++){
+                library.addCard(new Card(cards.get(i)));
+            }
         }
     }
 

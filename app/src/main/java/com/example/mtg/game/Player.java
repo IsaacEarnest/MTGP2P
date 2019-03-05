@@ -43,13 +43,6 @@ public class Player {
         int deckSplit = (cards.size()/2)+1;
         if(color.equals("red")){
 
-            for(int i = 0; i<(cards.size()/2)+1;i++){
-                library.addCard(new Card(cards.get(i)));
-                Log.d("DECK","redddd");
-            }
-        }else if(color.equals("blue")){
-            for(int i = (cards.size()/2) + 1; i<cards.size();i++){
-
             for(int i = 0; i<deckSplit;i++){
                 Card c = new Card(cards.get(i));
                 int count = c.parseCount(cards.get(i));

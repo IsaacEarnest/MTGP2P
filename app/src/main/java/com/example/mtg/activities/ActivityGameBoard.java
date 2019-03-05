@@ -67,10 +67,11 @@ public class ActivityGameBoard extends AppCompatActivity implements ServerListen
 
         //this will work if hand is not empty
 
+        Log.d(TAG, String.valueOf(playerHand.size()));
 
         if(playerHand.size() > 0){
             handGUI = new PlayersHand(playerHand);
-            Log.d(TAG, deckColor + "_" + playerHand.get(0).getDrawableName());
+
 
             currentCardIMG.setImageDrawable(getDrawable(handGUI.getNext().getDrawableName()));
         }else {

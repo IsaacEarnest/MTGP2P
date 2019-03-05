@@ -72,7 +72,7 @@ public class ActivityCreateLobby extends AppCompatActivity implements ServerList
 
     @Override
     public void notifyMessage(String msg) {
-
+        //TODO: parse this
         IncomingMsg incomingMsg = ParseRecieved.getProtocol(msg);
         this.incomingMsg = incomingMsg;
         showIncoming("YOU HAVE BEEN SUCCESSFULLY CONNECTED!");

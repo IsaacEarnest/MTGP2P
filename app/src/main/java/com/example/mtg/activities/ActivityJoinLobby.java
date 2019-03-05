@@ -91,9 +91,6 @@ public class ActivityJoinLobby extends AppCompatActivity implements ServerListen
             Log.d(TAG, "SENDING" + IPprotocol);
             Singleton.getInstance().sendOverSocket(IPprotocol, this);
         }
-
-
-
     }
 
     private String createIPprotocol(String ip){

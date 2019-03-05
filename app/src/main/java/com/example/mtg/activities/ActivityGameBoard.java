@@ -22,10 +22,11 @@ import com.example.mtg.game.Player;
 import com.example.mtg.game.UpdateLibrary;
 import com.example.mtg.gui.ImageHandler;
 import com.example.mtg.gui.PlayersHand;
+import com.example.mtg.networking.ServerListener;
 
 import java.util.ArrayList;
 
-public class ActivityGameBoard extends AppCompatActivity {
+public class ActivityGameBoard extends AppCompatActivity implements ServerListener {
     private String deckColor = "Red";
     private static String TAG = "GAMEBOARD";
     private ArrayList cards;
@@ -73,5 +74,14 @@ public class ActivityGameBoard extends AppCompatActivity {
         currentCardIMG.setImageDrawable(playersHandGUI.getLast());
     }
 
+
+
+    @Override
+    public void notifyMessage(String msg) {
+        //if its an attacking player
+        //check with cards, do math
+        //return object of the deck, players field, the other players field
+        //runs on UI thread updates based off of those fields.
+    }
 }
 

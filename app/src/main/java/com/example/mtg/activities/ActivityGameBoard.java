@@ -74,8 +74,6 @@ public class ActivityGameBoard extends AppCompatActivity implements ServerListen
 
         if(playerHand.size() > 0){
             handGUI = new PlayersHand(playerHand);
-
-
             currentCardIMG.setImageDrawable(getDrawable(handGUI.getFirst().getDrawableName()));
         }else {
             Log.d(TAG, String.valueOf(playerHand.size()));
@@ -83,7 +81,7 @@ public class ActivityGameBoard extends AppCompatActivity implements ServerListen
 
         }
 
-
+        Log.d(TAG, game.getpHand().toString());
 
         //this is for testing purposes
         testingIMG = findViewById(R.id.playerBoard0);
@@ -102,7 +100,6 @@ public class ActivityGameBoard extends AppCompatActivity implements ServerListen
     //called in xml file
     public void nextCard(View view) {
         currentCardIMG.setImageDrawable(getDrawable(handGUI.getNext().getDrawableName()));
-
     }
 
     //called in xml file
@@ -124,12 +121,14 @@ public class ActivityGameBoard extends AppCompatActivity implements ServerListen
 
     //called in xml file
     public void playLand(View view) {
-        Card c = handGUI.getcurrent();
+        Card c = handGUI.getCurrent();
+        Log.d(TAG, String.valueOf(c.getCost()));
         if(game.isPlayable(c)){
+
             game.playLand(c);
-            handGUI.updateHand(game.getpHand());
-            playermana.setText(game.getpMana());
-            currentCardIMG.setImageDrawable(getDrawable(handGUI.getcurrent().getDrawableName()));
+//            handGUI.updateHand(game.getpHand());
+//            playermana.setText(game.getpMana());
+//            currentCardIMG.setImageDrawable(getDrawable(handGUI.getCurrent().getDrawableName()));
         }
         // move land to  field
     }
@@ -141,8 +140,6 @@ public class ActivityGameBoard extends AppCompatActivity implements ServerListen
 
     //called in xml file
     public void nextPhase(View view) {
-        //don't know
-
         game.toNextPhase();
     }
 

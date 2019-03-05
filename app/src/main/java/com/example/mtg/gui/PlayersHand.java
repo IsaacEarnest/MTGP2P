@@ -43,7 +43,7 @@ public class PlayersHand {
         return hand.get(currentCard);
     }
 
-    public Card getcurrent() {
+    public Card getCurrent() {
         return hand.get(currentCard);
     }
 }

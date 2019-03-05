@@ -3,24 +3,29 @@ package com.example.mtg.gui;
 import android.graphics.drawable.Drawable;
 
 import com.example.mtg.R;
+import com.example.mtg.game.Card;
 
 import java.util.ArrayList;
 
 public class PlayersHand {
 
-    private ArrayList<Drawable> hand;
+    private ArrayList<Card> hand;
     private int currentCard = 0;
 
-    public PlayersHand(ArrayList<Drawable> hand){
+    public PlayersHand(ArrayList<Card> hand){
         this.hand = hand;
 
     }
 
-    public Drawable getFirst(){
+    public void updateHand(ArrayList<Card> hand){
+        this.hand = hand;
+    }
+
+    public Card getFirst(){
         return hand.get(0);
     }
 
-    public Drawable getNext(){
+    public Card getNext(){
         if(currentCard < hand.size() - 1){
             currentCard++;
         }else{
@@ -29,7 +34,7 @@ public class PlayersHand {
         return hand.get(currentCard);
     }
 
-    public Drawable getLast(){
+    public Card getLast(){
         if(currentCard > 0){
             currentCard--;
         }else{
@@ -38,7 +43,7 @@ public class PlayersHand {
         return hand.get(currentCard);
     }
 
-    public Drawable getcurrent() {
+    public Card getcurrent() {
         return hand.get(currentCard);
     }
 }

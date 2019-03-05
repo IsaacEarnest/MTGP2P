@@ -1,5 +1,7 @@
 package com.example.mtg.game;
 
+import android.graphics.drawable.Drawable;
+
 public class Card {
     enum Type{
         LAND{
@@ -54,6 +56,7 @@ public class Card {
     private String name;
     private Type type;
     private int cost;
+    private Drawable pic;
     public Card(String name, Type type,int cost){
         this.name = name;
         this.type = type;
@@ -65,6 +68,8 @@ public class Card {
         this.cost = cost;
         this.power = atk;
         this.health = hp;
+        this.pic = convertToDrawable();
+
     }
     public Card(String data){
         Card c = parse(data);
@@ -113,7 +118,7 @@ public class Card {
         return type;
     }
 
-    public void onCreaturePlayed(Card c){
+    public void onCreaturePlayed(){
         String s = c.getName();
         if(s.equals("Nimble Innovator")){
             //draw 1
@@ -121,13 +126,13 @@ public class Card {
             //return creature to owner's hand
         }
     }
-    public void onInstantPlayed(Card c){
+    public void onInstantPlayed(){
         String s = c.getName();
         if(s.equals("Inspiration")){
             //draw 2
         }
     }
-    public void onEnchantmentPlayed(Card c){
+    public void onEnchantmentPlayed(){
         String s = c.getName();
         if(s.equals("Sleep Paralysis")){
             //tap opposing creature, doesn't untap
@@ -135,7 +140,7 @@ public class Card {
             //+2 power, attacks can't be blocked
         }
     }
-    public void onSorceryPlayed(Card c){
+    public void onSorceryPlayed(){
         String s = c.getName();
         if(s.equals("Drag Under")){
             //return target creature to owner's hand, draw 1
@@ -148,6 +153,10 @@ public class Card {
     public int getPermanentHealth(){
         return health;
     }
+    public String getDrawableName(){
+        return name.toLowerCase().replaceAll(" ","_");
+    }
+
 
 
 

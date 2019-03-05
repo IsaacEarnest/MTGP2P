@@ -48,6 +48,9 @@ public class Player {
             }
         }
     }
+    public ArrayList<Card> getGraveyard(){
+        return graveyard;
+    }
 
 
 }

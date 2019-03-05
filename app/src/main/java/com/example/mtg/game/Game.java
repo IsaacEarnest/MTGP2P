@@ -5,10 +5,11 @@ import com.example.mtg.activities.ActivityGameBoard;
 import java.util.ArrayList;
 
 public class Game {
-    private static Player player, opponent;
+    private static Player player;
     ArrayList<Permanent> pBoard;
     ArrayList<Permanent> oBoard;
     private static int timesMulled;
+    private static int oCards;
     private String deckColor;
     private static int oMana, pMana, oHP, pHP;
     boolean landPlayed;
@@ -21,8 +22,10 @@ public class Game {
         pMana = 0;
         oMana = 0;
         timesMulled = 0;
+        oCards = 60;
         player = new Player(cards, library);
         state = State.MULLIGAN;
+
         //give deck name, call parseJSON(deckname) and it gets all cards in deck as string,
         //initializeDeck(deckColor);
 
@@ -132,6 +135,9 @@ public class Game {
     public State getState() {
         return state;
     }
+    public Player getPlayer(){
+        return player;
+    }
 
     public boolean isPlayable(Card c){
         if(pMana >= c.getCost()) {
@@ -156,6 +162,24 @@ public class Game {
             }
         }
     }
+    public int getpMana(){
+        return pMana;
+    }
+    public int getoMana(){
+        return oMana;
+    }
+    public int getpHP(){
+        return pHP;
+    }
+    public int getoHP(){
+        return oHP;
+    }
+    public ArrayList getpPermanents(){
+        return pBoard;
+    }
+    public ArrayList getoPermanents(){
+        return oBoard;
+    }
 
     public void playLand(Card c){
         if(isPlayable(c)){
@@ -174,11 +198,11 @@ public class Game {
             oBoard.add(new Permanent(c));
         }
     }
-    public ArrayList getpHand(){
+    public ArrayList<Card> getpHand(){
         return player.getHand();
     }
     public static boolean isGameOver(){
-        return (pHP<1||oHP<1||player.getLibrary().getCardsLeft()==0||opponent.getLibrary().getCardsLeft()==0);
+        return (pHP<1||oHP<1||player.getLibrary().getCardsLeft()<1||oCards<1);
     }
     public static void mulligan(){
         for (int i = 0; i < (7-timesMulled); i++) {

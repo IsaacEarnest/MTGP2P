@@ -37,7 +37,7 @@ public class CustomListViewAdapter extends ArrayAdapter<Drawable> {
 
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
-        Drawable imgURL = getItem(position);
+        final Drawable imgURL = getItem(position);
 
 
 

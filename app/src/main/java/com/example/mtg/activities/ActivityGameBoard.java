@@ -18,10 +18,11 @@ import com.example.mtg.game.Game;
 import com.example.mtg.game.Player;
 import com.example.mtg.gui.ImageHandler;
 import com.example.mtg.gui.PlayersHand;
+import com.example.mtg.networking.ServerListener;
 
 import java.util.ArrayList;
 
-public class ActivityGameBoard extends AppCompatActivity {
+public class ActivityGameBoard extends AppCompatActivity implements ServerListener {
     private String deckColor = "Red";
     private static String TAG = "GAMEBOARD";
     private ImageView currentCardIMG;
@@ -65,6 +66,15 @@ public class ActivityGameBoard extends AppCompatActivity {
 
     public void lastCard(View view) {
         currentCardIMG.setImageDrawable(playersHandGUI.getLast());
+    }
+
+
+    @Override
+    public void notifyMessage(String msg) {
+        //if its an attacking player
+        //check with cards, do math
+        //return object of the deck, players field, the other players field
+        //runs on UI thread updates based off of those fields.
     }
 }
 

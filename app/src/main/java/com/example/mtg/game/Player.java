@@ -1,5 +1,7 @@
 package com.example.mtg.game;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 
 public class Player {
@@ -37,14 +39,16 @@ public class Player {
     }
     public void initializeDeck(ArrayList<String> cards, String color){
         library = new Deck();
-
-        if(color.equals("Red")){
+        Log.d("DECK","aaa");
+        if(color.equals("red")){
             for(int i = 0; i<(cards.size()/2);i++){
                 library.addCard(new Card(cards.get(i)));
+                Log.d("DECK","redddd");
             }
-        }else if(color.equals("Blue")){
+        }else if(color.equals("blue")){
             for(int i = (cards.size()/2); i<cards.size();i++){
                 library.addCard(new Card(cards.get(i)));
+                Log.d("DECK","blueee");
             }
         }
     }

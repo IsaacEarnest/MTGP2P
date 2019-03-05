@@ -10,7 +10,7 @@ public class Deck {
         deck = new ArrayList<>();
         cards = 0;
     }
-    public Deck(ArrayList list){
+    public Deck(ArrayList<Card> list){
         deck = list;
         cards = list.size();
     }

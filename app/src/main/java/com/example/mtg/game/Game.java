@@ -124,8 +124,8 @@ public class Game {
 
         abstract Phase nextPhase();
     }
-    public Phase toNextPhase(){
-        return phase.nextPhase();
+    public void toNextPhase(){
+        phase = phase.nextPhase();
 
     }
 

@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.mtg.R;
 import com.example.mtg.game.Card;
@@ -26,6 +27,7 @@ public class ActivityGameBoard extends AppCompatActivity implements ServerListen
     private ImageView currentCardIMG;
     private ImageView testingIMG;
     private PlayersHand handGUI;
+    private TextView playermana;
     private Game game;
 
     @Override
@@ -44,6 +46,7 @@ public class ActivityGameBoard extends AppCompatActivity implements ServerListen
         Log.d(TAG,cards.toString());
 
         currentCardIMG = findViewById(R.id.currentCard);
+        playermana = findViewById(R.id.playerMana);
 
 
         ImageHandler imageHandler = new ImageHandler(this);
@@ -73,7 +76,7 @@ public class ActivityGameBoard extends AppCompatActivity implements ServerListen
             handGUI = new PlayersHand(playerHand);
 
 
-            currentCardIMG.setImageDrawable(getDrawable(handGUI.getNext().getDrawableName()));
+            currentCardIMG.setImageDrawable(getDrawable(handGUI.getFirst().getDrawableName()));
         }else {
             Log.d(TAG, String.valueOf(playerHand.size()));
             currentCardIMG.setImageDrawable(ImageHandler.getImage(this, "card_back"));
@@ -104,6 +107,7 @@ public class ActivityGameBoard extends AppCompatActivity implements ServerListen
 
     //called in xml file
     public void lastCard(View view) {
+        //tell the user what card its at
         currentCardIMG.setImageDrawable(getDrawable(handGUI.getLast().getDrawableName()));
     }
 
@@ -120,8 +124,14 @@ public class ActivityGameBoard extends AppCompatActivity implements ServerListen
 
     //called in xml file
     public void playLand(View view) {
-
-        // move land to field
+        Card c = handGUI.getcurrent();
+        if(game.isPlayable(c)){
+            game.playLand(c);
+            handGUI.updateHand(game.getpHand());
+            playermana.setText(game.getpMana());
+            currentCardIMG.setImageDrawable(getDrawable(handGUI.getcurrent().getDrawableName()));
+        }
+        // move land to  field
     }
 
     //called in xml file

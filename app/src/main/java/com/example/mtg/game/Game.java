@@ -125,7 +125,8 @@ public class Game {
         abstract Phase nextPhase();
     }
     public Phase toNextPhase(){
-        phase.nextPhase();
+        return phase.nextPhase();
+
     }
 
 
@@ -142,13 +143,13 @@ public class Game {
 
     public boolean isPlayable(Card c){
         if(pMana >= c.getCost()) {
-            if (state == Phase.PRECOMBATMAIN || state == Phase.POSTCOMBATMAIN) {
+            if (phase == Phase.PRECOMBATMAIN || phase == Phase.POSTCOMBATMAIN) {
                 if(c.getType() == Card.Type.LAND && landPlayed == true) {
                     return false;
                 }
                 return true;
             }
-            else if (c.getType() == Card.Type.INSTANT && state == Phase.RESPONDING) {
+            else if (c.getType() == Card.Type.INSTANT && phase == Phase.RESPONDING) {
                 return true;
             }
         }

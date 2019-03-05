@@ -121,6 +121,8 @@ public class ActivityGameBoard extends AppCompatActivity implements ServerListen
     //called in xml file
     public void nextPhase(View view) {
         //don't know
+
+        game.toNextPhase();
     }
 
     //called in xml file

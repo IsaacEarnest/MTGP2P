@@ -13,7 +13,7 @@ public class Game {
     private static int oMana, pMana, oHP, pHP;
     boolean landPlayed;
     State state;
-    public Game(String library){
+    public Game(ArrayList cards, String library){
         this.deckColor = library;
         landPlayed = false;
         oHP = 20;
@@ -21,7 +21,7 @@ public class Game {
         pMana = 0;
         oMana = 0;
         timesMulled = 0;
-        player = new Player(library);
+        player = new Player(cards, library);
         state = State.MULLIGAN;
         //give deck name, call parseJSON(deckname) and it gets all cards in deck as string,
         //initializeDeck(deckColor);

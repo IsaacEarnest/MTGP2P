@@ -1,18 +1,16 @@
 package com.example.mtg.game;
 
-import com.example.mtg.activities.ActivityGameBoard;
-
 import java.util.ArrayList;
 
 public class Player {
     private Deck library;
     private ArrayList<Card> hand, graveyard;
     private ArrayList<Permanent> board;
-    public Player(String library){
+    public Player(ArrayList cards, String library){
         hand = new ArrayList<>();
         graveyard = new ArrayList<>();
         board = new ArrayList<>();
-        initializeDeck(library);
+        initializeDeck(cards, library);
     }
     public void remove(Card c){
         if(handContains(c)){
@@ -37,10 +35,10 @@ public class Player {
         }
         return false;
     }
-    public void initializeDeck(String color){
+    public void initializeDeck(ArrayList cards, String color){
         library = new Deck();
         if(color.equals("Red")){
-
+            
         }else if(color.equals("Blue")){
 
         }

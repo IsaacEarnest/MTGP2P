@@ -45,7 +45,6 @@ public class ActivityGameBoard extends AppCompatActivity {
 
         Intent intent = getIntent();
         deckColor = intent.getStringExtra(ActivityChooseDeck.DECK_CHOOSE);
-        //
         Log.d(TAG, deckColor);
 
         ImageHandler imageHandler = new ImageHandler(this);
@@ -55,8 +54,7 @@ public class ActivityGameBoard extends AppCompatActivity {
         currentCardIMG = findViewById(R.id.currentCard);
         currentCardIMG.setImageDrawable(playersHandGUI.getFirst());
 
-        game = new Game(deckColor);
-        //button
+        game = new Game(cards, deckColor);
 
 
 

@@ -39,10 +39,17 @@ public class Player {
     }
     public void initializeDeck(ArrayList<String> cards, String color){
         library = new Deck();
+
         int deckSplit = (cards.size()/2)+1;
         if(color.equals("red")){
             for(int i = 0; i<deckSplit;i++){
-                library.addCard(new Card(cards.get(i)));
+                Card c = new Card(cards.get(i));
+                int count = c.parseCount(cards.get(i));
+                    while(count>0){
+                        library.addCard(c);
+                        count--;
+                    }
+
             }
         }else if(color.equals("blue")){
             for(int i = deckSplit; i<cards.size();i++){

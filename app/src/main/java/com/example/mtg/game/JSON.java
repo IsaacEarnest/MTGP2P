@@ -9,6 +9,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.mtg.activities.ActivityGameBoard;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -17,10 +18,11 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 public class JSON {
+
     private RequestQueue mRequestQueue;
-    private String blueDeck = "https://mtgjson.com/json/decks/AmonkhetWelcomeDeckBlue.json";
-    private String redDeck = "https://mtgjson.com/json/decks/AmonkhetWelcomeDeckRed.json";
-    private ArrayList<String> cards = new ArrayList<>();
+    private final String blueDeck = "https://mtgjson.com/json/decks/AmonkhetWelcomeDeckBlue.json";
+    private final String redDeck = "https://mtgjson.com/json/decks/AmonkhetWelcomeDeckRed.json";
+    private final ArrayList<String> cards = new ArrayList<>();
     public static String tag = "JSON";
 
     public JSON (Context con){
@@ -48,39 +50,52 @@ public class JSON {
                 break;
             }
         }
-        Log.d(tag,url);
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
-                        new Response.Listener<JSONObject>() {
+            JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
+                    new Response.Listener<JSONObject>() {
 
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        try {
-                            JSONArray jsonArray = response.getJSONArray(name);
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            try {
+                                JSONArray jsonArray = response.getJSONArray(name);
 
-                            for (int i = 0; i < jsonArray.length(); i++) {
-                                JSONObject hit = jsonArray.getJSONObject(i);
-                                String id = hit.getString("name")+":"+hit.getString("type")+":"+hit.getString("convertedManaCost");
-                                Log.d(tag,id);
-                                cards.add(id);
+                                for (int i = 0; i < jsonArray.length(); i++) {
+                                    JSONObject hit = jsonArray.getJSONObject(i);
+                                    String s = hit.getString("type");
+                                    s = s.split(" — ")[0];
+                                    if(s.equals("Basic Land")){
+                                        s = "Land";
+                                    }
+                                    String id = hit.getString("name") + ":" + s + ":" + hit.getString("convertedManaCost")+":"+hit.getString("count");
+                                    if(id.contains("Creature")){
+                                       id = id + ":" + hit.getString("power") + ":" + hit.getString("toughness");
+                                    }
+
+                                    cards.add(id);
+                                    Log.d(tag,cards.toString());
+
+                                }
+
+                            } catch (JSONException e) {
+                                Log.e(tag, "Oops");
+                                e.printStackTrace();
 
                             }
 
-                        } catch (JSONException e) {
-                            Log.e(tag,"Oops");
-                            e.printStackTrace();
 
                         }
+                    }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    error.printStackTrace();
+                }
 
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                error.printStackTrace();
-            }
-        });
-        mRequestQueue.add(request);
+            });
+            mRequestQueue.add(request);
 
     return cards;
+    }
+public interface updateList{
+        void update(String id);
     }
 }
 //TODO http://www.magicspoiler.com/mtg-news/amonkhet-welcome-decks/ red and blue

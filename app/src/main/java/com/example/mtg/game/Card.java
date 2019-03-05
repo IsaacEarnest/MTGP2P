@@ -4,11 +4,6 @@ public class Card {
     enum Type{
         LAND{
             @Override
-            void playCard(Card c) {
-                //increase mana by 1, remove from hand
-
-            }
-            @Override
             Type toType(String str){
                 if(str.contains("Land"))
                     return LAND;
@@ -16,17 +11,6 @@ public class Card {
             }
         },
         CREATURE{
-            int health, power;
-            @Override
-            void playCard(Card c) {
-                //add to stack
-            }
-            public int getPermanentPower(){
-                return power;
-            }
-            public int getPermanentHealth(){
-                return health;
-            }
             @Override
             Type toType(String str){
                 if(str.contains("Creature"))
@@ -36,10 +20,6 @@ public class Card {
         },
         ENCHANTMENT{
             @Override
-            void playCard(Card c) {
-                //add to stack
-            }
-            @Override
             Type toType(String str){
                 if(str.contains("Enchantment"))
                     return ENCHANTMENT;
@@ -47,10 +27,6 @@ public class Card {
             }
         },
         INSTANT{
-            @Override
-            void playCard(Card c) {
-                //add to stack
-            }
             @Override
             Type toType(String str){
                 if(str.contains("Instant"))
@@ -60,10 +36,6 @@ public class Card {
         },
         SORCERY{
             @Override
-            void playCard(Card c) {
-                //add to stack
-            }
-            @Override
             Type toType(String str){
                 if(str.contains("Sorcery"))
                     return SORCERY;
@@ -72,16 +44,13 @@ public class Card {
         },
         ERROR{
             @Override
-            void playCard(Card c) {}
-            @Override
             Type toType(String str){
                 return ERROR;
             }
         };
-        abstract void playCard(Card c);
         abstract Type toType(String str);
     }
-
+    private int health, power;
     private String name;
     private Type type;
     private int cost;
@@ -156,6 +125,12 @@ public class Card {
         }
     }
 
+    public int getPermanentPower(){
+        return power;
+    }
+    public int getPermanentHealth(){
+        return health;
+    }
 
 
 

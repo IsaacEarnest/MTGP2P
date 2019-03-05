@@ -1,5 +1,6 @@
 package com.example.mtg.activities;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.media.Image;
@@ -15,7 +16,10 @@ import com.example.mtg.R;
 import com.example.mtg.game.Card;
 import com.example.mtg.game.Deck;
 import com.example.mtg.game.Game;
+import com.example.mtg.game.JSON;
+import com.example.mtg.game.MasterCardClass;
 import com.example.mtg.game.Player;
+import com.example.mtg.game.UpdateLibrary;
 import com.example.mtg.gui.ImageHandler;
 import com.example.mtg.gui.PlayersHand;
 import com.example.mtg.networking.ServerListener;
@@ -25,17 +29,24 @@ import java.util.ArrayList;
 public class ActivityGameBoard extends AppCompatActivity implements ServerListener {
     private String deckColor = "Red";
     private static String TAG = "GAMEBOARD";
+    private ArrayList cards;
     private ImageView currentCardIMG;
     private ImageView testingIMG;
     private PlayersHand playersHandGUI;
+    private Game game;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_board);
 
+        if(deckColor.equals("Red")) cards = MasterCardClass.getInstance().getRedCards();
+        else cards = MasterCardClass.getInstance().getBlueCards();
+        Log.d(TAG,cards.toString());
+
         Intent intent = getIntent();
         deckColor = intent.getStringExtra(ActivityChooseDeck.DECK_CHOOSE);
+        //
         Log.d(TAG, deckColor);
 
         ImageHandler imageHandler = new ImageHandler(this);
@@ -45,16 +56,13 @@ public class ActivityGameBoard extends AppCompatActivity implements ServerListen
         currentCardIMG = findViewById(R.id.currentCard);
         currentCardIMG.setImageDrawable(playersHandGUI.getFirst());
 
+        game = new Game(deckColor);
+        //button
+
 
 
         testingIMG = findViewById(R.id.imageView21);
         testingIMG.setImageDrawable(ImageHandler.getImage(this, ""));
-
-
-
-//        Game game = new Game("Red");
-//        game.mulligan();
-
 
     }
 
@@ -67,6 +75,7 @@ public class ActivityGameBoard extends AppCompatActivity implements ServerListen
     public void lastCard(View view) {
         currentCardIMG.setImageDrawable(playersHandGUI.getLast());
     }
+
 
 
     @Override

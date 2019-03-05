@@ -5,29 +5,36 @@ import com.example.mtg.activities.ActivityGameBoard;
 import java.util.ArrayList;
 
 public class Game {
-    private Player player, opponent;
+    private static Player player, opponent;
+    ArrayList<Permanent> pBoard;
+    ArrayList<Permanent> oBoard;
     private static int timesMulled;
     private String deckColor;
-    //ArrayList<Card> =
-    private int mana, opponentHP, playerHP;
+    private static int oMana, pMana, oHP, pHP;
     boolean landPlayed;
     State state;
     public Game(String library){
         this.deckColor = library;
         landPlayed = false;
-        opponentHP = 20;
-        playerHP = 20;
-        mana = 0;
+        oHP = 20;
+        pHP = 20;
+        pMana = 0;
+        oMana = 0;
         timesMulled = 0;
+        player = new Player(library);
+        state = State.MULLIGAN;
         //give deck name, call parseJSON(deckname) and it gets all cards in deck as string,
-        initializeDeck(deckColor);
+        //initializeDeck(deckColor);
 
     }
     public enum State {
         MULLIGAN{
           @Override
-          State doSomething(String aParameter){
+          State nextPhase(){
+              if(!isGameOver()){
+               mulligan();
 
+              }
               //drawFullHand();
               //listener for mulligan/keep
               //drawFullHand();
@@ -36,8 +43,8 @@ public class Game {
         },
         BEGINNING {
             @Override
-            State doSomething(String aParameter) {
-                if(isGameOver()){
+            State nextPhase() {
+                if(!isGameOver()){
 
                 }
 
@@ -45,64 +52,76 @@ public class Game {
                 //untap();
                 //upkeep();
                 //player.draw(deck);
-                System.out.println("Doing Something in INITIAL state and jumping to NEXT_STEP, argument = " + aParameter);
                 return PRECOMBATMAIN;
             }
         },
         PRECOMBATMAIN {
             @Override
-            State doSomething(String aParameter) {
+            State nextPhase() {
+                if(!isGameOver()){
+
+                }
                 //wait for player to play card
-                System.out.println("Doing Something in NEXT_STEP and jumping into FINAL, argument = " + aParameter);
                 return COMBAT;
             }
         },
         COMBAT {
             @Override
-            State doSomething(String aParameter) {
-                System.out.println("Doing Something in NEXT_STEP and jumping into FINAL, argument = " + aParameter);
+            State nextPhase() {
+                if(!isGameOver()){
+
+                }
                 return POSTCOMBATMAIN;
             }
         },
         POSTCOMBATMAIN {
             @Override
-            State doSomething(String aParameter) {
+            State nextPhase() {
+                if(!isGameOver()){
+
+                }
                 //identical to PRECOMBATMAIN
-                System.out.println("Doing Something in NEXT_STEP and jumping into FINAL, argument = " + aParameter);
                 return ENDING;
             }
         },
         ENDING {
             @Override
-            State doSomething(String aParameter) {
+            State nextPhase() {
+                if(!isGameOver()){
+
+                }
                 //players are technically allowed to perform
-                System.out.println("I am in FINAL state, argument = " + aParameter);
                 return OPPONENT_TURN;
             }
         },
         RESPONDING {
             @Override
-            State doSomething(String aParameter) {
-                System.out.println("Doing Something in NEXT_STEP and jumping into FINAL, argument = " + aParameter);
+            State nextPhase() {
+                if(!isGameOver()){
+
+                }
                 return OPPONENT_TURN;
             }
         },
         OPPONENT_TURN {
-            //wait for opponent to send an action for a chance to respond, or
+            //wait for opponent to send an action for a chance to respond, or wait until opponent ends their turn
             @Override
-            State doSomething(String aParameter) {
+            State nextPhase() {
+                if(!isGameOver()){
+
+                }
 
                 return BEGINNING;
             }
         },
         GAME_OVER {
             @Override
-            State doSomething(String aParameter) {
-                return null;
+            State nextPhase() {
+                return GAME_OVER;
             }
         };
 
-        abstract State doSomething(String aParameter);
+        abstract State nextPhase();
     }
 
 
@@ -115,7 +134,7 @@ public class Game {
     }
 
     public boolean isPlayable(Card c){
-        if(mana >= c.getCost()) {
+        if(pMana >= c.getCost()) {
             if (state == State.PRECOMBATMAIN || state == State.POSTCOMBATMAIN) {
                 if(c.getType() == Card.Type.LAND && landPlayed == true) {
                     return false;
@@ -130,34 +149,51 @@ public class Game {
     }
 
     public void playCard(Card c){
-        Card.Type type =c.getType();
+        if(isPlayable(c)){
+            pMana -= c.getCost();
+            if(c.getType()== Card.Type.CREATURE){
+                pBoard.add(new Permanent(c));
+            }
+        }
     }
+
     public void playLand(Card c){
-        if(player.handContains(c)){
+        if(isPlayable(c)){
             if(c.getType()== Card.Type.LAND){
-                //increase playerMana by 1
+                pMana++;
                 player.remove(c);
             }
+        }
+    }
+    public void oLandPlayed(){
+        oMana++;
+    }
+    public void oCardPlayed(Card c){
+        oMana -= c.getCost();
+        if(c.getType()== Card.Type.CREATURE){
+            oBoard.add(new Permanent(c));
         }
     }
     public ArrayList getpHand(){
         return player.getHand();
     }
     public static boolean isGameOver(){
-        //return
-        //check if either hp value is <1
-        return false;
+        return (pHP<1||oHP<1||player.getLibrary().getCardsLeft()==0||opponent.getLibrary().getCardsLeft()==0);
     }
-    public void mulligan(){
-        player.drawCard();
+    public static void mulligan(){
+        for (int i = 0; i < (7-timesMulled); i++) {
+            player.drawCard();
+            timesMulled++;
+        }
+
     }
-    public void initializeDeck(String color){
-        if(color.equals("Red")){
-
-        }else if(color.equals("Blue")){
-
+    public static void returnCards(){
+        int handSize = player.getHand().size();
+        for (int i = 0; i< handSize; i++) {
+            player.getLibrary().addCard((Card)player.getHand().remove(0));
         }
     }
+
 
 
 }

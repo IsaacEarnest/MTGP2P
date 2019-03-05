@@ -43,7 +43,7 @@ public class ActivityGameBoard extends AppCompatActivity implements ServerListen
 
         Log.d(TAG,cards.toString());
 
-
+        currentCardIMG = findViewById(R.id.currentCard);
 
 
         ImageHandler imageHandler = new ImageHandler(this);
@@ -66,8 +66,19 @@ public class ActivityGameBoard extends AppCompatActivity implements ServerListen
 
 
         //this will work if hand is not empty
-        handGUI = new PlayersHand(playerHand);
-        currentCardIMG.setImageDrawable(ImageHandler.getImage(this, handGUI.getFirst().getDrawableName()));
+
+
+        if(playerHand.size() > 0){
+            handGUI = new PlayersHand(playerHand);
+            Log.d(TAG, deckColor + "_" + playerHand.get(0).getDrawableName());
+
+            currentCardIMG.setImageDrawable(getDrawable(handGUI.getNext().getDrawableName()));
+        }else {
+            Log.d(TAG, String.valueOf(playerHand.size()));
+            currentCardIMG.setImageDrawable(ImageHandler.getImage(this, "card_back"));
+
+        }
+
 
 
         //this is for testing purposes
@@ -79,16 +90,20 @@ public class ActivityGameBoard extends AppCompatActivity implements ServerListen
 
     }
 
+    private Drawable getDrawable(String cardname){
+        return ImageHandler.getImage(this,deckColor + "_" + cardname);
+    }
+
 
     //called in xml file
     public void nextCard(View view) {
-        currentCardIMG.setImageDrawable(ImageHandler.getImage(this, handGUI.getNext().getDrawableName()));
+        currentCardIMG.setImageDrawable(getDrawable(handGUI.getNext().getDrawableName()));
 
     }
 
     //called in xml file
     public void lastCard(View view) {
-        currentCardIMG.setImageDrawable(ImageHandler.getImage(this, handGUI.getLast().getDrawableName()));
+        currentCardIMG.setImageDrawable(getDrawable(handGUI.getLast().getDrawableName()));
     }
 
 

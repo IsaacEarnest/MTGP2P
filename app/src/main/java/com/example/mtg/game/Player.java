@@ -41,12 +41,12 @@ public class Player {
         library = new Deck();
         Log.d("DECK","aaa");
         if(color.equals("red")){
-            for(int i = 0; i<(cards.size()/2);i++){
+            for(int i = 0; i<(cards.size()/2)+1;i++){
                 library.addCard(new Card(cards.get(i)));
                 Log.d("DECK","redddd");
             }
         }else if(color.equals("blue")){
-            for(int i = (cards.size()/2); i<cards.size();i++){
+            for(int i = (cards.size()/2) + 1; i<cards.size();i++){
                 library.addCard(new Card(cards.get(i)));
                 Log.d("DECK","blueee");
             }

@@ -37,7 +37,7 @@ public class Deck {
         return cards;
     }
     public Card drawCard(){
-        if(cards<0) {
+        if(cards>0) {
             cards--;
             return deck.remove(0);
         }else{

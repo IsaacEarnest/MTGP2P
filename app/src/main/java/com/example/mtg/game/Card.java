@@ -151,6 +151,7 @@ public class Card {
         return health;
     }
     public String getDrawableName(){
+
         return name.toLowerCase().replaceAll(" ","_");
     }
 

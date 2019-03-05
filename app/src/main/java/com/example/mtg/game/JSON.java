@@ -31,7 +31,7 @@ public class JSON {
 
     public ArrayList<String> parseJSON(String color) {
 
-        String url;
+        final String url;
         final String name;
         switch (color) {
             case"blueDeck":{
@@ -65,7 +65,7 @@ public class JSON {
                                     if(s.equals("Basic Land")){
                                         s = "Land";
                                     }
-                                    String id = hit.getString("name") + ":" + s + ":" + hit.getString("convertedManaCost")+":"+hit.getString("count");
+                                    String id =hit.getString("name") + ":" + s + ":" + hit.getString("convertedManaCost")+":"+hit.getString("count");
                                     if(id.contains("Creature")){
                                        id = id + ":" + hit.getString("power") + ":" + hit.getString("toughness");
                                     }

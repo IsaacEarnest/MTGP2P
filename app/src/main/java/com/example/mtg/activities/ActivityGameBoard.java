@@ -18,6 +18,7 @@ import com.example.mtg.game.Deck;
 import com.example.mtg.game.Game;
 import com.example.mtg.game.JSON;
 import com.example.mtg.game.MasterCardClass;
+import com.example.mtg.game.Permanent;
 import com.example.mtg.game.Player;
 import com.example.mtg.game.UpdateLibrary;
 import com.example.mtg.gui.ImageHandler;
@@ -40,14 +41,15 @@ public class ActivityGameBoard extends AppCompatActivity implements ServerListen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_board);
 
+
         Intent intent = getIntent();
         deckColor = intent.getStringExtra(ActivityChooseDeck.DECK_CHOOSE);
         Log.d(TAG, deckColor);
 
         if(deckColor.equals("red")) cards = MasterCardClass.getInstance().getRedCards();
         else cards = MasterCardClass.getInstance().getBlueCards();
-        Log.d(TAG,cards.toString());
 
+        Log.d(TAG,cards.toString());
 
 
 
@@ -65,12 +67,27 @@ public class ActivityGameBoard extends AppCompatActivity implements ServerListen
 
         game = new Game(cards, deckColor);
 
+        ArrayList<Card> playerHand = game.getpHand();
+        ArrayList<Permanent> playerBoard = game.getpPermanents();
+        ArrayList<Permanent> opponentBoard = game.getoPermanents();
+        int playerMana = game.getpMana();
+        int opponentMana = game.getoMana();
+        int playerHP = game.getpHP();
+        int opponentHP = game.getoHP();
+        Game.State state = game.getState();
+        ArrayList<Card> playerGraveyard = game.getPlayer().getGraveyard();
+
+
+
+
+
 
         //this is for testing purposes
         testingIMG = findViewById(R.id.playerBoard0);
         testingIMG.setImageDrawable(ImageHandler.getImage(this, "blue_island"));
         testingIMG = findViewById(R.id.playerBoard5);
         testingIMG.setImageDrawable(ImageHandler.getImage(this, "red_wrangle"));
+
 
     }
 

@@ -74,11 +74,13 @@ public class ActivityGameBoard extends AppCompatActivity implements ServerListen
     }
 
 
+    //called in xml file
     public void nextCard(View view) {
         currentCardIMG.setImageDrawable(playersHandGUI.getNext());
 
     }
 
+    //called in xml file
     public void lastCard(View view) {
         currentCardIMG.setImageDrawable(playersHandGUI.getLast());
     }
@@ -91,6 +93,26 @@ public class ActivityGameBoard extends AppCompatActivity implements ServerListen
         //check with cards, do math
         //return object of the deck, players field, the other players field
         //runs on UI thread updates based off of those fields.
+    }
+
+    //called in xml file
+    public void playLand(View view) {
+        // move land to field
+    }
+
+    //called in xml file
+    public void playCard(View view) {
+        //move a card to the field
+    }
+
+    //called in xml file
+    public void nextPhase(View view) {
+        //don't know
+    }
+
+    //called in xml file
+    public void confirmMove(View view) {
+        //send over socket card
     }
 }
 

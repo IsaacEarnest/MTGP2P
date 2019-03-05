@@ -51,6 +51,7 @@
         android:layout_marginTop="38dp"
         android:layout_marginBottom="15dp"
         android:text="Play Land"
+        android:onClick="playLand"
         app:layout_constraintBottom_toTopOf="@+id/playCard"
         app:layout_constraintStart_toEndOf="@+id/currentCard"
         app:layout_constraintTop_toBottomOf="@+id/imageView6" />
@@ -61,6 +62,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:text="Play Card"
+        android:onClick="playCard"
         app:layout_constraintBottom_toTopOf="@+id/nextPhase"
         app:layout_constraintStart_toEndOf="@+id/currentCard"
         app:layout_constraintTop_toBottomOf="@+id/playLand" />
@@ -70,7 +72,8 @@
         android:layout_width="109dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:layout_marginBottom="4dp"
+        android:layout_marginBottom="3dp"
+        android:onClick="nextPhase"
         android:text="Next Phase"
         app:layout_constraintBottom_toTopOf="@+id/confirm"
         app:layout_constraintStart_toEndOf="@+id/currentCard"
@@ -84,6 +87,7 @@
         android:layout_marginTop="4dp"
         android:layout_marginBottom="38dp"
         android:text="Confirm"
+        android:onClick="confirmMove"
         app:layout_constraintBottom_toTopOf="@+id/imageView5"
         app:layout_constraintStart_toEndOf="@+id/currentCard"
         app:layout_constraintTop_toBottomOf="@+id/nextPhase" />

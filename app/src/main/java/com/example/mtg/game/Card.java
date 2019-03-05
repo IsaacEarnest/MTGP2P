@@ -110,7 +110,7 @@ public class Card {
     public boolean equals(Object other) {
         if(other instanceof Card){
             Card that = (Card) other;
-            return this.name.equals(that.name) && this.type == that.type && this.cost == that.cost;
+            return this.name.equals(that.name) && this.type == that.getType() && this.cost == that.cost;
         }else {
             return false;
         }

@@ -6,51 +6,51 @@ public class Card {
     enum Type{
         LAND{
             @Override
-            Type toType(String str){
+            Type getType(String str){
                 if(str.contains("Land"))
                     return LAND;
-                else return CREATURE.toType(str);
+                else return CREATURE.getType(str);
             }
         },
         CREATURE{
             @Override
-            Type toType(String str){
+            Type getType(String str){
                 if(str.contains("Creature"))
                     return CREATURE;
-                else return ENCHANTMENT.toType(str);
+                else return ENCHANTMENT.getType(str);
             }
         },
         ENCHANTMENT{
             @Override
-            Type toType(String str){
+            Type getType(String str){
                 if(str.contains("Enchantment"))
                     return ENCHANTMENT;
-                else return INSTANT.toType(str);
+                else return INSTANT.getType(str);
             }
         },
         INSTANT{
             @Override
-            Type toType(String str){
+            Type getType(String str){
                 if(str.contains("Instant"))
                     return INSTANT;
-                else return SORCERY.toType(str);
+                else return SORCERY.getType(str);
             }
         },
         SORCERY{
             @Override
-            Type toType(String str){
+            Type getType(String str){
                 if(str.contains("Sorcery"))
                     return SORCERY;
-                else return LAND.toType(str);
+                else return LAND.getType(str);
             }
         },
         ERROR{
             @Override
-            Type toType(String str){
+            Type getType(String str){
                 return ERROR;
             }
         };
-        abstract Type toType(String str);
+        abstract Type getType(String str);
     }
     private int health, power;
     private String name;
@@ -68,8 +68,6 @@ public class Card {
         this.cost = cost;
         this.power = atk;
         this.health = hp;
-        this.pic = convertToDrawable();
-
     }
     public Card(String data){
         Card c = parse(data);
@@ -88,16 +86,19 @@ public class Card {
     }
     @Override
     public String toString(){
+        if(type==Type.CREATURE){
+            return name+":"+type+":"+cost+":"+power+":"+health;
+        }
         return name+":"+type+":"+cost;
     }
 
     public Card parse(String str){
         String[] parsed = str.split(":");
-        if(Type.LAND.toType(parsed[1])== Type.CREATURE)
-            return new Card(parsed[0],Type.LAND.toType(parsed[1]),(int)Double.parseDouble(parsed[2]), Integer.parseInt(parsed[3]), Integer.parseInt(parsed[4]));
+        if(Type.LAND.getType(parsed[1])== Type.CREATURE)
+            return new Card(parsed[0],Type.LAND.getType(parsed[1]),(int)Double.parseDouble(parsed[2]), Integer.parseInt(parsed[3]), Integer.parseInt(parsed[4]));
         //Shivan Dragon:Creature:6.0:1:5:5
         else {
-            return new Card(parsed[0], Type.LAND.toType(parsed[1]),(int)Double.parseDouble(parsed[2]));
+            return new Card(parsed[0], Type.LAND.getType(parsed[1]),(int)Double.parseDouble(parsed[2]));
         }
 
     }
@@ -117,32 +118,28 @@ public class Card {
     public Type getType() {
         return type;
     }
-
     public void onCreaturePlayed(){
-        String s = c.getName();
-        if(s.equals("Nimble Innovator")){
+
+        if(name.equals("Nimble Innovator")){
             //draw 1
-        }else if(s.equals("Angler Drake")){
+        }else if(name.equals("Angler Drake")){
             //return creature to owner's hand
         }
     }
     public void onInstantPlayed(){
-        String s = c.getName();
-        if(s.equals("Inspiration")){
+        if(name.equals("Inspiration")){
             //draw 2
         }
     }
     public void onEnchantmentPlayed(){
-        String s = c.getName();
-        if(s.equals("Sleep Paralysis")){
+        if(name.equals("Sleep Paralysis")){
             //tap opposing creature, doesn't untap
-        }else if(s.equals("Tricks of the Trade")){
+        }else if(name.equals("Tricks of the Trade")){
             //+2 power, attacks can't be blocked
         }
     }
     public void onSorceryPlayed(){
-        String s = c.getName();
-        if(s.equals("Drag Under")){
+        if(name.equals("Drag Under")){
             //return target creature to owner's hand, draw 1
         }
     }

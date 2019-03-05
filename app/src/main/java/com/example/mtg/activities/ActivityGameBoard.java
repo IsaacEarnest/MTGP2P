@@ -1,26 +1,18 @@
 package com.example.mtg.activities;
 
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
-import android.media.Image;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.example.mtg.R;
 import com.example.mtg.game.Card;
-import com.example.mtg.game.Deck;
 import com.example.mtg.game.Game;
-import com.example.mtg.game.JSON;
 import com.example.mtg.game.MasterCardClass;
 import com.example.mtg.game.Permanent;
-import com.example.mtg.game.Player;
-import com.example.mtg.game.UpdateLibrary;
 import com.example.mtg.gui.ImageHandler;
 import com.example.mtg.gui.PlayersHand;
 import com.example.mtg.networking.ServerListener;
@@ -61,6 +53,7 @@ public class ActivityGameBoard extends AppCompatActivity implements ServerListen
         currentCardIMG.setImageDrawable(playersHandGUI.getFirst());
 
         game = new Game(cards, deckColor);
+        game.toNextPhase();
 
         ArrayList<Card> playerHand = game.getpHand();
         ArrayList<Permanent> playerBoard = game.getpPermanents();
@@ -69,7 +62,7 @@ public class ActivityGameBoard extends AppCompatActivity implements ServerListen
         int opponentMana = game.getoMana();
         int playerHP = game.getpHP();
         int opponentHP = game.getoHP();
-        Game.State state = game.getState();
+        Game.Phase state = game.getState();
         ArrayList<Card> playerGraveyard = game.getPlayer().getGraveyard();
 
 

@@ -48,10 +48,14 @@ public class ActivityGameBoard extends AppCompatActivity implements ServerListen
         deckColor = intent.getStringExtra(ActivityChooseDeck.DECK_CHOOSE);
         Log.d(TAG, deckColor);
 
+
+
         ImageHandler imageHandler = new ImageHandler(this);
         ArrayList<Drawable> red = imageHandler.buildRedDeck();
         playersHandGUI = new PlayersHand(red);
 
+
+        //this is for testing purposes
         currentCardIMG = findViewById(R.id.currentCard);
         currentCardIMG.setImageDrawable(playersHandGUI.getFirst());
 
@@ -59,8 +63,13 @@ public class ActivityGameBoard extends AppCompatActivity implements ServerListen
 
 
 
-        testingIMG = findViewById(R.id.imageView21);
-        testingIMG.setImageDrawable(ImageHandler.getImage(this, "red_land"));
+
+        //this is for testing purposes
+        testingIMG = findViewById(R.id.playerBoard0);
+        testingIMG.setImageDrawable(ImageHandler.getImage(this, "blue_island"));
+        testingIMG = findViewById(R.id.playerBoard5);
+        testingIMG.setImageDrawable(ImageHandler.getImage(this, "red_wrangle"));
+
 
     }
 

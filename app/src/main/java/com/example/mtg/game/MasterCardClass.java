@@ -10,8 +10,6 @@ public class MasterCardClass {
 
     public static MasterCardClass getInstance() {
         return ourInstance;
-
-
     }
     public void loadAllCards(Context con){
         if(getRedCards()==null && getBlueCards()==null) {

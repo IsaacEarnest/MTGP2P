@@ -65,7 +65,7 @@ public class JSON {
                                     if(s.equals("Basic Land")){
                                         s = "Land";
                                     }
-                                    String id = hit.getString("name") + ":" + s + ":" + hit.getString("convertedManaCost");
+                                    String id = hit.getString("name") + ":" + s + ":" + hit.getString("convertedManaCost")+":"+hit.getString("count");
                                     if(id.contains("Creature")){
                                        id = id + ":" + hit.getString("power") + ":" + hit.getString("toughness");
                                     }

@@ -17,11 +17,13 @@ public class Player {
     public void remove(Card c){
         if(handContains(c)){
             hand.remove(hand.indexOf(c));
-            //update UI- remove card from player hand
         }
     }
     public ArrayList getHand(){
-        return hand;
+        return this.hand;
+    }
+    public Deck getLibrary(){
+        return this.library;
     }
     public void drawCard(){
         hand.add(library.drawCard());
@@ -36,8 +38,9 @@ public class Player {
         return false;
     }
     public void initializeDeck(String color){
+        library = new Deck();
         if(color.equals("Red")){
-          //  library = new Deck(//);
+
         }else if(color.equals("Blue")){
 
         }

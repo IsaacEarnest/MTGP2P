@@ -121,7 +121,7 @@ public class ActivityGameBoard extends AppCompatActivity implements ServerListen
     public void playLand(View view) {
         Card c = handGUI.getCurrent();
         Log.d(TAG, String.valueOf(c.getCost()));
-        if(game.isPlayable(c)){
+        if(game.isLandPlayable(c)){
             game.playLand(c);
             handGUI.updateHand(game.getpHand());
             playermana.setText(String.valueOf(game.getpMana()));

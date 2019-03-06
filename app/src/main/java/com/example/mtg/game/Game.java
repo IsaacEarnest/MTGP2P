@@ -1,7 +1,5 @@
 package com.example.mtg.game;
 
-import android.util.Log;
-
 import java.util.ArrayList;
 
 public class Game {
@@ -19,6 +17,7 @@ public class Game {
         pHP = 20;
         pMana = 5;
         pMaxMana = pMana;
+
         oMana = 0;
         oMaxMana = oMana;
         timesMulled = 0;
@@ -42,8 +41,7 @@ public class Game {
             @Override
             Phase nextPhase() {
                 if(!isGameOver()){
-                    if(oBoard.size()>0)
-                      pUntap();
+
                     landPlayable=true;
                     player.drawCard();
                     pMana = pMaxMana;
@@ -107,6 +105,7 @@ public class Game {
                     if(oBoard.size()>0)
                     oUntap();
                     oMana = oMaxMana;
+
                 }
                 return BEGINNING;
             }
@@ -156,6 +155,9 @@ public class Game {
                 if (landPlayable) {
                     return true;
                 }
+
+                return false;
+
             }
 
         }
@@ -177,7 +179,9 @@ public class Game {
         if(isCardPlayable(c)){
             pMana -= c.getCost();
             if(c.getType()== Card.Type.CREATURE){
+
            //     pBoard.add(new Permanent(c));
+
             }
         }
     }

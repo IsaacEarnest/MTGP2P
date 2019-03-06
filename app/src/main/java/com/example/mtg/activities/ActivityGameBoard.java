@@ -18,6 +18,7 @@ import com.example.mtg.game.Permanent;
 import com.example.mtg.gui.ImageHandler;
 import com.example.mtg.gui.PlayersHand;
 import com.example.mtg.networking.ServerListener;
+import com.example.mtg.networking.Singleton;
 
 import java.util.ArrayList;
 
@@ -34,6 +35,8 @@ public class ActivityGameBoard extends AppCompatActivity implements ServerListen
     private Button nextPhase;
     private TextView cardIndex;
     private TextView phaseStatus;
+    private ImageView useCard;
+    private TextView opponentMana;
     private Button confirm;
 
     private Game game;
@@ -61,6 +64,8 @@ public class ActivityGameBoard extends AppCompatActivity implements ServerListen
         confirm = findViewById(R.id.confirm);
         cardIndex = findViewById(R.id.cardIndex);
         phaseStatus = findViewById(R.id.phaseStatus);
+        useCard = findViewById(R.id.playerBoard2);
+        opponentMana = findViewById(R.id.opponentMana);
 
 
 
@@ -160,18 +165,28 @@ public class ActivityGameBoard extends AppCompatActivity implements ServerListen
             currentCardIMG.setImageDrawable(getDrawable(handGUI.getCurrent().getDrawableName()));
         }
         setCardIndex();
+        Singleton.getInstance().sendOverSocket("LANDVALUE: "+ game.getpMana(), this);
         // move land to  field
     }
 
     //called in xml file
     public void playCard(View view) {
         //move a card to the field
+        Card c = handGUI.getCurrent();
+        if(game.isCardPlayable(c)){
+            game.playCard(c);
+            handGUI.updateHand(game.getpHand());
+            currentCardIMG.setImageDrawable(getDrawable(handGUI.getCurrent().getDrawableName()));
+            playermana.setText(String.valueOf(game.getpMana()));
+            useCard.setImageDrawable(getDrawable(c.getDrawableName()));
+        }
         setCardIndex();
     }
 
     //called in xml file
     public void nextPhase(View view) {
         game.toNextPhase();
+
         phaseStatus.setText(game.getState().toString());
         isCardPlayable();
 
@@ -187,6 +202,13 @@ public class ActivityGameBoard extends AppCompatActivity implements ServerListen
 
     @Override
     public void notifyMessage(String msg) {
+        if(msg.startsWith("LANDVALUE: ")){
+            String[] split = msg.split(" ");
+            String landvalue = split[1];
+            opponentMana.setText(landvalue);
+
+
+        }
         //parse name
         //if its an attacking player
         //check with cards, do math

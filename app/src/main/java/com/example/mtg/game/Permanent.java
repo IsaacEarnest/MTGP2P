@@ -6,8 +6,10 @@ public class Permanent {
     private boolean canAtk,canBlock,isFlying,isHaste;
     public Permanent(Card c){
       name = c.getName();
-      hp = c.getPermanentHealth();
-      atk = c.getPermanentPower();
+      if(c.getType()== Card.Type.CREATURE) {
+          hp = c.getPermanentHealth();
+          atk = c.getPermanentPower();
+      }
       isHaste = false;
       isFlying = false;
       canAtk = isHaste;
@@ -59,10 +61,5 @@ public class Permanent {
     }
     public void untap(){
         canAtk = true;
-    }
-    public void remove(){
-        if(isDead()){
-
-        }
     }
 }

@@ -10,12 +10,10 @@ public class Game {
     ArrayList<Permanent> oBoard;
     private static int timesMulled;
     private static int oCards;
-    private String deckColor;
     private static int oMana, pMana, oHP, pHP;
     boolean landPlayed;
     Phase phase;
     public Game(ArrayList cards, String library){
-        this.deckColor = library;
         landPlayed = false;
         oHP = 20;
         pHP = 20;
@@ -25,10 +23,6 @@ public class Game {
         oCards = 30;
         player = new Player(cards, library);
         phase = Phase.MULLIGAN;
-
-        //give deck name, call parseJSON(deckname) and it gets all cards in deck as string,
-        //initializeDeck(deckColor);
-
     }
     public enum Phase {
         MULLIGAN{
@@ -47,8 +41,6 @@ public class Game {
                 if(!isGameOver()){
 
                 }
-
-
                 //untap();
                 //upkeep();
                 //player.draw(deck);
@@ -140,13 +132,21 @@ public class Game {
     public Player getPlayer(){
         return player;
     }
+    public boolean isLandPlayable(Card c){
+        if ((phase == Phase.PRECOMBATMAIN || phase == Phase.POSTCOMBATMAIN) ) {
+            if(c.getType() == Card.Type.LAND && landPlayed == true) {
+                return false;
+            }
+            return true;
+        }
 
-    public boolean isPlayable(Card c){
+
+        return false;
+    }
+    public boolean isCardPlayable(Card c){
         if(pMana >= c.getCost()) {
             if (phase == Phase.PRECOMBATMAIN || phase == Phase.POSTCOMBATMAIN) {
-                if(c.getType() == Card.Type.LAND && landPlayed == true) {
-                    return false;
-                }
+
                 return true;
             }
             else if (c.getType() == Card.Type.INSTANT && phase == Phase.RESPONDING) {
@@ -157,7 +157,7 @@ public class Game {
     }
 
     public void playCard(Card c){
-        if(isPlayable(c)){
+        if(isCardPlayable(c)){
             pMana -= c.getCost();
             if(c.getType()== Card.Type.CREATURE){
                 pBoard.add(new Permanent(c));
@@ -184,7 +184,7 @@ public class Game {
     }
 
     public void playLand(Card c){
-        if(isPlayable(c)){
+        if(isLandPlayable(c)){
             if(c.getType()== Card.Type.LAND){
                 pMana++;
                 player.remove(c);

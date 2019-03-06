@@ -54,9 +54,14 @@ public class Player {
 
             }
         }else if(color.equals("blue")){
-            for(int i = deckSplit; i<cards.size();i++){
+            for(int i = 0; i<deckSplit;i++){
+                Card c = new Card(cards.get(i));
+                int count = c.parseCount(cards.get(i));
+                while(count>0){
+                    library.addCard(c);
+                    count--;
+                }
 
-                library.addCard(new Card(cards.get(i)));
             }
         }
     }

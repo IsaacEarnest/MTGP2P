@@ -45,8 +45,8 @@ public class JSON {
                 break;
             }
             default:{
-                url = "https://mtgjson.com/json/AKH.json";
-                name = "cards";
+                url = redDeck;
+                name = "mainBoard";
                 break;
             }
         }
@@ -98,4 +98,3 @@ public interface updateList{
         void update(String id);
     }
 }
-//TODO http://www.magicspoiler.com/mtg-news/amonkhet-welcome-decks/ red and blue

@@ -60,4 +60,9 @@ public class Permanent {
     public void untap(){
         canAtk = true;
     }
+    public void remove(){
+        if(isDead()){
+
+        }
+    }
 }

@@ -100,6 +100,7 @@ public class ActivityGameBoard extends AppCompatActivity implements ServerListen
         }
 
         phaseStatus.setText(game.getState().toString());
+        playermana.setText("5");
         setCardIndex();
         isCardPlayable();
 

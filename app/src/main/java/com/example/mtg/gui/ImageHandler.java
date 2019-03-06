@@ -27,7 +27,7 @@ public class ImageHandler {
         k.add(getImage(context, "red_renegade_tactics"));
         k.add(getImage(context, "red_shivan_dragon"));
         k.add(getImage(context, "red_shock"));
-        k.add(getImage(context, "red_terror_of_the_fairground"));
+        k.add(getImage(context, "red_terror_of_the_fairgrounds"));
         k.add(getImage(context, "red_thundering_giant"));
         return k;
     }
@@ -45,7 +45,7 @@ public class ImageHandler {
         k.add(getImage(context, "blue_sleep_paralysis"));
         k.add(getImage(context, "blue_sphinx_of_magosi"));
         k.add(getImage(context, "blue_stealer_of_secrets"));
-        k.add(getImage(context, "blue_trick_of_the_trade"));
+        k.add(getImage(context, "blue_tricks_of_the_trade"));
         k.add(getImage(context, "blue_wind_drake"));
         return k;
     }

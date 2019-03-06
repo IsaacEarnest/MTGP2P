@@ -10,6 +10,7 @@ import java.net.Socket;
 import static org.junit.Assert.*;
 
 public class RecieveDataTest {
+    //created by David Pojunas
     //create THE ONE and ONLY server
     public static String TAG = "RECIEVEDATATEST";
 

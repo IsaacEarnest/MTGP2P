@@ -1,7 +1,5 @@
 package com.example.mtg.game;
 
-import android.graphics.drawable.Drawable;
-
 public class Card {
     enum Type{
         LAND{
@@ -56,7 +54,6 @@ public class Card {
     private String name;
     private Type type;
     private int cost;
-    private Drawable pic;
     public Card(String name, Type type,int cost){
         this.name = name;
         this.type = type;

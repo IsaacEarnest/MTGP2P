@@ -226,11 +226,12 @@ public class ActivityGameBoard extends AppCompatActivity implements ServerListen
             String value = split[1];
             final Card c = new Card(value);
             Log.d(TAG,c.getDrawableName());
+            Log.d(TAG,opponentDeckColor);
+           //Drawable d= getODrawable(c.getDrawableName());
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-
-                    opponentuseCard.setImageDrawable(getODrawable(c.getDrawableName()));
+                    opponentuseCard.setImageDrawable(getODrawable("mountain"));
                 }
             });
         }else if(msg.startsWith("DECKCOLOR&")){

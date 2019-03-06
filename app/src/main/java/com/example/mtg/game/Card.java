@@ -104,7 +104,7 @@ public class Card {
                 return new Card(parsed[0], Type.LAND.getType(parsed[1]), (int) Double.parseDouble(parsed[2]));
             }
         }catch(NumberFormatException e){
-            return new Card("Island", Type.LAND.getType("LAND"), (int) Double.parseDouble("0.0"));
+            return new Card("island", Type.LAND.getType("LAND"), (int) Double.parseDouble("0.0"));
         }
 
     }

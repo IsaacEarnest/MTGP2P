@@ -8,15 +8,20 @@ public class Game {
     private static ArrayList<Permanent> oBoard;
     private static int timesMulled;
     private static int oCards;
-    private static int oMana, pMana, oHP, pHP;
+    private static int oMana, oMaxMana, pMana, pMaxMana, oHP, pHP;
     private static boolean landPlayable;
     private Phase phase;
     public Game(ArrayList cards, String library){
         landPlayable = true;
         oHP = 20;
         pHP = 20;
+
         pMana = 5;
+
+        pMaxMana = pMana;
+
         oMana = 0;
+        oMaxMana = oMana;
         timesMulled = 0;
         oCards = 30;
         player = new Player(cards, library);
@@ -38,12 +43,11 @@ public class Game {
             @Override
             Phase nextPhase() {
                 if(!isGameOver()){
-                    //pUntap();
+
                     landPlayable=true;
+                    player.drawCard();
+                    pMana = pMaxMana;
                 }
-                //untap();
-                //upkeep();
-                //player.draw(deck);
                 return PRECOMBATMAIN;
             }
         },
@@ -100,7 +104,10 @@ public class Game {
             @Override
             Phase nextPhase() {
                 if(!isGameOver()){
-                  //  oUntap();
+                    if(oBoard.size()>0)
+                    oUntap();
+                    oMana = oMaxMana;
+
                 }
                 return BEGINNING;
             }
@@ -150,7 +157,9 @@ public class Game {
                 if (landPlayable) {
                     return true;
                 }
+
                 return false;
+
             }
 
         }
@@ -172,7 +181,9 @@ public class Game {
         if(isCardPlayable(c)){
             pMana -= c.getCost();
             if(c.getType()== Card.Type.CREATURE){
-               // pBoard.add(new Permanent(c));
+
+           //     pBoard.add(new Permanent(c));
+
             }
         }
     }
@@ -200,12 +211,14 @@ public class Game {
             if(c.getType()== Card.Type.LAND){
                 landPlayable=false;
                 pMana++;
+                pMaxMana++;
                 player.remove(c);
             }
         }
     }
     public void oLandPlayed(){
         oMana++;
+        oMaxMana++;
     }
     public void oCardPlayed(Card c){
         oMana -= c.getCost();

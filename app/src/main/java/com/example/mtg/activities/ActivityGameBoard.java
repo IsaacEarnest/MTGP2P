@@ -230,7 +230,7 @@ public class ActivityGameBoard extends AppCompatActivity implements ServerListen
                 @Override
                 public void run() {
 
-                    opponentuseCard.setImageDrawable(getODrawable(c.getDrawableName()));
+                    opponentuseCard.setImageDrawable(getODrawable("mountain"));
                 }
             });
         }else if(msg.startsWith("DECKCOLOR&")){

@@ -38,6 +38,7 @@ public class ActivityGameBoard extends AppCompatActivity implements ServerListen
     private ImageView useCard;
     private TextView opponentMana;
     private ImageView opponentuseCard;
+    private String opponentDeckColor;
     private Button confirm;
 
     private Game game;
@@ -107,7 +108,7 @@ public class ActivityGameBoard extends AppCompatActivity implements ServerListen
 
 
 
-
+        Singleton.getInstance().sendOverSocket("DECKCOLOR&"+deckColor, this);
 
 
         Log.d(TAG, game.getpHand().toString());
@@ -232,6 +233,10 @@ public class ActivityGameBoard extends AppCompatActivity implements ServerListen
                     opponentuseCard.setImageDrawable(getDrawable(c.getDrawableName()));
                 }
             });
+        }else if(msg.startsWith("DECKCOLOR&")){
+            String[] split = msg.split("&");
+            String value = split[1];
+            opponentDeckColor = value;
         }
         //parse name
         //if its an attacking player

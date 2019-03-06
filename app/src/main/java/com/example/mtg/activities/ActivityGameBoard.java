@@ -2,10 +2,11 @@ package com.example.mtg.activities;
 
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -28,6 +29,11 @@ public class ActivityGameBoard extends AppCompatActivity implements ServerListen
     private ImageView testingIMG;
     private PlayersHand handGUI;
     private TextView playermana;
+    private Button playLand;
+    private Button playCard;
+    private Button nextPhase;
+    private Button confirm;
+
     private Game game;
 
     @Override
@@ -47,6 +53,10 @@ public class ActivityGameBoard extends AppCompatActivity implements ServerListen
 
         currentCardIMG = findViewById(R.id.currentCard);
         playermana = findViewById(R.id.playerMana);
+        playLand = findViewById(R.id.playLand);
+        playCard = findViewById(R.id.playCard);
+        nextPhase = findViewById(R.id.nextPhase);
+        confirm = findViewById(R.id.confirm);
 
 
 
@@ -93,17 +103,22 @@ public class ActivityGameBoard extends AppCompatActivity implements ServerListen
     }
 
 
+
     //called in xml file
     public void nextCard(View view) {
         String name = handGUI.getNext().getDrawableName();
         Log.i(TAG, "Name of next card: " + name);
         currentCardIMG.setImageDrawable(getDrawable(name));
+
+
+
     }
 
     //called in xml file
     public void lastCard(View view) {
         //tell the user what card its at
         currentCardIMG.setImageDrawable(getDrawable(handGUI.getLast().getDrawableName()));
+        
     }
 
 
@@ -120,8 +135,11 @@ public class ActivityGameBoard extends AppCompatActivity implements ServerListen
     //called in xml file
     public void playLand(View view) {
         Card c = handGUI.getCurrent();
+        
+
         Log.d(TAG, String.valueOf(c.getCost()));
         if(game.isLandPlayable(c)){
+
             game.playLand(c);
             handGUI.updateHand(game.getpHand());
             playermana.setText(String.valueOf(game.getpMana()));

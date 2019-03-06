@@ -59,8 +59,6 @@ public class Singleton {
             public void run() {
                 try {
 
-
-
                     Socket socket = new Socket(opponentIP, Server.APP_PORT);
 
                     Communication.sendOver(socket, message);
@@ -68,7 +66,6 @@ public class Singleton {
                     socket.close();
 
                 } catch (final IOException e) {
-                    //implement interface here!!!
                     activity.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {

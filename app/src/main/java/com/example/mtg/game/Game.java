@@ -15,11 +15,8 @@ public class Game {
         landPlayable = true;
         oHP = 20;
         pHP = 20;
-
         pMana = 5;
-
         pMaxMana = pMana;
-
         oMana = 0;
         oMaxMana = oMana;
         timesMulled = 0;

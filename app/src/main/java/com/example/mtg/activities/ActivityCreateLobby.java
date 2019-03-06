@@ -1,9 +1,8 @@
 package com.example.mtg.activities;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 
@@ -74,10 +73,13 @@ public class ActivityCreateLobby extends AppCompatActivity implements ServerList
     public void notifyMessage(String msg) {
         //TODO: parse this
         IncomingMsg incomingMsg = ParseRecieved.getProtocol(msg);
-        this.incomingMsg = incomingMsg;
-        showIncoming("YOU HAVE BEEN SUCCESSFULLY CONNECTED!");
-        String rawIP = ParseRecieved.cutMsg(msg);
-        Singleton.getInstance().setOpponentIP(rawIP);
+        if(incomingMsg == IncomingMsg.IP) {
+            this.incomingMsg = incomingMsg;
+            showIncoming("YOU HAVE BEEN SUCCESSFULLY CONNECTED!");
+            String rawIP = ParseRecieved.cutMsg(msg);
+            Singleton.getInstance().setOpponentIP(rawIP);
+        }
+
 
 
     }

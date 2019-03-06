@@ -50,6 +50,7 @@ public class ActivityGameBoard extends AppCompatActivity implements ServerListen
         Intent intent = getIntent();
         deckColor = intent.getStringExtra(ActivityChooseDeck.DECK_CHOOSE);
         Log.d(TAG, deckColor);
+        Singleton.getInstance().addlistener(this);
 
         if(deckColor.equals("red")) cards = MasterCardClass.getInstance().getRedCards();
         else cards = MasterCardClass.getInstance().getBlueCards();
@@ -165,7 +166,7 @@ public class ActivityGameBoard extends AppCompatActivity implements ServerListen
             currentCardIMG.setImageDrawable(getDrawable(handGUI.getCurrent().getDrawableName()));
         }
         setCardIndex();
-        Singleton.getInstance().sendOverSocket("LANDVALUE: "+ game.getpMana(), this);
+        Singleton.getInstance().sendOverSocket("LANDVALUE: " + game.getpMana(), this);
         // move land to  field
     }
 
@@ -202,10 +203,17 @@ public class ActivityGameBoard extends AppCompatActivity implements ServerListen
 
     @Override
     public void notifyMessage(String msg) {
+
         if(msg.startsWith("LANDVALUE: ")){
             String[] split = msg.split(" ");
-            String landvalue = split[1];
-            opponentMana.setText(landvalue);
+            final String landvalue = split[1];
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    opponentMana.setText(landvalue);
+                }
+            });
+
 
 
         }

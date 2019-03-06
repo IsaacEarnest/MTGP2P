@@ -64,8 +64,7 @@ public class ActivityJoinLobby extends AppCompatActivity implements ServerListen
     @Override
     public void notifyMessage(String msg) {
         //TODO: fix this bug
-        Log.d(TAG, "RECIEVING" +
-                msg);
+        Log.d(TAG, "RECIEVING" + msg);
         IncomingMsg incomingMsg = ParseRecieved.getProtocol(msg);
         if(incomingMsg == IncomingMsg.IP){
             showIncoming("OPPONENT AS ACCEPTED YOUR REQUEST");

@@ -205,7 +205,6 @@ public class ActivityGameBoard extends AppCompatActivity implements ServerListen
         if(msg.startsWith("LANDVALUE: ")){
             String[] split = msg.split(" ");
             String landvalue = split[1];
-
             opponentMana.setText(landvalue);
 
 

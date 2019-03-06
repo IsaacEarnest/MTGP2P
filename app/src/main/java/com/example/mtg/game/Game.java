@@ -185,6 +185,7 @@ public class Game {
     public void playLand(Card c){
         if(isLandPlayable(c)){
             if(c.getType()== Card.Type.LAND){
+                landPlayed=true;
                 pMana++;
                 player.remove(c);
             }

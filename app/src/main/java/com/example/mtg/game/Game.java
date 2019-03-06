@@ -6,13 +6,13 @@ import java.util.ArrayList;
 
 public class Game {
     private static Player player;
-    ArrayList<Permanent> pBoard;
-    ArrayList<Permanent> oBoard;
+    private static ArrayList<Permanent> pBoard;
+    private static ArrayList<Permanent> oBoard;
     private static int timesMulled;
     private static int oCards;
     private static int oMana, pMana, oHP, pHP;
-    boolean landPlayed;
-    Phase phase;
+    private boolean landPlayed;
+    private Phase phase;
     public Game(ArrayList cards, String library){
         landPlayed = false;
         oHP = 20;
@@ -34,12 +34,13 @@ public class Game {
               }
               return BEGINNING;
           }
+
         },
         BEGINNING {
             @Override
             Phase nextPhase() {
                 if(!isGameOver()){
-
+                    pUntap();
                 }
                 //untap();
                 //upkeep();
@@ -100,9 +101,8 @@ public class Game {
             @Override
             Phase nextPhase() {
                 if(!isGameOver()){
-
+                    oUntap();
                 }
-
                 return BEGINNING;
             }
         },
@@ -120,6 +120,19 @@ public class Game {
 
 
     }
+    public static void pUntap(){
+        for (Permanent p: pBoard
+             ) {
+            p.untap();
+        }
+    }
+    public static void oUntap(){
+        for (Permanent o: oBoard
+        ) {
+            o.untap();
+        }
+    }
+
 
 
 
@@ -139,8 +152,6 @@ public class Game {
             }
             return true;
         }
-
-
         return false;
     }
     public boolean isCardPlayable(Card c){

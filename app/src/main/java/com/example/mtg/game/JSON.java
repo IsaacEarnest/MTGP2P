@@ -68,6 +68,8 @@ public class JSON {
                                     String id =hit.getString("name") + ":" + s + ":" + hit.getString("convertedManaCost");
                                     if(id.contains("Creature")){
                                        id = id + ":" + hit.getString("power") + ":" + hit.getString("toughness")+":"+hit.getString("count");
+                                    }else{
+                                        id = id +":::"+hit.getString("count");
                                     }
 
 

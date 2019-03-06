@@ -94,7 +94,7 @@ public class Card {
     public Card parse(String str){
         String[] parsed = str.split(":");
         if(Type.LAND.getType(parsed[1])== Type.CREATURE)
-            return new Card(parsed[0],Type.LAND.getType(parsed[1]),(int)Double.parseDouble(parsed[2]), Integer.parseInt(parsed[4]), Integer.parseInt(parsed[5]));
+            return new Card(parsed[0],Type.LAND.getType(parsed[1]),(int)Double.parseDouble(parsed[2]), Integer.parseInt(parsed[3]), Integer.parseInt(parsed[4]));
         //Shivan Dragon:Creature:6:1:5:5
         else {
             return new Card(parsed[0], Type.LAND.getType(parsed[1]),(int)Double.parseDouble(parsed[2]));
@@ -103,7 +103,7 @@ public class Card {
     }
     public int parseCount(String str){
         String[] parsed = str.split(":");
-        return Integer.parseInt(parsed[3]);
+        return Integer.parseInt(parsed[5]);
     }
     @Override
     public boolean equals(Object other) {

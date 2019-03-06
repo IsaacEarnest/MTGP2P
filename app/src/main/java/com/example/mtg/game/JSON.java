@@ -65,10 +65,11 @@ public class JSON {
                                     if(s.equals("Basic Land")){
                                         s = "Land";
                                     }
-                                    String id =hit.getString("name") + ":" + s + ":" + hit.getString("convertedManaCost")+":"+hit.getString("count");
+                                    String id =hit.getString("name") + ":" + s + ":" + hit.getString("convertedManaCost");
                                     if(id.contains("Creature")){
                                        id = id + ":" + hit.getString("power") + ":" + hit.getString("toughness");
                                     }
+                                    id = id +":"+hit.getString("count");
 
                                     cards.add(id);
                                     Log.d(tag,cards.toString());

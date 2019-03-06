@@ -51,6 +51,7 @@ public class ActivityGameBoard extends AppCompatActivity implements ServerListen
 
         Intent intent = getIntent();
         deckColor = intent.getStringExtra(ActivityChooseDeck.DECK_CHOOSE);
+        opponentDeckColor = intent.getStringExtra(ActivityChooseDeck.OPPONENT_DECK_COLOR);
         Log.d(TAG, deckColor);
         Singleton.getInstance().addlistener(this);
 
@@ -227,7 +228,6 @@ public class ActivityGameBoard extends AppCompatActivity implements ServerListen
             final Card c = new Card(value);
             Log.d(TAG,c.getDrawableName());
             Log.d(TAG,opponentDeckColor + "_" + c.getDrawableName());
-           //Drawable d= getODrawable(c.getDrawableName());
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {

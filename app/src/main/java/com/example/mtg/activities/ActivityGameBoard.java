@@ -230,7 +230,7 @@ public class ActivityGameBoard extends AppCompatActivity implements ServerListen
                 @Override
                 public void run() {
 
-                    opponentuseCard.setImageDrawable(getDrawable(c.getDrawableName()));
+                    opponentuseCard.setImageDrawable(getODrawable(c.getDrawableName()));
                 }
             });
         }else if(msg.startsWith("DECKCOLOR&")){
@@ -243,6 +243,9 @@ public class ActivityGameBoard extends AppCompatActivity implements ServerListen
         //check with cards, do math
         //return object of the deck, players field, the other players field
         //runs on UI thread updates based off of those fields.
+    }
+    private Drawable getODrawable(String cardname){
+        return ImageHandler.getImage(this,opponentDeckColor + "_" + cardname);
     }
 }
 

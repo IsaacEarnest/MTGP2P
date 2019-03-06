@@ -1,5 +1,7 @@
 package com.example.mtg.game;
 
+import android.util.Log;
+
 public class Card {
     enum Type{
         LAND{
@@ -93,11 +95,16 @@ public class Card {
 
     public Card parse(String str){
         String[] parsed = str.split(":");
-        if(Type.LAND.getType(parsed[1])== Type.CREATURE)
-            return new Card(parsed[0],Type.LAND.getType(parsed[1]),(int)Double.parseDouble(parsed[2]), Integer.parseInt(parsed[3]), Integer.parseInt(parsed[4]));
-        //Shivan Dragon:Creature:6.0:1:5:5
-        else {
-            return new Card(parsed[0], Type.LAND.getType(parsed[1]),(int)Double.parseDouble(parsed[2]));
+        try {
+            if (Type.LAND.getType(parsed[1]) == Type.CREATURE) {
+                Log.d("CREATION", parsed[0] + Type.LAND.getType(parsed[1]) + (int) Double.parseDouble(parsed[2]) + Integer.parseInt(parsed[3]) + Integer.parseInt(parsed[4]));
+                return new Card(parsed[0], Type.LAND.getType(parsed[1]), (int) Double.parseDouble(parsed[2]), Integer.parseInt(parsed[3]), Integer.parseInt(parsed[4]));
+                //Shivan Dragon:Creature:6.0:1:5:5
+            } else {
+                return new Card(parsed[0], Type.LAND.getType(parsed[1]), (int) Double.parseDouble(parsed[2]));
+            }
+        }catch(NumberFormatException e){
+            return new Card("Island", Type.LAND.getType("LAND"), (int) Double.parseDouble("0.0"));
         }
 
     }

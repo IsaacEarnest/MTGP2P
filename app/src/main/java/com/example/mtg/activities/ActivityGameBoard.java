@@ -223,9 +223,11 @@ public class ActivityGameBoard extends AppCompatActivity implements ServerListen
             String[] split = msg.split("&");
             String value = split[1];
             final Card c = new Card(value);
+            Log.d(TAG,c.getDrawableName());
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
+
                     opponentuseCard.setImageDrawable(getDrawable(c.getDrawableName()));
                 }
             });

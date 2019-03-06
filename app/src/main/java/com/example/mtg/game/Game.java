@@ -134,7 +134,7 @@ public class Game {
     }
     public boolean isLandPlayable(Card c){
         if ((phase == Phase.PRECOMBATMAIN || phase == Phase.POSTCOMBATMAIN) ) {
-            if(c.getType() == Card.Type.LAND && landPlayed == true) {
+            if(c.getType() == Card.Type.LAND && landPlayed) {
                 return false;
             }
             return true;
@@ -146,7 +146,6 @@ public class Game {
     public boolean isCardPlayable(Card c){
         if(pMana >= c.getCost()) {
             if (phase == Phase.PRECOMBATMAIN || phase == Phase.POSTCOMBATMAIN) {
-
                 return true;
             }
             else if (c.getType() == Card.Type.INSTANT && phase == Phase.RESPONDING) {

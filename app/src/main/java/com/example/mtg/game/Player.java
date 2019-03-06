@@ -54,7 +54,7 @@ public class Player {
 
             }
         }else if(color.equals("blue")){
-            for(int i = 0; i<deckSplit;i++){
+            for(int i = deckSplit; i<cards.size();i++){
                 Card c = new Card(cards.get(i));
                 int count = c.parseCount(cards.get(i));
                 while(count>0){

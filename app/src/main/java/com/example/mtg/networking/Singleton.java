@@ -3,10 +3,6 @@ package com.example.mtg.networking;
 
 
 import android.app.Activity;
-import android.content.Context;
-import android.util.Log;
-
-import com.example.mtg.activities.ActivityJoinLobby;
 
 import java.io.IOException;
 import java.net.Socket;
@@ -63,7 +59,6 @@ public class Singleton {
             public void run() {
                 try {
 
-                    Log.d(TAG, "IP: " + opponentIP);
 
 
                     Socket socket = new Socket(opponentIP, Server.APP_PORT);

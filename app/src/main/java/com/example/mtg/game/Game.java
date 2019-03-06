@@ -1,7 +1,5 @@
 package com.example.mtg.game;
 
-import android.util.Log;
-
 import java.util.ArrayList;
 
 public class Game {
@@ -17,7 +15,7 @@ public class Game {
         landPlayable = true;
         oHP = 20;
         pHP = 20;
-        pMana = 0;
+        pMana = 5;
         oMana = 0;
         timesMulled = 0;
         oCards = 30;
@@ -40,7 +38,7 @@ public class Game {
             @Override
             Phase nextPhase() {
                 if(!isGameOver()){
-                    pUntap();
+                    //pUntap();
                     landPlayable=true;
                 }
                 //untap();
@@ -102,7 +100,7 @@ public class Game {
             @Override
             Phase nextPhase() {
                 if(!isGameOver()){
-                    oUntap();
+                  //  oUntap();
                 }
                 return BEGINNING;
             }
@@ -150,9 +148,9 @@ public class Game {
         if ((phase == Phase.PRECOMBATMAIN || phase == Phase.POSTCOMBATMAIN) ) {
             if(c.getType() == Card.Type.LAND) {
                 if (landPlayable) {
-                    return false;
+                    return true;
                 }
-                return true;
+                return false;
             }
 
         }
@@ -174,7 +172,7 @@ public class Game {
         if(isCardPlayable(c)){
             pMana -= c.getCost();
             if(c.getType()== Card.Type.CREATURE){
-                pBoard.add(new Permanent(c));
+               // pBoard.add(new Permanent(c));
             }
         }
     }

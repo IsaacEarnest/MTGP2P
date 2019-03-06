@@ -49,10 +49,6 @@ public class ActivityGameBoard extends AppCompatActivity implements ServerListen
         playermana = findViewById(R.id.playerMana);
 
 
-        ImageHandler imageHandler = new ImageHandler(this);
-
-
-
 
         game = new Game(cards, deckColor);
         game.toNextPhase();
@@ -99,7 +95,9 @@ public class ActivityGameBoard extends AppCompatActivity implements ServerListen
 
     //called in xml file
     public void nextCard(View view) {
-        currentCardIMG.setImageDrawable(getDrawable(handGUI.getNext().getDrawableName()));
+        String name = handGUI.getNext().getDrawableName();
+        Log.i(TAG, "Name of next card: " + name);
+        currentCardIMG.setImageDrawable(getDrawable(name));
     }
 
     //called in xml file
@@ -124,11 +122,10 @@ public class ActivityGameBoard extends AppCompatActivity implements ServerListen
         Card c = handGUI.getCurrent();
         Log.d(TAG, String.valueOf(c.getCost()));
         if(game.isPlayable(c)){
-
             game.playLand(c);
-//            handGUI.updateHand(game.getpHand());
-//            playermana.setText(game.getpMana());
-//            currentCardIMG.setImageDrawable(getDrawable(handGUI.getCurrent().getDrawableName()));
+            handGUI.updateHand(game.getpHand());
+            playermana.setText(String.valueOf(game.getpMana()));
+            currentCardIMG.setImageDrawable(getDrawable(handGUI.getCurrent().getDrawableName()));
         }
         // move land to  field
     }

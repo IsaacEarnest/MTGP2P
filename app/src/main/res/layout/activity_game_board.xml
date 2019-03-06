@@ -352,4 +352,20 @@
         android:visibility="visible"
         app:layout_constraintGuide_begin="231dp" />
 
+    <TextView
+        android:id="@+id/phaseStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        tools:layout_editor_absoluteX="239dp"
+        tools:layout_editor_absoluteY="91dp" />
+
+    <TextView
+        android:id="@+id/cardIndex"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        tools:layout_editor_absoluteX="137dp"
+        tools:layout_editor_absoluteY="426dp" />
+
 </android.support.constraint.ConstraintLayout>

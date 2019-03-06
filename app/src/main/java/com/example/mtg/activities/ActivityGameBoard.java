@@ -204,6 +204,9 @@ public class ActivityGameBoard extends AppCompatActivity implements ServerListen
     @Override
     public void notifyMessage(String msg) {
 
+        Log.d("MESSAGE",msg);
+
+
         if(msg.startsWith("LANDVALUE: ")){
             String[] split = msg.split(" ");
             final String landvalue = split[1];

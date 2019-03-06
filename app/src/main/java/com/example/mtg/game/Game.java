@@ -11,10 +11,10 @@ public class Game {
     private static int timesMulled;
     private static int oCards;
     private static int oMana, pMana, oHP, pHP;
-    private boolean landPlayed;
+    private static boolean landPlayable;
     private Phase phase;
     public Game(ArrayList cards, String library){
-        landPlayed = false;
+        landPlayable = true;
         oHP = 20;
         pHP = 20;
         pMana = 0;
@@ -41,6 +41,7 @@ public class Game {
             Phase nextPhase() {
                 if(!isGameOver()){
                     pUntap();
+                    landPlayable=true;
                 }
                 //untap();
                 //upkeep();
@@ -147,10 +148,13 @@ public class Game {
     }
     public boolean isLandPlayable(Card c){
         if ((phase == Phase.PRECOMBATMAIN || phase == Phase.POSTCOMBATMAIN) ) {
-            if(c.getType() == Card.Type.LAND && landPlayed) {
-                return false;
+            if(c.getType() == Card.Type.LAND) {
+                if (landPlayable) {
+                    return false;
+                }
+                return true;
             }
-            return true;
+
         }
         return false;
     }
@@ -196,7 +200,7 @@ public class Game {
     public void playLand(Card c){
         if(isLandPlayable(c)){
             if(c.getType()== Card.Type.LAND){
-                landPlayed=true;
+                landPlayable=false;
                 pMana++;
                 player.remove(c);
             }

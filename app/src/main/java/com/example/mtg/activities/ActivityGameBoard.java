@@ -184,7 +184,7 @@ public class ActivityGameBoard extends AppCompatActivity implements ServerListen
             useCard.setImageDrawable(getDrawable(c.getDrawableName()));
         }
         setCardIndex();
-        Singleton.getInstance().sendOverSocket("CARD: " + c.toString(), this);
+        Singleton.getInstance().sendOverSocket("CARD&" + c.toString(), this);
     }
 
     //called in xml file
@@ -219,8 +219,8 @@ public class ActivityGameBoard extends AppCompatActivity implements ServerListen
                     opponentMana.setText(landvalue);
                 }
             });
-        }else if(msg.startsWith("CARD: ")){
-            String[] split = msg.split(" ");
+        }else if(msg.startsWith("CARD&")){
+            String[] split = msg.split("&");
             String value = split[1];
             final Card c = new Card(value);
             runOnUiThread(new Runnable() {

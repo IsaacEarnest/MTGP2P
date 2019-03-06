@@ -168,9 +168,9 @@ public class ActivityGameBoard extends AppCompatActivity implements ServerListen
             handGUI.updateHand(game.getpHand());
             playermana.setText(String.valueOf(game.getpMana()));
             currentCardIMG.setImageDrawable(getDrawable(handGUI.getCurrent().getDrawableName()));
+            setCardIndex();
+            Singleton.getInstance().sendOverSocket("LANDVALUE: " + game.getpMana(), this);
         }
-        setCardIndex();
-        Singleton.getInstance().sendOverSocket("LANDVALUE: " + game.getpMana(), this);
         // move land to  field
     }
 
@@ -184,9 +184,9 @@ public class ActivityGameBoard extends AppCompatActivity implements ServerListen
             currentCardIMG.setImageDrawable(getDrawable(handGUI.getCurrent().getDrawableName()));
             playermana.setText(String.valueOf(game.getpMana()));
             useCard.setImageDrawable(getDrawable(c.getDrawableName()));
+            setCardIndex();
+            Singleton.getInstance().sendOverSocket("CARD&" + c.toString(), this);
         }
-        setCardIndex();
-        Singleton.getInstance().sendOverSocket("CARD&" + c.toString(), this);
     }
 
     //called in xml file
@@ -226,12 +226,12 @@ public class ActivityGameBoard extends AppCompatActivity implements ServerListen
             String value = split[1];
             final Card c = new Card(value);
             Log.d(TAG,c.getDrawableName());
-            Log.d(TAG,opponentDeckColor);
+            Log.d(TAG,opponentDeckColor + "_" + c.getDrawableName());
            //Drawable d= getODrawable(c.getDrawableName());
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    opponentuseCard.setImageDrawable(getODrawable("mountain"));
+                    opponentuseCard.setImageDrawable(getODrawable(c.getDrawableName()));
                 }
             });
         }else if(msg.startsWith("DECKCOLOR&")){

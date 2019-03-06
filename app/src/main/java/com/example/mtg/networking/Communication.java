@@ -24,7 +24,7 @@ public class Communication {
         StringBuilder input = new StringBuilder();
         while (sockin.ready()) {
             input.append(sockin.readLine());
-            input.append("\n");
+
         }
         return input.toString();
     }

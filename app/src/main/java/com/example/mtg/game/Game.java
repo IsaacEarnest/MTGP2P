@@ -144,7 +144,7 @@ public class Game {
         return false;
     }
     public boolean isCardPlayable(Card c){
-        if(pMana >= c.getCost()) {
+        if(pMana >= c.getCost() && c.getType()!=Card.Type.LAND) {
             if (phase == Phase.PRECOMBATMAIN || phase == Phase.POSTCOMBATMAIN) {
                 return true;
             }

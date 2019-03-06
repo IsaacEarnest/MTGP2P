@@ -1,8 +1,5 @@
 package com.example.mtg.gui;
 
-import android.graphics.drawable.Drawable;
-
-import com.example.mtg.R;
 import com.example.mtg.game.Card;
 
 import java.util.ArrayList;
@@ -18,6 +15,7 @@ public class PlayersHand {
     }
 
     public void updateHand(ArrayList<Card> hand){
+        currentCard = 0;
         this.hand = hand;
     }
 
@@ -45,5 +43,10 @@ public class PlayersHand {
 
     public Card getCurrent() {
         return hand.get(currentCard);
+    }
+
+    public int getCurrentIndex(){
+        return currentCard;
+
     }
 }

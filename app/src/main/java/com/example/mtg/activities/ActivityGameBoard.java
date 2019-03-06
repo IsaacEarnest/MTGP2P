@@ -32,6 +32,8 @@ public class ActivityGameBoard extends AppCompatActivity implements ServerListen
     private Button playLand;
     private Button playCard;
     private Button nextPhase;
+    private TextView cardIndex;
+    private TextView phaseStatus;
     private Button confirm;
 
     private Game game;
@@ -57,6 +59,8 @@ public class ActivityGameBoard extends AppCompatActivity implements ServerListen
         playCard = findViewById(R.id.playCard);
         nextPhase = findViewById(R.id.nextPhase);
         confirm = findViewById(R.id.confirm);
+        cardIndex = findViewById(R.id.cardIndex);
+        phaseStatus = findViewById(R.id.phaseStatus);
 
 
 
@@ -82,10 +86,20 @@ public class ActivityGameBoard extends AppCompatActivity implements ServerListen
             handGUI = new PlayersHand(playerHand);
             currentCardIMG.setImageDrawable(getDrawable(handGUI.getFirst().getDrawableName()));
         }else {
-            Log.d(TAG, String.valueOf(playerHand.size()));
+
             currentCardIMG.setImageDrawable(ImageHandler.getImage(this, "card_back"));
 
         }
+
+        phaseStatus.setText(game.getState().toString());
+        setCardIndex();
+        isCardPlayable();
+
+
+
+
+
+
 
         Log.d(TAG, game.getpHand().toString());
 
@@ -102,15 +116,27 @@ public class ActivityGameBoard extends AppCompatActivity implements ServerListen
         return ImageHandler.getImage(this,deckColor + "_" + cardname);
     }
 
-
+    private void isCardPlayable(){
+        Card c = handGUI.getCurrent();
+        if(game.isLandPlayable(c)){
+            playLand.setEnabled(true);
+            playCard.setEnabled(false);
+        }
+        if(game.isCardPlayable(c)){
+            playCard.setEnabled(true);
+            playLand.setEnabled(false);
+        }
+    }
+    private void setCardIndex(){
+        cardIndex.setText(String.valueOf(handGUI.getCurrentIndex()));
+    }
 
     //called in xml file
     public void nextCard(View view) {
         String name = handGUI.getNext().getDrawableName();
-        Log.i(TAG, "Name of next card: " + name);
         currentCardIMG.setImageDrawable(getDrawable(name));
-
-
+        isCardPlayable();
+        setCardIndex();
 
     }
 
@@ -118,10 +144,46 @@ public class ActivityGameBoard extends AppCompatActivity implements ServerListen
     public void lastCard(View view) {
         //tell the user what card its at
         currentCardIMG.setImageDrawable(getDrawable(handGUI.getLast().getDrawableName()));
-        
+        isCardPlayable();
+        setCardIndex();
     }
 
+    //called in xml file
+    public void playLand(View view) {
+        Card c = handGUI.getCurrent();
+        if(game.isLandPlayable(c)){
+            //this deletes it from your hand
+            game.playLand(c);
+            //this updates the hand
+            handGUI.updateHand(game.getpHand());
+            playermana.setText(String.valueOf(game.getpMana()));
+            currentCardIMG.setImageDrawable(getDrawable(handGUI.getCurrent().getDrawableName()));
+        }
+        setCardIndex();
+        // move land to  field
+    }
 
+    //called in xml file
+    public void playCard(View view) {
+        //move a card to the field
+        setCardIndex();
+    }
+
+    //called in xml file
+    public void nextPhase(View view) {
+        game.toNextPhase();
+        phaseStatus.setText(game.getState().toString());
+        isCardPlayable();
+
+
+    }
+
+    //called in xml file
+    public void confirmMove(View view) {
+        //send over socket card
+        isCardPlayable();
+
+    }
 
     @Override
     public void notifyMessage(String msg) {
@@ -130,37 +192,6 @@ public class ActivityGameBoard extends AppCompatActivity implements ServerListen
         //check with cards, do math
         //return object of the deck, players field, the other players field
         //runs on UI thread updates based off of those fields.
-    }
-
-    //called in xml file
-    public void playLand(View view) {
-        Card c = handGUI.getCurrent();
-        
-
-        Log.d(TAG, String.valueOf(c.getCost()));
-        if(game.isLandPlayable(c)){
-
-            game.playLand(c);
-            handGUI.updateHand(game.getpHand());
-            playermana.setText(String.valueOf(game.getpMana()));
-            currentCardIMG.setImageDrawable(getDrawable(handGUI.getCurrent().getDrawableName()));
-        }
-        // move land to  field
-    }
-
-    //called in xml file
-    public void playCard(View view) {
-        //move a card to the field
-    }
-
-    //called in xml file
-    public void nextPhase(View view) {
-        game.toNextPhase();
-    }
-
-    //called in xml file
-    public void confirmMove(View view) {
-        //send over socket card
     }
 }
 

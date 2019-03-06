@@ -102,7 +102,7 @@ public class ActivityGameBoard extends AppCompatActivity implements ServerListen
         }
 
         phaseStatus.setText(game.getState().toString());
-        playermana.setText("5");
+        playermana.setText(String.valueOf(game.getpMana()));
         setCardIndex();
         isCardPlayable();
 
@@ -226,12 +226,12 @@ public class ActivityGameBoard extends AppCompatActivity implements ServerListen
             String[] split = msg.split("&");
             String value = split[1];
             final Card c = new Card(value);
-            Log.d(TAG,c.getDrawableName());
+            //Log.d(TAG,c.getDrawableName());
             Log.d(TAG,opponentDeckColor + "_" + c.getDrawableName());
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    opponentuseCard.setImageDrawable(getODrawable(c.getDrawableName()));
+                    opponentuseCard.setImageDrawable(getODrawable("red_fling"));
                 }
             });
         }else if(msg.startsWith("DECKCOLOR&")){
@@ -246,7 +246,7 @@ public class ActivityGameBoard extends AppCompatActivity implements ServerListen
         //runs on UI thread updates based off of those fields.
     }
     private Drawable getODrawable(String cardname){
-        return ImageHandler.getImage(this,opponentDeckColor + "_" + cardname);
+        return ImageHandler.getImage(this,cardname);
     }
 }
 

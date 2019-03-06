@@ -63,9 +63,6 @@ public class ActivityChooseDeck extends AppCompatActivity implements ServerListe
     private void openActivityGameBoard() {
         Intent intent = new Intent(this, ActivityGameBoard.class);
         intent.putExtra(DECK_CHOOSE, deckColor);
-        if(opponentDeckColor == null){
-            opponentDeckColor = "red";
-        }
         intent.putExtra(OPPONENT_DECK_COLOR, opponentDeckColor);
         startActivity(intent);
     }

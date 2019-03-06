@@ -5,7 +5,7 @@ public class Card {
         LAND{
             @Override
             Type getType(String str){
-                if(str.contains("Land"))
+                if(str.contains("Land")||str.contains("LAND"))
                     return LAND;
                 else return CREATURE.getType(str);
             }
@@ -13,7 +13,7 @@ public class Card {
         CREATURE{
             @Override
             Type getType(String str){
-                if(str.contains("Creature"))
+                if(str.contains("Creature")||str.contains("CREATURE"))
                     return CREATURE;
                 else return ENCHANTMENT.getType(str);
             }
@@ -21,7 +21,7 @@ public class Card {
         ENCHANTMENT{
             @Override
             Type getType(String str){
-                if(str.contains("Enchantment"))
+                if(str.contains("Enchantment")||str.contains("ENCHANTMENT"))
                     return ENCHANTMENT;
                 else return INSTANT.getType(str);
             }
@@ -29,7 +29,7 @@ public class Card {
         INSTANT{
             @Override
             Type getType(String str){
-                if(str.contains("Instant"))
+                if(str.contains("Instant")||str.contains("INSTANT"))
                     return INSTANT;
                 else return SORCERY.getType(str);
             }
@@ -37,7 +37,7 @@ public class Card {
         SORCERY{
             @Override
             Type getType(String str){
-                if(str.contains("Sorcery"))
+                if(str.contains("Sorcery")||str.contains("SORCERY"))
                     return SORCERY;
                 else return LAND.getType(str);
             }

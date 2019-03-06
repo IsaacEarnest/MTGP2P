@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.mtg.R;
@@ -17,6 +18,7 @@ public class ActivityCreateLobby extends AppCompatActivity implements ServerList
     private static final String TAG = "CREATELOBBY";
 
     public TextView connectionStatus;
+    public Button playGame;
     public IncomingMsg incomingMsg = IncomingMsg.NONE;
 
 
@@ -31,6 +33,8 @@ public class ActivityCreateLobby extends AppCompatActivity implements ServerList
 
     private void setUpGUI(){
         connectionStatus = findViewById(R.id.connectionStatus);
+        playGame = findViewById(R.id.create_PlayGame);
+        playGame.setEnabled(false);
 
     }
 
@@ -56,8 +60,9 @@ public class ActivityCreateLobby extends AppCompatActivity implements ServerList
         }else{
             if(incomingMsg == IncomingMsg.IP){
                 Singleton.getInstance().sendOverSocket("IP:\n", this);
-
             }
+            playGame.setEnabled(true);
+
         }
 
     }

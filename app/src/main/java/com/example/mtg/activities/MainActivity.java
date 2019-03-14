@@ -8,6 +8,7 @@ import android.view.View;
 import com.example.mtg.R;
 import com.example.mtg.game.JSON;
 import com.example.mtg.game.MasterCardClass;
+import com.example.mtg.gui.HandleSharedData;
 import com.example.mtg.networking.Singleton;
 
 import java.util.ArrayList;
@@ -20,6 +21,7 @@ public class MainActivity extends AppCompatActivity implements JSON.updateList {
         setContentView(R.layout.activity_main);
         //only needs to be called once
         MasterCardClass.getInstance().loadAllCards(this);
+        HandleSharedData.getInstance();
 
         Singleton.getInstance();
     }

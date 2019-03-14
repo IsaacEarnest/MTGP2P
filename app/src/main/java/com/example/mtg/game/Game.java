@@ -17,6 +17,8 @@ public class Game {
         oHP = 0;
         pAtk = 0;
         pHP = 0;
+        oBoard = new Permanent();
+        pBoard = new Permanent();
     }
     public enum Phase {
         BEGINNING {

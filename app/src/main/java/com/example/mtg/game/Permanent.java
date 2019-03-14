@@ -10,9 +10,9 @@ public class Permanent {
           atk = c.getPermanentPower();
       }
     }
-    public Permanent(int atk, int hp){
-        this.atk = atk;
-        this.hp = hp;
+    public Permanent(){
+        this.atk = 0;
+        this.hp = 0;
     }
     public String getName(){
         return name;

@@ -59,7 +59,6 @@ public class ActivityGameBoard extends AppCompatActivity implements ServerListen
         if(deckColor.equals("red")) cards = MasterCardClass.getInstance().getRedCards();
         else cards = MasterCardClass.getInstance().getBlueCards();
 
-        Log.d(TAG,cards.toString());
 
         currentCardIMG = findViewById(R.id.currentCard);
         playermana = findViewById(R.id.playerMana);
@@ -89,7 +88,6 @@ public class ActivityGameBoard extends AppCompatActivity implements ServerListen
         int playerHP = game.getpHP();
         int opponentHP = game.getoHP();
         Game.Phase state = game.getState();
-        ArrayList<Card> playerGraveyard = game.getPlayer().getGraveyard();
 
 
         //this will work if hand is not empty

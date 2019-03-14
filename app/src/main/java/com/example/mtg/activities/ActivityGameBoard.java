@@ -20,6 +20,7 @@ import com.example.mtg.gui.ImageHandler;
 import com.example.mtg.gui.PlayersHand;
 import com.example.mtg.networking.ServerListener;
 import com.example.mtg.networking.Singleton;
+import com.example.mtg.networking.Utilities;
 
 import java.util.ArrayList;
 
@@ -269,6 +270,8 @@ public class ActivityGameBoard extends AppCompatActivity implements ServerListen
             @Override
             public void run() {
                 phaseStatus.setText(game.getState().toString());
+                String who_won = Game.isGameOver();
+                Utilities.endGame(ActivityGameBoard.this, who_won);
 
             }
         });

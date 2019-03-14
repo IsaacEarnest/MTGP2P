@@ -3,7 +3,10 @@ package com.example.mtg.networking;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.util.Log;
+
+import com.example.mtg.activities.MainActivity;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
@@ -28,7 +31,7 @@ public class Utilities {
         notifyProblem(context, exc.getMessage());
     }
 
-    public static void notifyProblem(Context context, String problem) {
+    public static void notifyProblem(final Context context, String problem) {
         AlertDialog alertDialog = new AlertDialog.Builder(context).create();
         alertDialog.setTitle("Error");
         alertDialog.setMessage(problem);
@@ -66,5 +69,20 @@ public class Utilities {
             }
         }
         return "No IP address found";
+    }
+
+    public static void endGame(final Context context, String problem) {
+        AlertDialog alertDialog = new AlertDialog.Builder(context).create();
+        alertDialog.setTitle("Error");
+        alertDialog.setMessage(problem);
+        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                        Intent intent = new Intent(context, MainActivity.class);
+                        context.startActivity(intent);
+                    }
+                });
+        alertDialog.show();
     }
 }

@@ -15,6 +15,7 @@ import com.example.mtg.game.Card;
 import com.example.mtg.game.Game;
 import com.example.mtg.game.MasterCardClass;
 import com.example.mtg.game.Permanent;
+import com.example.mtg.gui.GameTimer;
 import com.example.mtg.gui.HandleSharedData;
 import com.example.mtg.gui.ImageHandler;
 import com.example.mtg.gui.PlayersHand;
@@ -41,6 +42,7 @@ public class ActivityGameBoard extends AppCompatActivity implements ServerListen
     private ImageView opponentuseCard;
     private String opponentDeckColor;
     private Button confirm;
+    private TextView timer;
 
     private Game game;
 
@@ -89,7 +91,6 @@ public class ActivityGameBoard extends AppCompatActivity implements ServerListen
         int playerHP = game.getpHP();
         int opponentHP = game.getoHP();
         Game.Phase state = game.getState();
-        ArrayList<Card> playerGraveyard = game.getPlayer().getGraveyard();
 
 
         //this will work if hand is not empty
@@ -100,9 +101,7 @@ public class ActivityGameBoard extends AppCompatActivity implements ServerListen
             handGUI = new PlayersHand(playerHand);
             currentCardIMG.setImageDrawable(getDrawable(handGUI.getFirst().getDrawableName()));
         }else {
-
             currentCardIMG.setImageDrawable(ImageHandler.getImage(this, "card_back"));
-
         }
 
         phaseStatus.setText(game.getState().toString());
@@ -117,6 +116,12 @@ public class ActivityGameBoard extends AppCompatActivity implements ServerListen
         Singleton.getInstance().sendOverSocket(message, this);
 
 
+        timer = findViewById(R.id.Timer);
+        GameTimer gameTimer = new GameTimer(timer);
+        gameTimer.startTimer();
+
+
+
         //Log.d(TAG, game.getpHand().toString());
 
 
@@ -128,6 +133,7 @@ public class ActivityGameBoard extends AppCompatActivity implements ServerListen
     }
 
     private void isCardPlayable(){
+
         Card c = handGUI.getCurrent();
         if(game.isLandPlayable(c)){
             playLand.setEnabled(true);

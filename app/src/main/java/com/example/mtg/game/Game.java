@@ -4,54 +4,58 @@ import java.util.ArrayList;
 
 public class Game {
     private static Player player;
-    private static ArrayList<Permanent> pBoard;
-    private static ArrayList<Permanent> oBoard;
-    private static int timesMulled;
-    private static int oCards;
-    private static int oMana, oMaxMana, pMana, pMaxMana, oHP, pHP;
-    private static boolean landPlayable;
+    private static Permanent pBoard;
+    private static Permanent oBoard;
+    private static int oMana, pMana, oAtk, oHP, pAtk,pHP;
     private Phase phase;
     public Game(ArrayList cards, String library){
-        landPlayable = true;
-        oHP = 20;
-        pHP = 20;
         pMana = 5;
-        pMaxMana = pMana;
-        oMana = 0;
-        oMaxMana = oMana;
-        timesMulled = 0;
-        oCards = 30;
+        oMana = 5;
         player = new Player(cards, library);
         phase = Phase.BEGINNING;
+        oAtk = 0;
+        oHP = 0;
+        pAtk = 0;
+        pHP = 0;
     }
     public enum Phase {
         BEGINNING {
             @Override
+            void playPhase(){
+                player.drawCard();
+            }
+            @Override
             Phase nextPhase() {
-
-
-                    landPlayable=true;
-                    player.drawCard();
-                    pMana = pMaxMana;
-
                 return COMBAT;
             }
         },
         COMBAT {
+            void playPhase(Permanent other){
+                isGameOver(other);
+            }
+            void playPhase(){
+
+            }
             @Override
             Phase nextPhase() {
-
                 return ENDING;
             }
         },
         ENDING {
             @Override
-            Phase nextPhase() {
+            void playPhase(){
 
+            }
+            @Override
+            Phase nextPhase() {
                 return GAME_OVER;
             }
         },
         GAME_OVER {
+            @Override
+            void playPhase(){
+
+            }
             @Override
             Phase nextPhase() {
                 return GAME_OVER;
@@ -59,6 +63,7 @@ public class Game {
         };
 
         abstract Phase nextPhase();
+        abstract void playPhase();
     }
     public void toNextPhase(){
         phase = phase.nextPhase();
@@ -81,7 +86,6 @@ public class Game {
     public boolean isLandPlayable(Card c){
         if (phase == Phase.BEGINNING ) {
             if(c.getType() == Card.Type.LAND) {
-                if (landPlayable) {
                     return true;
                 }
 
@@ -89,7 +93,7 @@ public class Game {
 
             }
 
-        }
+
         return false;
     }
     public boolean isCardPlayable(Card c){
@@ -102,14 +106,8 @@ public class Game {
     }
 
     public void playCard(Card c){
-        if(isCardPlayable(c)){
             pMana -= c.getCost();
-            if(c.getType()== Card.Type.CREATURE){
 
-           //     pBoard.add(new Permanent(c));
-
-            }
-        }
     }
     public int getpMana(){
         return pMana;
@@ -123,31 +121,27 @@ public class Game {
     public int getoHP(){
         return oHP;
     }
-    public ArrayList getpPermanents(){
+    public Permanent getpPermanent(){
         return pBoard;
     }
-    public ArrayList getoPermanents(){
+    public Permanent getoPermanent(){
         return oBoard;
     }
 
     public void playLand(Card c){
-        if(isLandPlayable(c)){
-            if(c.getType()== Card.Type.LAND){
-                landPlayable=false;
-                pMana++;
-                pMaxMana++;
-                player.remove(c);
-            }
-        }
+
+        pMana++;
+        player.remove(c);
     }
+
+
     public void oLandPlayed(){
         oMana++;
-        oMaxMana++;
     }
     public void oCardPlayed(Card c){
         oMana -= c.getCost();
-        if(c.getType()== Card.Type.CREATURE){
-            oBoard.add(new Permanent(c));
+        if(c.getType()==Card.Type.CREATURE){
+            oBoard.addStats(c.getPermanentPower(),c.getPermanentHealth());
         }
     }
     public ArrayList<Card> getpHand(){

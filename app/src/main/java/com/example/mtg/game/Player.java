@@ -65,6 +65,9 @@ public class Player {
     public String calculate(Permanent other){
         return monster.calculate(other);
     }
+    public void addStats(int atk, int hp){
+        monster.addStats(atk,hp);
+    }
 
 
 }

@@ -61,7 +61,6 @@ public class ActivityGameBoard extends AppCompatActivity implements ServerListen
         if(deckColor.equals("red")) cards = MasterCardClass.getInstance().getRedCards();
         else cards = MasterCardClass.getInstance().getBlueCards();
 
-        Log.d(TAG,cards.toString());
 
         currentCardIMG = findViewById(R.id.currentCard);
         playermana = findViewById(R.id.playerMana);

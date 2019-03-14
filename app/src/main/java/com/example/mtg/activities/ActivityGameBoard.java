@@ -81,8 +81,6 @@ public class ActivityGameBoard extends AppCompatActivity implements ServerListen
         game.toNextPhase();
 
         ArrayList<Card> playerHand = game.getpHand();
-        ArrayList<Permanent> playerBoard = game.getpPermanents();
-        ArrayList<Permanent> opponentBoard = game.getoPermanents();
         int playerMana = game.getpMana();
         int opponentMana = game.getoMana();
         int playerHP = game.getpHP();

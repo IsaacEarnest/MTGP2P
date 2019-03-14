@@ -24,12 +24,13 @@ public class GameTimer {
     private int startseconds;
 
     public GameTimer(TextView TextViewCountDown){
-        this.TextViewCountDown = TextViewCountDown;
-        START_TIME_IN_MILLIS = convertTimeToMilliseconds();
-        TimeLeftInMillis = START_TIME_IN_MILLIS;
         this.starthours = 0;
         this.startminutes = 1;
         this.startseconds = 0;
+        this.TextViewCountDown = TextViewCountDown;
+        START_TIME_IN_MILLIS = convertTimeToMilliseconds();
+        TimeLeftInMillis = START_TIME_IN_MILLIS;
+
 
     }
 
@@ -42,9 +43,9 @@ public class GameTimer {
 
 
     public void startTimer() {
-        Log.d("TIMER", String.valueOf(startminutes));
-        mEndTime = System.currentTimeMillis() + TimeLeftInMillis;
 
+        mEndTime = System.currentTimeMillis() + TimeLeftInMillis;
+        Log.d("TIMER", String.valueOf(mEndTime));
         mCountDownTimer = new CountDownTimer(TimeLeftInMillis, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {

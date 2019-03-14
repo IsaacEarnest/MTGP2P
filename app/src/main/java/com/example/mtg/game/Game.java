@@ -22,91 +22,33 @@ public class Game {
         timesMulled = 0;
         oCards = 30;
         player = new Player(cards, library);
-        phase = Phase.MULLIGAN;
+        phase = Phase.BEGINNING;
     }
     public enum Phase {
-        MULLIGAN{
-          @Override
-          Phase nextPhase(){
-              if(!isGameOver()){
-               mulligan();
-
-              }
-              return BEGINNING;
-          }
-
-        },
         BEGINNING {
             @Override
             Phase nextPhase() {
-                if(!isGameOver()){
+
 
                     landPlayable=true;
                     player.drawCard();
                     pMana = pMaxMana;
-                }
-                return PRECOMBATMAIN;
-            }
-        },
-        PRECOMBATMAIN {
-            @Override
-            Phase nextPhase() {
-                if(!isGameOver()){
 
-                }
-                //wait for player to play card
                 return COMBAT;
             }
         },
         COMBAT {
             @Override
             Phase nextPhase() {
-                if(!isGameOver()){
 
-                }
-                return POSTCOMBATMAIN;
-            }
-        },
-        POSTCOMBATMAIN {
-            @Override
-            Phase nextPhase() {
-                if(!isGameOver()){
-
-                }
-                //identical to PRECOMBATMAIN
                 return ENDING;
             }
         },
         ENDING {
             @Override
             Phase nextPhase() {
-                if(!isGameOver()){
 
-                }
-                //players are technically allowed to perform
-                return OPPONENT_TURN;
-            }
-        },
-        RESPONDING {
-            @Override
-            Phase nextPhase() {
-                if(!isGameOver()){
-
-                }
-                return OPPONENT_TURN;
-            }
-        },
-        OPPONENT_TURN {
-            //wait for opponent to send an action for a chance to respond, or wait until opponent ends their turn
-            @Override
-            Phase nextPhase() {
-                if(!isGameOver()){
-                    if(oBoard.size()>0)
-                    oUntap();
-                    oMana = oMaxMana;
-
-                }
-                return BEGINNING;
+                return GAME_OVER;
             }
         },
         GAME_OVER {
@@ -123,18 +65,6 @@ public class Game {
 
 
     }
-    public static void pUntap(){
-        for (Permanent p: pBoard
-             ) {
-            p.untap();
-        }
-    }
-    public static void oUntap(){
-        for (Permanent o: oBoard
-        ) {
-            o.untap();
-        }
-    }
 
 
 
@@ -149,7 +79,7 @@ public class Game {
         return player;
     }
     public boolean isLandPlayable(Card c){
-        if ((phase == Phase.PRECOMBATMAIN || phase == Phase.POSTCOMBATMAIN) ) {
+        if (phase == Phase.BEGINNING ) {
             if(c.getType() == Card.Type.LAND) {
                 if (landPlayable) {
                     return true;
@@ -164,10 +94,7 @@ public class Game {
     }
     public boolean isCardPlayable(Card c){
         if(pMana >= c.getCost() && c.getType()!=Card.Type.LAND) {
-            if (phase == Phase.PRECOMBATMAIN || phase == Phase.POSTCOMBATMAIN) {
-                return true;
-            }
-            else if (c.getType() == Card.Type.INSTANT && phase == Phase.RESPONDING) {
+            if (phase == Phase.BEGINNING) {
                 return true;
             }
         }
@@ -226,23 +153,8 @@ public class Game {
     public ArrayList<Card> getpHand(){
         return player.getHand();
     }
-    public static boolean isGameOver(){
-        return (pHP<1||oHP<1||player.getLibrary().getCardsLeft()<1||oCards<1);
-    }
-    public static void mulligan(){
-
-        for (int i = 0; i < (7-timesMulled); i++) {
-            player.drawCard();
-
-        }
-        //timesMulled++;
-
-    }
-    public static void returnCards(){
-        int handSize = player.getHand().size();
-        for (int i = 0; i< handSize; i++) {
-            player.getLibrary().addCard((Card)player.getHand().remove(0));
-        }
+    public static String isGameOver(Permanent other){
+        return (player.calculate(other));
     }
 
 

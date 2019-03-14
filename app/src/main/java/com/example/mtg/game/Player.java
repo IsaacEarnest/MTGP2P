@@ -1,17 +1,14 @@
 package com.example.mtg.game;
 
-import android.util.Log;
-
 import java.util.ArrayList;
 
 public class Player {
     private Deck library;
-    private ArrayList<Card> hand, graveyard;
-    private ArrayList<Permanent> board;
+    private ArrayList<Card> hand;
+    private Permanent monster;
     public Player(ArrayList cards, String lib){
         hand = new ArrayList<>();
-        graveyard = new ArrayList<>();
-        board = new ArrayList<>();
+        monster = new Permanent(1,1);
         initializeDeck(cards, lib);
         library.shuffle();
     }
@@ -65,8 +62,8 @@ public class Player {
             }
         }
     }
-    public ArrayList<Card> getGraveyard(){
-        return graveyard;
+    public String calculate(Permanent other){
+        return monster.calculate(other);
     }
 
 

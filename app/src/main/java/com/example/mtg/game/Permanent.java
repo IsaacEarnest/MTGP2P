@@ -3,63 +3,50 @@ package com.example.mtg.game;
 public class Permanent {
     private String name;
     private int atk, hp;
-    private boolean canAtk,canBlock,isFlying,isHaste;
     public Permanent(Card c){
       name = c.getName();
       if(c.getType()== Card.Type.CREATURE) {
           hp = c.getPermanentHealth();
           atk = c.getPermanentPower();
       }
-      isHaste = false;
-      isFlying = false;
-      canAtk = isHaste;
-      canBlock = true;
+    }
+    public Permanent(int atk, int hp){
+        this.atk = atk;
+        this.hp = hp;
     }
     public String getName(){
         return name;
     }
+    public void addStats(int addAtk, int addHp){
+        this.atk += addAtk;
+        this.hp += addHp;
+    }
     @Override
     public String toString(){
-        return name+","+hp+","+canAtk+","+canAtk+","+canBlock+","+isFlying;
+        return name+","+hp;
     }
 
-    public String defend(Permanent other){
-        if(this.canBlock && other.canAtk) {
-            if ((other.isFlying || this.isFlying) && !(other.isFlying && this.isFlying)) {
-                other.attacking();
-                return "DEFENDER/" + hp + "/ATTACKER/" + other.hp;
-            } else {
+    public String calculate(Permanent other){
+
                 if (hp - other.atk < 1 && other.hp - atk < 1) {
-                    hp = 0;
-                    other.setHp(0);
-                    return "DEFENDER/" + 0 + "/ATTACKER/" + 0;
-                } else if (hp - other.atk < 1 && other.hp - atk > 1) {
-                    hp = 0;
-                    other.setHp(other.hp - atk);
-                    return "DEFENDER/" + 0 + "/ATTACKER/" + other.hp;
-                } else if (hp - other.atk > 1 && other.hp - atk < 1) {
-                    hp -= other.atk;
-                    other.setHp(0);
-                    return "DEFENDER/" + hp + "/ATTACKER/" + 0;
+                    return "TIE";
+                } else if (hp - other.atk < 1 && other.hp - atk >= 1) {
+                    return "YOU LOSE";
+                } else if (hp - other.atk >= 1 && other.hp - atk < 1) {
+                    return "YOU WIN";
                 } else {
-                    hp -= other.atk;
-                    other.setHp(other.hp - atk);
-                    return "DEFENDER/" + (hp - other.atk) + "/ATTACKER/" + (other.hp - atk);
+                    return "TIE";
                 }
-            }
-            //TODO what to send here
-        }else return "";
-    }
-    public void attacking(){
-        canAtk = false;
-    }
+        }
+
     public void setHp(int i){
         hp = i;
     }
     public boolean isDead(){
         return (hp<1);
     }
-    public void untap(){
-        canAtk = true;
+    public void setStats(int atk, int hp){
+        this.atk = atk;
+        this.hp = hp;
     }
 }

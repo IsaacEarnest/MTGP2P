@@ -126,7 +126,7 @@ public class ActivityGameBoard extends AppCompatActivity implements ServerListen
         timer = findViewById(R.id.Timer);
 
 
-        GameTimer gameTimer = new GameTimer(timer);
+        GameTimer gameTimer = new GameTimer(this, timer);
         gameTimer.startTimer();
 
         //Log.d(TAG, game.getpHand().toString());

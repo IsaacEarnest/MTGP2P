@@ -1,5 +1,6 @@
 package com.example.mtg.gui;
 
+import android.content.Context;
 import android.os.CountDownTimer;
 import android.util.Log;
 import android.widget.TextView;
@@ -24,8 +25,8 @@ public class GameTimer {
     private int startminutes;
     private int startseconds;
 
-    public GameTimer(TextView TextViewCountDown){
-        timerAction = (timerAction) this;
+    public GameTimer(Context context, TextView TextViewCountDown){
+        timerAction = (timerAction) context;
         this.starthours = 0;
         this.startminutes = 1;
         this.startseconds = 0;

@@ -155,11 +155,10 @@ public class Game {
     }
     public void oCardPlayed(Card c){
         oMana -= c.getCost();
-        if(c.getType()==Card.Type.CREATURE){
-            oBoard.addStats(c.getPermanentPower(),c.getPermanentHealth());
-            oAtk += c.getPermanentPower();
-            oHP += c.getPermanentHealth();
-        }
+        oBoard.addStats(c.getPermanentPower(),c.getPermanentHealth());
+        oAtk += c.getPermanentPower();
+        oHP += c.getPermanentHealth();
+
     }
     public ArrayList<Card> getpHand(){
         return player.getHand();

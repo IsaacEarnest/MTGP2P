@@ -233,15 +233,12 @@ public class ActivityGameBoard extends AppCompatActivity implements ServerListen
             String[] split = msg.split("&");
             String value = split[1];
             final Card c = new Card(value);
+            game.oCardPlayed(c);
             //Log.d(TAG,c.getDrawableName());
             Log.d(TAG, HandleSharedData.getInstance().getOppenentDeckColor() + "_" + c.getDrawableName());
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    //TODO: dont
-                    // //TODO: forget
-                    // //TODO: to
-                    // //TODO:do this or fix it
                     opponentuseCard.setImageDrawable(getODrawable(c.getDrawableName()));
                     oppATT.setText(Integer.toString(game.getoAtk()));
                     oppDEF.setText(Integer.toString(game.getoHP()));

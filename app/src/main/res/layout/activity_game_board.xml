@@ -235,8 +235,8 @@
         android:text="00:00"
         android:textColor="@android:color/black"
         android:textSize="36sp"
-        tools:layout_editor_absoluteX="345dp"
-        tools:layout_editor_absoluteY="27dp" />
+        tools:layout_editor_absoluteX="332dp"
+        tools:layout_editor_absoluteY="31dp" />
 
     <TextView
         android:id="@+id/oppATT"

@@ -233,6 +233,7 @@ public class ActivityGameBoard extends AppCompatActivity implements ServerListen
             String[] split = msg.split("&");
             String value = split[1];
             final Card c = new Card(value);
+            game.oCardPlayed(c);
             //Log.d(TAG,c.getDrawableName());
             Log.d(TAG, HandleSharedData.getInstance().getOppenentDeckColor() + "_" + c.getDrawableName());
             runOnUiThread(new Runnable() {

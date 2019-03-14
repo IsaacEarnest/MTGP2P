@@ -80,7 +80,6 @@ public class ActivityGameBoard extends AppCompatActivity implements ServerListen
 
 
         game = new Game(cards, deckColor);
-        game.toNextPhase();
 
         ArrayList<Card> playerHand = game.getpHand();
         int playerMana = game.getpMana();
@@ -193,15 +192,6 @@ public class ActivityGameBoard extends AppCompatActivity implements ServerListen
         }
     }
 
-    //called in xml file
-    public void nextPhase(View view) {
-        game.toNextPhase();
-
-        phaseStatus.setText(game.getState().toString());
-        isCardPlayable();
-
-
-    }
 
     //called in xml file
     public void confirmMove(View view) {

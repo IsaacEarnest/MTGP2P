@@ -98,7 +98,7 @@ public class Game {
     }
     public boolean isCardPlayable(Card c){
         if(pMana >= c.getCost() && c.getType()!=Card.Type.LAND) {
-            if (phase == Phase.BEGINNING) {
+            if (phase == Phase.BEGINNING&&c.getType()== Card.Type.CREATURE) {
                 return true;
             }
         }
@@ -107,6 +107,9 @@ public class Game {
 
     public void playCard(Card c){
             pMana -= c.getCost();
+            pAtk+= c.getPermanentPower();
+            pHP += c.getPermanentHealth();
+            player.remove(c);
 
     }
     public int getpMana(){
@@ -142,6 +145,8 @@ public class Game {
         oMana -= c.getCost();
         if(c.getType()==Card.Type.CREATURE){
             oBoard.addStats(c.getPermanentPower(),c.getPermanentHealth());
+            oAtk += c.getPermanentPower();
+            oHP += c.getPermanentHealth();
         }
     }
     public ArrayList<Card> getpHand(){

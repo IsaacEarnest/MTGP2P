@@ -71,7 +71,6 @@ public class ActivityGameBoard extends AppCompatActivity implements ServerListen
         playermana = findViewById(R.id.playerMana);
         playLand = findViewById(R.id.playLand);
         playCard = findViewById(R.id.playCard);
-        nextPhase = findViewById(R.id.nextPhase);
         confirm = findViewById(R.id.confirm);
         cardIndex = findViewById(R.id.cardIndex);
         phaseStatus = findViewById(R.id.phaseStatus);
@@ -90,7 +89,6 @@ public class ActivityGameBoard extends AppCompatActivity implements ServerListen
 
 
         game = new Game(cards, deckColor);
-        game.toNextPhase();
 
         ArrayList<Card> playerHand = game.getpHand();
         int playerMana = game.getpMana();
@@ -202,7 +200,7 @@ public class ActivityGameBoard extends AppCompatActivity implements ServerListen
             Singleton.getInstance().sendOverSocket("CARD&" + c.toString(), this);
         }
     }
-
+    
     //called in xml file
     public void confirmMove(View view) {
         //send over socket card

@@ -80,8 +80,8 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="38dp"
         android:layout_marginBottom="15dp"
-        android:text="Play Land"
         android:onClick="playLand"
+        android:text="Play Land"
         app:layout_constraintBottom_toTopOf="@+id/playCard"
         app:layout_constraintStart_toEndOf="@+id/currentCard"
         app:layout_constraintTop_toBottomOf="@+id/imageView6" />
@@ -91,8 +91,8 @@
         android:layout_width="108dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:text="Play Card"
         android:onClick="playCard"
+        android:text="Play Card"
         app:layout_constraintBottom_toTopOf="@+id/nextPhase"
         app:layout_constraintStart_toEndOf="@+id/currentCard"
         app:layout_constraintTop_toBottomOf="@+id/playLand" />
@@ -116,8 +116,8 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="4dp"
         android:layout_marginBottom="38dp"
-        android:text="Confirm"
         android:onClick="confirmMove"
+        android:text="Confirm"
         app:layout_constraintBottom_toTopOf="@+id/imageView5"
         app:layout_constraintStart_toEndOf="@+id/currentCard"
         app:layout_constraintTop_toBottomOf="@+id/nextPhase" />
@@ -233,5 +233,128 @@
         app:layout_constraintEnd_toStartOf="@+id/imageView5"
         app:layout_constraintStart_toEndOf="@+id/playerHP"
         app:layout_constraintTop_toBottomOf="@+id/nextCard" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TIME LEFT TO PLAY CARD"
+        tools:layout_editor_absoluteX="333dp"
+        tools:layout_editor_absoluteY="11dp" />
+
+    <TextView
+        android:id="@+id/Timer"
+        android:layout_width="125dp"
+        android:layout_height="49dp"
+        android:text="00:00"
+        android:textColor="@android:color/black"
+        android:textSize="36sp"
+        tools:layout_editor_absoluteX="345dp"
+        tools:layout_editor_absoluteY="27dp" />
+
+    <TextView
+        android:id="@+id/oppATT"
+        android:layout_width="78dp"
+        android:layout_height="61dp"
+        android:layout_marginStart="72dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginBottom="59dp"
+        android:text="0"
+        android:textSize="36sp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline"
+        app:layout_constraintStart_toEndOf="@+id/playLand"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+    <TextView
+        android:id="@+id/oppDEF"
+        android:layout_width="78dp"
+        android:layout_height="61dp"
+        android:layout_marginStart="101dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="58dp"
+        android:layout_marginBottom="59dp"
+        android:text="0"
+        android:textSize="36sp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline"
+        app:layout_constraintEnd_toStartOf="@+id/playedCardOpp"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/oppATT"
+        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+    <TextView
+        android:id="@+id/playerATT"
+        android:layout_width="78dp"
+        android:layout_height="61dp"
+        android:layout_marginStart="74dp"
+        android:layout_marginEnd="85dp"
+        android:layout_marginBottom="80dp"
+        android:text="0"
+        android:textSize="36sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/playerDEF"
+        app:layout_constraintStart_toEndOf="@+id/playedCardPlayer"
+        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+    <TextView
+        android:id="@+id/playerDEF"
+        android:layout_width="78dp"
+        android:layout_height="61dp"
+        android:layout_marginStart="85dp"
+        android:layout_marginBottom="80dp"
+        android:text="0"
+        android:textSize="36sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/playerATT"
+        app:layout_constraintTop_toBottomOf="@+id/textView7" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="61dp"
+        android:text="Opponent Attack:"
+        app:layout_constraintBottom_toTopOf="@+id/oppATT"
+        app:layout_constraintEnd_toStartOf="@+id/textView5"
+        app:layout_constraintStart_toEndOf="@+id/phaseStatus"
+        app:layout_constraintTop_toBottomOf="@+id/Timer" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="91dp"
+        android:layout_marginEnd="82dp"
+        android:text="Opponent Defense:"
+        app:layout_constraintBottom_toTopOf="@+id/oppDEF"
+        app:layout_constraintEnd_toStartOf="@+id/playedCardOpp"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="71dp"
+        android:layout_marginEnd="78dp"
+        android:layout_marginBottom="1dp"
+        android:text="Your Attack:"
+        app:layout_constraintBottom_toTopOf="@+id/playerATT"
+        app:layout_constraintEnd_toStartOf="@+id/textView7"
+        app:layout_constraintStart_toEndOf="@+id/playedCardPlayer"
+        app:layout_constraintTop_toBottomOf="@+id/guideline" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="78dp"
+        android:layout_marginTop="71dp"
+        android:layout_marginBottom="1dp"
+        android:text="Your Defense:"
+        app:layout_constraintBottom_toTopOf="@+id/playerDEF"
+        app:layout_constraintStart_toEndOf="@+id/textView6"
+        app:layout_constraintTop_toBottomOf="@+id/guideline" />
 
 </android.support.constraint.ConstraintLayout>

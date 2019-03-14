@@ -88,7 +88,7 @@ public class ActivityGameBoard extends AppCompatActivity implements ServerListen
 
 
         game = new Game(cards, deckColor);
-
+        game.initialDraw();
         ArrayList<Card> playerHand = game.getpHand();
 
         

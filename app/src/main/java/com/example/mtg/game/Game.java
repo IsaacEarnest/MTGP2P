@@ -22,7 +22,7 @@ public class Game {
         BEGINNING {
             @Override
             void playPhase(){
-                player.drawCard();
+
             }
             @Override
             Phase nextPhase() {
@@ -70,7 +70,12 @@ public class Game {
 
 
     }
+    public void initialDraw(){
+        for (int i = 0; i <7 ; i++) {
+            player.drawCard();
+        }
 
+    }
 
 
 

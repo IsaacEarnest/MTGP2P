@@ -49,13 +49,11 @@
         android:id="@+id/playedCardPlayer"
         android:layout_width="163dp"
         android:layout_height="206dp"
-        android:layout_marginStart="146dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="317dp"
         android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/nextPhase"
         app:layout_constraintTop_toBottomOf="@+id/guideline"
         app:srcCompat="@drawable/card_back" />
 
@@ -90,37 +88,25 @@
         android:id="@+id/playCard"
         android:layout_width="108dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="28dp"
         android:onClick="playCard"
         android:text="Play Card"
-        app:layout_constraintBottom_toTopOf="@+id/nextPhase"
         app:layout_constraintStart_toEndOf="@+id/currentCard"
         app:layout_constraintTop_toBottomOf="@+id/playLand" />
-
-    <Button
-        android:id="@+id/nextPhase"
-        android:layout_width="109dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginBottom="3dp"
-        android:onClick="nextPhase"
-        android:text="Next Phase"
-        app:layout_constraintBottom_toTopOf="@+id/confirm"
-        app:layout_constraintStart_toEndOf="@+id/currentCard"
-        app:layout_constraintTop_toBottomOf="@+id/playCard" />
 
     <Button
         android:id="@+id/confirm"
         android:layout_width="109dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginBottom="38dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="35dp"
+        android:layout_marginBottom="58dp"
         android:onClick="confirmMove"
         android:text="Confirm"
         app:layout_constraintBottom_toTopOf="@+id/imageView5"
         app:layout_constraintStart_toEndOf="@+id/currentCard"
-        app:layout_constraintTop_toBottomOf="@+id/nextPhase" />
+        app:layout_constraintTop_toBottomOf="@+id/playCard" />
 
     <ImageView
         android:id="@+id/imageView5"

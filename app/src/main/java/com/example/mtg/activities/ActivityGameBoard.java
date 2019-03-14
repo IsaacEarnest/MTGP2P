@@ -43,6 +43,11 @@ public class ActivityGameBoard extends AppCompatActivity implements ServerListen
     private String opponentDeckColor;
     private Button confirm;
     private TextView timer;
+    private TextView oppATT;
+    private TextView oppDEF;
+    private TextView playerATT;
+    private TextView playerDEF;
+
 
     private Game game;
 
@@ -76,6 +81,11 @@ public class ActivityGameBoard extends AppCompatActivity implements ServerListen
         useCard = findViewById(R.id.playedCardPlayer);
         opponentuseCard = findViewById(R.id.playedCardOpp);
 
+        oppATT = findViewById(R.id.oppATT);
+        oppDEF = findViewById(R.id.oppDEF);
+        playerATT = findViewById(R.id.playerATT);
+        playerDEF = findViewById(R.id.playerDEF);
+
 
 
 
@@ -83,8 +93,6 @@ public class ActivityGameBoard extends AppCompatActivity implements ServerListen
         game.toNextPhase();
 
         ArrayList<Card> playerHand = game.getpHand();
-        ArrayList<Permanent> playerBoard = game.getpPermanents();
-        ArrayList<Permanent> opponentBoard = game.getoPermanents();
         int playerMana = game.getpMana();
         int opponentMana = game.getoMana();
         int playerHP = game.getpHP();
@@ -193,16 +201,6 @@ public class ActivityGameBoard extends AppCompatActivity implements ServerListen
             setCardIndex();
             Singleton.getInstance().sendOverSocket("CARD&" + c.toString(), this);
         }
-    }
-
-    //called in xml file
-    public void nextPhase(View view) {
-        game.toNextPhase();
-
-        phaseStatus.setText(game.getState().toString());
-        isCardPlayable();
-
-
     }
 
     //called in xml file

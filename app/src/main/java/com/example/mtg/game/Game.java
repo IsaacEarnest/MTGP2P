@@ -1,5 +1,7 @@
 package com.example.mtg.game;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 
 public class Game {
@@ -123,6 +125,7 @@ public class Game {
             pMana -= c.getCost();
             pAtk+= c.getPermanentPower();
             pHP += c.getPermanentHealth();
+        Log.d("PERMANENT","ATK ADDED: "+ c.getPermanentPower()+", HP ADDED: "+ c.getPermanentHealth());
             pBoard.addStats(c.getPermanentPower(),c.getPermanentHealth());
             player.remove(c);
 

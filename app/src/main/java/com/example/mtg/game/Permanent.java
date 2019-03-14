@@ -20,6 +20,7 @@ public class Permanent {
         return name;
     }
     public void addStats(int addAtk, int addHp){
+        Log.d("PERMANENT","ATK ADDED: "+ addAtk+", HP ADDED: "+ addHp);
         this.atk += addAtk;
         this.hp += addHp;
     }
@@ -29,7 +30,7 @@ public class Permanent {
     }
 
     public String calculate(Permanent other){
-        Log.d("PERMANENT",""+hp+","+other.atk+","+atk+","+other.hp);
+        Log.d("PERMANENT","YOU: "+hp+","+other.atk+","+atk+","+other.hp);
                 if (hp - other.atk < 1 && other.hp - atk < 1) {
                     return "TIE";
                 } else if (hp - other.atk < 1 && other.hp - atk >= 1) {

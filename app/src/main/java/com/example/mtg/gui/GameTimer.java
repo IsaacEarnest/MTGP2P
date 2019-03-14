@@ -10,6 +10,7 @@ import java.util.Locale;
 public class GameTimer {
     private static String TAG = "TASKTIMER";
     private long START_TIME_IN_MILLIS;
+    private timerAction timerAction;
 
     private CountDownTimer mCountDownTimer;
 
@@ -58,6 +59,7 @@ public class GameTimer {
             public void onFinish() {
                 mTimerRunning = false;
                 TextViewCountDown.setText("DONE");
+                timerAction.endTimer();
                 //TODO: endGame
             }
         }.start();
@@ -101,6 +103,10 @@ public class GameTimer {
         }
         return timeLeftFormatted;
 
+    }
+
+    public interface timerAction{
+        void endTimer();
     }
 
 }

@@ -23,7 +23,7 @@ import com.example.mtg.networking.Singleton;
 
 import java.util.ArrayList;
 
-public class ActivityGameBoard extends AppCompatActivity implements ServerListener {
+public class ActivityGameBoard extends AppCompatActivity implements ServerListener, GameTimer.timerAction {
     private String deckColor;
     private static String TAG = "GAMEBOARD";
     private ArrayList cards;
@@ -90,6 +90,7 @@ public class ActivityGameBoard extends AppCompatActivity implements ServerListen
         game = new Game(cards, deckColor);
         game.initialDraw();
         ArrayList<Card> playerHand = game.getpHand();
+        HandleSharedData.getInstance().setGame(game);
 
         
         int playerMana = game.getpMana();
@@ -125,7 +126,8 @@ public class ActivityGameBoard extends AppCompatActivity implements ServerListen
         timer = findViewById(R.id.Timer);
 
 
-
+        GameTimer gameTimer = new GameTimer(timer);
+        gameTimer.startTimer();
 
         //Log.d(TAG, game.getpHand().toString());
 
@@ -208,9 +210,6 @@ public class ActivityGameBoard extends AppCompatActivity implements ServerListen
     public void confirmMove(View view) {
         //send over socket card
         isCardPlayable();
-        GameTimer gameTimer = new GameTimer(timer);
-        gameTimer.startTimer();
-
     }
 
     @Override
@@ -260,6 +259,19 @@ public class ActivityGameBoard extends AppCompatActivity implements ServerListen
     }
     private Drawable getODrawable(String cardname){
         return ImageHandler.getImage(this, HandleSharedData.getInstance().getOppenentDeckColor() + "_" + cardname);
+    }
+
+    @Override
+    public void endTimer() {
+        game.toNextPhase();
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                phaseStatus.setText(game.getState().toString());
+
+            }
+        });
+
     }
 }
 

@@ -240,16 +240,16 @@
         android:id="@+id/Timer"
         android:layout_width="125dp"
         android:layout_height="49dp"
-        android:layout_marginStart="106dp"
-        android:layout_marginTop="17dp"
-        android:layout_marginEnd="34dp"
-        android:layout_marginBottom="64dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="37dp"
+        android:layout_marginBottom="58dp"
+
         android:text="00:00"
         android:textColor="@android:color/black"
         android:textSize="36sp"
-
-        tools:layout_editor_absoluteX="332dp"
-        tools:layout_editor_absoluteY="31dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/playedCardPlayer"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
 
     <TextView

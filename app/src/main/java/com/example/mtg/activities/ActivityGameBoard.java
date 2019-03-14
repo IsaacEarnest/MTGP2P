@@ -14,7 +14,6 @@ import com.example.mtg.R;
 import com.example.mtg.game.Card;
 import com.example.mtg.game.Game;
 import com.example.mtg.game.MasterCardClass;
-import com.example.mtg.game.Permanent;
 import com.example.mtg.gui.GameTimer;
 import com.example.mtg.gui.HandleSharedData;
 import com.example.mtg.gui.ImageHandler;
@@ -91,6 +90,8 @@ public class ActivityGameBoard extends AppCompatActivity implements ServerListen
         game = new Game(cards, deckColor);
 
         ArrayList<Card> playerHand = game.getpHand();
+
+        
         int playerMana = game.getpMana();
         int opponentMana = game.getoMana();
         int playerHP = game.getpHP();
@@ -200,7 +201,7 @@ public class ActivityGameBoard extends AppCompatActivity implements ServerListen
             Singleton.getInstance().sendOverSocket("CARD&" + c.toString(), this);
         }
     }
-    
+
     //called in xml file
     public void confirmMove(View view) {
         //send over socket card

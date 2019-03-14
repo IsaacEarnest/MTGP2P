@@ -27,8 +27,8 @@ public class GameTimer {
         START_TIME_IN_MILLIS = convertTimeToMilliseconds();
         TimeLeftInMillis = START_TIME_IN_MILLIS;
         this.starthours = 0;
-        this.startminutes = 0;
-        this.startseconds = 20;
+        this.startminutes = 1;
+        this.startseconds = 0;
 
     }
 

@@ -199,6 +199,8 @@ public class ActivityGameBoard extends AppCompatActivity implements ServerListen
             useCard.setImageDrawable(getDrawable(c.getDrawableName()));
             setCardIndex();
             Singleton.getInstance().sendOverSocket("CARD&" + c.toString(), this);
+            playerATT.setText(game.getpAtk());
+            playerDEF.setText(game.getpHP());
         }
     }
 
@@ -239,6 +241,8 @@ public class ActivityGameBoard extends AppCompatActivity implements ServerListen
                     // //TODO: to
                     // //TODO:do this or fix it
                     opponentuseCard.setImageDrawable(getODrawable(c.getDrawableName()));
+                    oppATT.setText(game.getoAtk());
+                    oppDEF.setText(game.getoHP());
                 }
             });
 

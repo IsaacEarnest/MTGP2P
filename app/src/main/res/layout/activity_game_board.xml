@@ -90,8 +90,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="28dp"
+        android:layout_marginBottom="26dp"
         android:onClick="playCard"
         android:text="Play Card"
+        app:layout_constraintBottom_toTopOf="@+id/confirm"
         app:layout_constraintStart_toEndOf="@+id/currentCard"
         app:layout_constraintTop_toBottomOf="@+id/playLand" />
 
@@ -100,7 +102,7 @@
         android:layout_width="109dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="35dp"
+        android:layout_marginTop="8dp"
         android:layout_marginBottom="58dp"
         android:onClick="confirmMove"
         android:text="Confirm"
@@ -126,7 +128,7 @@
         android:id="@+id/imageView6"
         android:layout_width="36dp"
         android:layout_height="36dp"
-        android:layout_marginStart="45dp"
+        android:layout_marginStart="44dp"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="38dp"
         app:layout_constraintBottom_toTopOf="@+id/playLand"
@@ -224,19 +226,31 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginEnd="2dp"
+        android:layout_marginBottom="2dp"
         android:text="TIME LEFT TO PLAY CARD"
-        tools:layout_editor_absoluteX="333dp"
-        tools:layout_editor_absoluteY="11dp" />
+        app:layout_constraintBottom_toTopOf="@+id/Timer"
+        app:layout_constraintEnd_toStartOf="@+id/Timer"
+        app:layout_constraintStart_toEndOf="@+id/currentCard"
+        app:layout_constraintTop_toBottomOf="@+id/confirm" />
 
     <TextView
         android:id="@+id/Timer"
         android:layout_width="125dp"
         android:layout_height="49dp"
+        android:layout_marginStart="106dp"
+        android:layout_marginTop="17dp"
+        android:layout_marginEnd="34dp"
+        android:layout_marginBottom="64dp"
         android:text="00:00"
         android:textColor="@android:color/black"
         android:textSize="36sp"
+
         tools:layout_editor_absoluteX="332dp"
         tools:layout_editor_absoluteY="31dp" />
+
 
     <TextView
         android:id="@+id/oppATT"
@@ -263,7 +277,7 @@
         android:textSize="36sp"
         app:layout_constraintBottom_toTopOf="@+id/guideline"
         app:layout_constraintEnd_toStartOf="@+id/playedCardOpp"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/oppATT"
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
@@ -298,24 +312,24 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="48dp"
-        android:layout_marginTop="15dp"
         android:layout_marginEnd="61dp"
         android:text="Opponent Attack:"
-        app:layout_constraintBottom_toTopOf="@+id/oppATT"
         app:layout_constraintEnd_toStartOf="@+id/textView5"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/phaseStatus"
-        app:layout_constraintTop_toBottomOf="@+id/Timer" />
+        tools:layout_editor_absoluteY="92dp" />
 
     <TextView
         android:id="@+id/textView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="91dp"
-        android:layout_marginEnd="82dp"
+        android:layout_marginEnd="80dp"
         android:text="Opponent Defense:"
         app:layout_constraintBottom_toTopOf="@+id/oppDEF"
         app:layout_constraintEnd_toStartOf="@+id/playedCardOpp"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="spread_inside" />
 
     <TextView
         android:id="@+id/textView6"

@@ -65,6 +65,13 @@ public class Game {
         abstract Phase nextPhase();
         abstract void playPhase();
     }
+    public int getpAtk(){
+        return pAtk;
+    }
+    public int getoAtk(){
+        return oAtk;
+    }
+
     public void toNextPhase(){
         phase = phase.nextPhase();
 

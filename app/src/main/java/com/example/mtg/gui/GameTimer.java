@@ -28,8 +28,8 @@ public class GameTimer {
     public GameTimer(Context context, TextView TextViewCountDown){
         timerAction = (timerAction) context;
         this.starthours = 0;
-        this.startminutes = 1;
-        this.startseconds = 0;
+        this.startminutes = 0;
+        this.startseconds = 30;
         this.TextViewCountDown = TextViewCountDown;
         START_TIME_IN_MILLIS = convertTimeToMilliseconds();
         TimeLeftInMillis = START_TIME_IN_MILLIS;

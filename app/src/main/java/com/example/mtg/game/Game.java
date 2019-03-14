@@ -165,8 +165,8 @@ public class Game {
     public ArrayList<Card> getpHand(){
         return player.getHand();
     }
-    public static String isGameOver(Permanent other){
-        return (player.calculate(other));
+    public static String isGameOver(){
+        return (player.calculate(oBoard));
     }
 
 

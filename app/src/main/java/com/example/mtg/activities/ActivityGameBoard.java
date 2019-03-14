@@ -239,6 +239,7 @@ public class ActivityGameBoard extends AppCompatActivity implements ServerListen
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
+
                     opponentuseCard.setImageDrawable(getODrawable(c.getDrawableName()));
                     oppATT.setText(Integer.toString(game.getoAtk()));
                     oppDEF.setText(Integer.toString(game.getoHP()));

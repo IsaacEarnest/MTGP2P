@@ -8,7 +8,7 @@ public class Player {
     private Permanent monster;
     public Player(ArrayList cards, String lib){
         hand = new ArrayList<>();
-        monster = new Permanent(1,1);
+        monster = new Permanent();
         initializeDeck(cards, lib);
         library.shuffle();
     }

@@ -1,5 +1,7 @@
 package com.example.mtg.game;
 
+import android.util.Log;
+
 public class Permanent {
     private String name;
     private int atk, hp;
@@ -27,10 +29,11 @@ public class Permanent {
     }
 
     public String calculate(Permanent other){
-
+        Log.d("PERMANENT",""+hp+","+other.atk+","+atk+","+other.hp);
                 if (hp - other.atk < 1 && other.hp - atk < 1) {
                     return "TIE";
                 } else if (hp - other.atk < 1 && other.hp - atk >= 1) {
+
                     return "YOU LOSE";
                 } else if (hp - other.atk >= 1 && other.hp - atk < 1) {
                     return "YOU WIN";

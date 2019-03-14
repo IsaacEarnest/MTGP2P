@@ -3,6 +3,7 @@ package com.example.mtg.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
@@ -21,6 +22,7 @@ public class ActivityChooseDeck extends AppCompatActivity implements ServerListe
 
     public static final String DECK_CHOOSE = "com.example.mtg.DECK_CHOOSE";
     public static final String OPPONENT_DECK_COLOR = "com.example.mtg.OPPONENT_DECK_COLOR";
+    public static String TAG = "CHOOSEDECK";
     private String deckColor = "none";
     private String opponentDeckColor;
 
@@ -85,6 +87,7 @@ public class ActivityChooseDeck extends AppCompatActivity implements ServerListe
     }
 
     public void clickPlayGame(View view) {
+
         openActivityGameBoard();
     }
 
@@ -93,6 +96,7 @@ public class ActivityChooseDeck extends AppCompatActivity implements ServerListe
         if(msg.startsWith("DECKCOLOR&")){
             String[] split = msg.split("&");
             String value = split[1];
+            Log.d(TAG, "ODECKCOLOR: "+ value );
             opponentDeckColor = value;
         }
     }

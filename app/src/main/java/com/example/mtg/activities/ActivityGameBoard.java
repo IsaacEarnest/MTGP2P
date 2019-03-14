@@ -15,6 +15,7 @@ import com.example.mtg.game.Card;
 import com.example.mtg.game.Game;
 import com.example.mtg.game.MasterCardClass;
 import com.example.mtg.game.Permanent;
+import com.example.mtg.gui.HandleSharedData;
 import com.example.mtg.gui.ImageHandler;
 import com.example.mtg.gui.PlayersHand;
 import com.example.mtg.networking.ServerListener;
@@ -68,9 +69,12 @@ public class ActivityGameBoard extends AppCompatActivity implements ServerListen
         confirm = findViewById(R.id.confirm);
         cardIndex = findViewById(R.id.cardIndex);
         phaseStatus = findViewById(R.id.phaseStatus);
-        useCard = findViewById(R.id.playerBoard2);
         opponentMana = findViewById(R.id.opponentMana);
-        opponentuseCard = findViewById(R.id.opponentBoard2);
+
+
+        useCard = findViewById(R.id.playedCardPlayer);
+        opponentuseCard = findViewById(R.id.playedCardOpp);
+
 
 
 
@@ -108,17 +112,13 @@ public class ActivityGameBoard extends AppCompatActivity implements ServerListen
 
 
 
+        String message = "DECKCOLOR&" +deckColor;
+        Log.d(TAG, "Message: " + message);
+        Singleton.getInstance().sendOverSocket(message, this);
 
-        Singleton.getInstance().sendOverSocket("DECKCOLOR&"+deckColor, this);
 
+        //Log.d(TAG, game.getpHand().toString());
 
-        Log.d(TAG, game.getpHand().toString());
-
-        //this is for testing purposes
-        testingIMG = findViewById(R.id.playerBoard0);
-        testingIMG.setImageDrawable(ImageHandler.getImage(this, "blue_island"));
-        testingIMG = findViewById(R.id.playerBoard5);
-        testingIMG.setImageDrawable(ImageHandler.getImage(this, "red_wrangle"));
 
 
     }
@@ -222,21 +222,29 @@ public class ActivityGameBoard extends AppCompatActivity implements ServerListen
                     opponentMana.setText(landvalue);
                 }
             });
+
         }else if(msg.startsWith("CARD&")){
             String[] split = msg.split("&");
             String value = split[1];
             final Card c = new Card(value);
             //Log.d(TAG,c.getDrawableName());
-            Log.d(TAG,opponentDeckColor + "_" + c.getDrawableName());
+            Log.d(TAG, HandleSharedData.getInstance().getOppenentDeckColor() + "_" + c.getDrawableName());
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    opponentuseCard.setImageDrawable(getODrawable("red_fling"));
+                    //TODO: dont
+                    // //TODO: forget
+                    // //TODO: to
+                    // //TODO:do this or fix it
+                    opponentuseCard.setImageDrawable(getODrawable(c.getDrawableName()));
                 }
             });
+
         }else if(msg.startsWith("DECKCOLOR&")){
             String[] split = msg.split("&");
             String value = split[1];
+            Log.d(TAG, "ODECKCOLOR: "+ value );
+
             opponentDeckColor = value;
         }
         //parse name
@@ -246,7 +254,7 @@ public class ActivityGameBoard extends AppCompatActivity implements ServerListen
         //runs on UI thread updates based off of those fields.
     }
     private Drawable getODrawable(String cardname){
-        return ImageHandler.getImage(this,cardname);
+        return ImageHandler.getImage(this, HandleSharedData.getInstance().getOppenentDeckColor() + "_" + cardname);
     }
 }
 

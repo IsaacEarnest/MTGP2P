@@ -45,6 +45,34 @@
         app:layout_constraintTop_toBottomOf="@+id/opponentHP"
         app:srcCompat="@drawable/card_back" />
 
+    <ImageView
+        android:id="@+id/playedCardPlayer"
+        android:layout_width="163dp"
+        android:layout_height="206dp"
+        android:layout_marginStart="146dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="317dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/nextPhase"
+        app:layout_constraintTop_toBottomOf="@+id/guideline"
+        app:srcCompat="@drawable/card_back" />
+
+    <ImageView
+        android:id="@+id/playedCardOpp"
+        android:layout_width="163dp"
+        android:layout_height="206dp"
+        android:layout_marginStart="384dp"
+        android:layout_marginTop="11dp"
+        android:layout_marginEnd="80dp"
+        android:layout_marginBottom="14dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/playCard"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/card_back" />
+
     <Button
         android:id="@+id/playLand"
         android:layout_width="104dp"
@@ -171,179 +199,6 @@
         app:layout_constraintStart_toEndOf="@+id/playerHP"
         app:layout_constraintTop_toBottomOf="@+id/currentCard" />
 
-    <TableLayout
-        android:id="@+id/tableLayout"
-        android:layout_width="614dp"
-        android:layout_height="206dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/nextPhase">
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <ImageView
-                android:id="@+id/playerBoard0"
-                android:layout_width="117dp"
-                android:layout_height="100dp"
-                app:srcCompat="@drawable/blank_card" />
-
-            <ImageView
-                android:id="@+id/playerBoard1"
-                android:layout_width="117dp"
-                android:layout_height="100dp"
-                app:srcCompat="@drawable/blank_card" />
-
-            <ImageView
-                android:id="@+id/playerBoard2"
-                android:layout_width="117dp"
-                android:layout_height="100dp"
-                app:srcCompat="@drawable/blank_card" />
-
-            <ImageView
-                android:id="@+id/playerBoard3"
-                android:layout_width="117dp"
-                android:layout_height="100dp"
-                app:srcCompat="@drawable/blank_card" />
-
-            <ImageView
-                android:id="@+id/playerBoard4"
-                android:layout_width="117dp"
-                android:layout_height="100dp"
-                app:srcCompat="@drawable/blank_card" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <ImageView
-                android:id="@+id/playerBoard5"
-                android:layout_width="117dp"
-                android:layout_height="100dp"
-                app:srcCompat="@drawable/blank_card" />
-
-            <ImageView
-                android:id="@+id/playerBoard6"
-                android:layout_width="117dp"
-                android:layout_height="100dp"
-                app:srcCompat="@drawable/blank_card" />
-
-            <ImageView
-                android:id="@+id/playerBoard7"
-                android:layout_width="117dp"
-                android:layout_height="100dp"
-                app:srcCompat="@drawable/blank_card" />
-
-            <ImageView
-                android:id="@+id/playerBoard8"
-                android:layout_width="117dp"
-                android:layout_height="100dp"
-                app:srcCompat="@drawable/blank_card" />
-
-            <ImageView
-                android:id="@+id/playerBoard9"
-                android:layout_width="117dp"
-                android:layout_height="100dp"
-                app:srcCompat="@drawable/blank_card" />
-        </TableRow>
-
-    </TableLayout>
-
-    <TableLayout
-        android:id="@+id/tableLayout2"
-        android:layout_width="616dp"
-        android:layout_height="211dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/playCard"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <ImageView
-                android:id="@+id/opponentBoard0"
-                android:layout_width="117dp"
-                android:layout_height="100dp"
-                app:srcCompat="@drawable/blank_card" />
-
-            <ImageView
-                android:id="@+id/opponentBoard1"
-                android:layout_width="117dp"
-                android:layout_height="100dp"
-                app:srcCompat="@drawable/blank_card" />
-
-            <ImageView
-                android:id="@+id/opponentBoard2"
-                android:layout_width="117dp"
-                android:layout_height="100dp"
-                app:srcCompat="@drawable/blank_card" />
-
-            <ImageView
-                android:id="@+id/opponentBoard3"
-                android:layout_width="117dp"
-                android:layout_height="100dp"
-                app:srcCompat="@drawable/blank_card" />
-
-            <ImageView
-                android:id="@+id/opponentBoard4"
-                android:layout_width="117dp"
-                android:layout_height="100dp"
-                app:srcCompat="@drawable/blank_card" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <ImageView
-                android:id="@+id/opponentBoard5"
-                android:layout_width="117dp"
-                android:layout_height="100dp"
-                app:srcCompat="@drawable/blank_card" />
-
-            <ImageView
-                android:id="@+id/opponentBoard6"
-                android:layout_width="117dp"
-                android:layout_height="100dp"
-                app:srcCompat="@drawable/blank_card" />
-
-            <ImageView
-                android:id="@+id/opponentBoard7"
-                android:layout_width="117dp"
-                android:layout_height="100dp"
-                app:srcCompat="@drawable/blank_card" />
-
-            <ImageView
-                android:id="@+id/opponentBoard8"
-                android:layout_width="117dp"
-                android:layout_height="100dp"
-                app:srcCompat="@drawable/blank_card" />
-
-            <ImageView
-                android:id="@+id/opponentBoard9"
-                android:layout_width="117dp"
-                android:layout_height="100dp"
-                app:srcCompat="@drawable/blank_card" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </TableLayout>
-
     <android.support.constraint.Guideline
         android:id="@+id/guideline"
         android:layout_width="wrap_content"
@@ -359,11 +214,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="40dp"
-        android:layout_marginEnd="40dp"
         android:layout_marginBottom="17dp"
         android:text="TextView"
         app:layout_constraintBottom_toTopOf="@+id/playLand"
-        app:layout_constraintEnd_toStartOf="@+id/tableLayout2"
         app:layout_constraintStart_toEndOf="@+id/currentCard"
         app:layout_constraintTop_toBottomOf="@+id/imageView6" />
 

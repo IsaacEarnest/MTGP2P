@@ -25,6 +25,7 @@ public class GameTimer {
     private int startseconds;
 
     public GameTimer(TextView TextViewCountDown){
+        timerAction = (timerAction) this;
         this.starthours = 0;
         this.startminutes = 1;
         this.startseconds = 0;

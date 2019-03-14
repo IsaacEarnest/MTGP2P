@@ -33,7 +33,7 @@ public class Game {
         },
         COMBAT {
             void playPhase(Permanent other){
-                isGameOver(other);
+                isGameOver();
             }
             void playPhase(){
 

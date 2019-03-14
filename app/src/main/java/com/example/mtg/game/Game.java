@@ -33,7 +33,7 @@ public class Game {
         },
         COMBAT {
             void playPhase(Permanent other){
-                isGameOver();
+                
             }
             void playPhase(){
 
@@ -165,7 +165,7 @@ public class Game {
     public ArrayList<Card> getpHand(){
         return player.getHand();
     }
-    public static String isGameOver(){
+    public String isGameOver(){
         return (player.calculate(oBoard));
     }
 

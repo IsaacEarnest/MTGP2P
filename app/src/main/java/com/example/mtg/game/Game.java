@@ -123,6 +123,7 @@ public class Game {
             pMana -= c.getCost();
             pAtk+= c.getPermanentPower();
             pHP += c.getPermanentHealth();
+            pBoard.addStats(c.getPermanentPower(),c.getPermanentHealth());
             player.remove(c);
 
     }
@@ -146,7 +147,6 @@ public class Game {
     }
 
     public void playLand(Card c){
-
         pMana++;
         player.remove(c);
     }

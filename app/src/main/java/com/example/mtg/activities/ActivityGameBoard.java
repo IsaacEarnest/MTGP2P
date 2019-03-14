@@ -192,6 +192,7 @@ public class ActivityGameBoard extends AppCompatActivity implements ServerListen
         //move a card to the field
         Card c = handGUI.getCurrent();
         if(game.isCardPlayable(c)){
+            Log.d(TAG,""+game.isCardPlayable(c));
             game.playCard(c);
             handGUI.updateHand(game.getpHand());
             currentCardIMG.setImageDrawable(getDrawable(handGUI.getCurrent().getDrawableName()));

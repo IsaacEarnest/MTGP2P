@@ -123,8 +123,7 @@ public class ActivityGameBoard extends AppCompatActivity implements ServerListen
 
 
         timer = findViewById(R.id.Timer);
-        GameTimer gameTimer = new GameTimer(timer);
-        gameTimer.startTimer();
+
 
 
 
@@ -209,6 +208,8 @@ public class ActivityGameBoard extends AppCompatActivity implements ServerListen
     public void confirmMove(View view) {
         //send over socket card
         isCardPlayable();
+        GameTimer gameTimer = new GameTimer(timer);
+        gameTimer.startTimer();
 
     }
 

@@ -1,6 +1,7 @@
 package com.example.mtg.gui;
 
 import android.os.CountDownTimer;
+import android.util.Log;
 import android.widget.TextView;
 
 import java.util.Locale;
@@ -41,7 +42,7 @@ public class GameTimer {
 
 
     public void startTimer() {
-
+        Log.d("TIMER", String.valueOf(startminutes));
         mEndTime = System.currentTimeMillis() + TimeLeftInMillis;
 
         mCountDownTimer = new CountDownTimer(TimeLeftInMillis, 1000) {

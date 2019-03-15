@@ -169,7 +169,7 @@ public class Game {
         return player.getHand();
     }
     public static String isGameOver(){
-        return (player.calculate(oBoard));
+        return (pBoard.calculate(oBoard));
     }
 
 

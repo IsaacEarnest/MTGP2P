@@ -120,6 +120,8 @@ public class Game {
         player.remove(c);
     }
     public void oCardPlayed(Card c){
+        Log.d("OCARDPLAYED", c.getName());
+
         oMana -= c.getCost();
         oAtk += c.getPermanentPower();
         oHP += c.getPermanentHealth();

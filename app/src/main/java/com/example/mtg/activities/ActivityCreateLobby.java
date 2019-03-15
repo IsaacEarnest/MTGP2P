@@ -14,12 +14,15 @@ import com.example.mtg.networking.ServerListener;
 import com.example.mtg.networking.Singleton;
 import com.example.mtg.networking.Utilities;
 
+import java.net.SocketException;
+
 public class ActivityCreateLobby extends AppCompatActivity implements ServerListener {
     private static final String TAG = "CREATELOBBY";
 
     public TextView connectionStatus;
     public Button playGame;
     public IncomingMsg incomingMsg = IncomingMsg.NONE;
+    public TextView IPaddress;
 
 
     @Override
@@ -34,6 +37,13 @@ public class ActivityCreateLobby extends AppCompatActivity implements ServerList
     private void setUpGUI(){
         connectionStatus = findViewById(R.id.connectionStatus);
         playGame = findViewById(R.id.create_PlayGame);
+        IPaddress = findViewById(R.id.IPaddress);
+        try {
+           String ip =  Utilities.getLocalIpAddress();
+           IPaddress.setText("Your IP: " + ip);
+        } catch (SocketException e) {
+            e.printStackTrace();
+        }
         playGame.setEnabled(false);
 
     }

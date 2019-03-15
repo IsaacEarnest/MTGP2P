@@ -128,32 +128,6 @@ public class Card {
     public Type getType() {
         return type;
     }
-    public void onCreaturePlayed(){
-
-        if(name.equals("Nimble Innovator")){
-            //draw 1
-        }else if(name.equals("Angler Drake")){
-            //return creature to owner's hand
-        }
-    }
-    public void onInstantPlayed(){
-        if(name.equals("Inspiration")){
-            //draw 2
-        }
-    }
-    public void onEnchantmentPlayed(){
-        if(name.equals("Sleep Paralysis")){
-            //tap opposing creature, doesn't untap
-        }else if(name.equals("Tricks of the Trade")){
-            //+2 power, attacks can't be blocked
-        }
-    }
-    public void onSorceryPlayed(){
-        if(name.equals("Drag Under")){
-            //return target creature to owner's hand, draw 1
-        }
-    }
-
     public int getPermanentPower(){
         return power;
     }
@@ -161,7 +135,6 @@ public class Card {
         return health;
     }
     public String getDrawableName(){
-
         return name.toLowerCase().replaceAll(" ","_");
     }
 

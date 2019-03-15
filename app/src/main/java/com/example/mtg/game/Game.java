@@ -25,21 +25,11 @@ public class Game {
     public enum Phase {
         BEGINNING {
             @Override
-            void playPhase(){
-
-            }
-            @Override
             Phase nextPhase() {
                 return COMBAT;
             }
         },
         COMBAT {
-            void playPhase(Permanent other){
-
-            }
-            void playPhase(){
-
-            }
             @Override
             Phase nextPhase() {
                 return ENDING;
@@ -47,19 +37,11 @@ public class Game {
         },
         ENDING {
             @Override
-            void playPhase(){
-
-            }
-            @Override
             Phase nextPhase() {
                 return GAME_OVER;
             }
         },
         GAME_OVER {
-            @Override
-            void playPhase(){
-
-            }
             @Override
             Phase nextPhase() {
                 return GAME_OVER;
@@ -67,7 +49,6 @@ public class Game {
         };
 
         abstract Phase nextPhase();
-        abstract void playPhase();
     }
     public int getpAtk(){
         return pAtk;
@@ -87,17 +68,8 @@ public class Game {
         }
 
     }
-
-
-
-    public void setState(Phase state) {
-        this.phase = state;
-    }
     public Phase getState() {
         return phase;
-    }
-    public Player getPlayer(){
-        return player;
     }
     public boolean isLandPlayable(Card c){
         if (phase == Phase.BEGINNING ) {
@@ -142,21 +114,10 @@ public class Game {
     public int getoHP(){
         return oHP;
     }
-    public Permanent getpPermanent(){
-        return pBoard;
-    }
-    public Permanent getoPermanent(){
-        return oBoard;
-    }
 
     public void playLand(Card c){
         pMana++;
         player.remove(c);
-    }
-
-
-    public void oLandPlayed(){
-        oMana++;
     }
     public void oCardPlayed(Card c){
         Log.d("OCARDPLAYED", c.getName());
@@ -165,7 +126,6 @@ public class Game {
         oBoard.addStats(c.getPermanentPower(),c.getPermanentHealth());
         oAtk += c.getPermanentPower();
         oHP += c.getPermanentHealth();
-
     }
     public ArrayList<Card> getpHand(){
         return player.getHand();

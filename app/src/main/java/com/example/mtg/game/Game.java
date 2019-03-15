@@ -159,6 +159,8 @@ public class Game {
         oMana++;
     }
     public void oCardPlayed(Card c){
+        Log.d("OCARDPLAYED", c.getName());
+
         oMana -= c.getCost();
         oBoard.addStats(c.getPermanentPower(),c.getPermanentHealth());
         oAtk += c.getPermanentPower();

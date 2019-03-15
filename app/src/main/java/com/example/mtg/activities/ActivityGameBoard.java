@@ -57,16 +57,81 @@ public class ActivityGameBoard extends AppCompatActivity implements ServerListen
         setContentView(R.layout.activity_game_board);
 
 
+        recieveIntent();
+        Singleton.getInstance().addlistener(this);
+        setDeckColor();
+        setUpAllItemsToScreen();
+        createGame();
+        buildHand();
+        setPhaseMana();
+        setCardIndex();
+        isCardPlayable();
+        sendHandToOtherPlayer();
+        createTimer();
+
+
+
+    }
+
+    private void setDeckColor(){
+        if(deckColor.equals("red")) cards = MasterCardClass.getInstance().getRedCards();
+        else cards = MasterCardClass.getInstance().getBlueCards();
+    }
+
+    private void recieveIntent(){
         Intent intent = getIntent();
         deckColor = intent.getStringExtra(ActivityChooseDeck.DECK_CHOOSE);
         opponentDeckColor = intent.getStringExtra(ActivityChooseDeck.OPPONENT_DECK_COLOR);
         Log.d(TAG, deckColor);
-        Singleton.getInstance().addlistener(this);
+    }
 
-        if(deckColor.equals("red")) cards = MasterCardClass.getInstance().getRedCards();
-        else cards = MasterCardClass.getInstance().getBlueCards();
+    private void createTimer(){
+        timer = findViewById(R.id.Timer);
 
 
+        GameTimer gameTimer = new GameTimer(this, timer);
+        gameTimer.startTimer();
+    }
+
+    private void setPhaseMana(){
+        phaseStatus.setText(game.getState().toString());
+        playermana.setText(String.valueOf(game.getpMana()));
+    }
+
+    private void sendHandToOtherPlayer(){
+        String message = "DECKCOLOR&" +deckColor;
+        Singleton.getInstance().sendOverSocket(message, this);
+    }
+
+    private void buildHand(){
+        ArrayList<Card> playerHand = game.getpHand();
+        HandleSharedData.getInstance().setGame(game);
+        handhelper(playerHand);
+
+
+        //this will work if hand is not empty
+
+//        Log.d(TAG, String.valueOf(playerHand.size()));
+
+
+    }
+
+
+    private void handhelper(ArrayList<Card> playerHand){
+        if(playerHand.size() > 0){
+            handGUI = new PlayersHand(playerHand);
+            currentCardIMG.setImageDrawable(getDrawable(handGUI.getFirst().getDrawableName()));
+        }else {
+            currentCardIMG.setImageDrawable(ImageHandler.getImage(this, "card_back"));
+        }
+    }
+
+    private void createGame(){
+        game = new Game(cards, deckColor);
+        game.initialDraw();
+    }
+
+    private void setUpAllItemsToScreen(){
         currentCardIMG = findViewById(R.id.currentCard);
         playermana = findViewById(R.id.playerMana);
         playLand = findViewById(R.id.playLand);
@@ -84,55 +149,6 @@ public class ActivityGameBoard extends AppCompatActivity implements ServerListen
         oppDEF = findViewById(R.id.oppDEF);
         playerATT = findViewById(R.id.playerATT);
         playerDEF = findViewById(R.id.playerDEF);
-
-
-
-
-        game = new Game(cards, deckColor);
-        game.initialDraw();
-        ArrayList<Card> playerHand = game.getpHand();
-        HandleSharedData.getInstance().setGame(game);
-
-        
-        int playerMana = game.getpMana();
-        int opponentMana = game.getoMana();
-        int playerHP = game.getpHP();
-        int opponentHP = game.getoHP();
-        Game.Phase state = game.getState();
-
-
-        //this will work if hand is not empty
-
-//        Log.d(TAG, String.valueOf(playerHand.size()));
-
-        if(playerHand.size() > 0){
-            handGUI = new PlayersHand(playerHand);
-            currentCardIMG.setImageDrawable(getDrawable(handGUI.getFirst().getDrawableName()));
-        }else {
-            currentCardIMG.setImageDrawable(ImageHandler.getImage(this, "card_back"));
-        }
-
-        phaseStatus.setText(game.getState().toString());
-        playermana.setText(String.valueOf(game.getpMana()));
-        setCardIndex();
-        isCardPlayable();
-
-
-
-        String message = "DECKCOLOR&" +deckColor;
-        Log.d(TAG, "Message: " + message);
-        Singleton.getInstance().sendOverSocket(message, this);
-
-
-        timer = findViewById(R.id.Timer);
-
-
-        GameTimer gameTimer = new GameTimer(this, timer);
-        gameTimer.startTimer();
-
-        //Log.d(TAG, game.getpHand().toString());
-
-
 
     }
 
@@ -180,13 +196,17 @@ public class ActivityGameBoard extends AppCompatActivity implements ServerListen
             //this deletes it from your hand
             game.playLand(c);
             //this updates the hand
-            handGUI.updateHand(game.getpHand());
-            playermana.setText(String.valueOf(game.getpMana()));
-            currentCardIMG.setImageDrawable(getDrawable(handGUI.getCurrent().getDrawableName()));
+            playLandGUIupdate();
             setCardIndex();
             Singleton.getInstance().sendOverSocket("LANDVALUE: " + game.getpMana(), this);
         }
-        // move land to  field
+
+    }
+
+    public void playLandGUIupdate(){
+        handGUI.updateHand(game.getpHand());
+        playermana.setText(String.valueOf(game.getpMana()));
+        currentCardIMG.setImageDrawable(getDrawable(handGUI.getCurrent().getDrawableName()));
     }
 
     //called in xml file
@@ -195,70 +215,95 @@ public class ActivityGameBoard extends AppCompatActivity implements ServerListen
         Card c = handGUI.getCurrent();
         if(game.isCardPlayable(c)){
             Log.d(TAG,""+game.isCardPlayable(c));
-            game.playCard(c);
-            handGUI.updateHand(game.getpHand());
-            currentCardIMG.setImageDrawable(getDrawable(handGUI.getCurrent().getDrawableName()));
-            playermana.setText(String.valueOf(game.getpMana()));
-            useCard.setImageDrawable(getDrawable(c.getDrawableName()));
-            setCardIndex();
-            Singleton.getInstance().sendOverSocket("CARD&" + c.toString(), this);
-            playerATT.setText(Integer.toString(game.getpAtk()));
-            playerDEF.setText(Integer.toString(game.getpHP()));
+            playCardHandler(c);
         }
+    }
+
+    public void playCardHandler(Card c){
+        game.playCard(c);
+        playCardGUIupdate(c);
+        setCardIndex();
+        Singleton.getInstance().sendOverSocket("CARD&" + c.toString(), this);
+        setPlayerStats();
+    }
+
+    public void playCardGUIupdate(Card c){
+        handGUI.updateHand(game.getpHand());
+        currentCardIMG.setImageDrawable(getDrawable(handGUI.getCurrent().getDrawableName()));
+        playermana.setText(String.valueOf(game.getpMana()));
+        useCard.setImageDrawable(getDrawable(c.getDrawableName()));
+    }
+
+    public void setPlayerStats(){
+        playerATT.setText(Integer.toString(game.getpAtk()));
+        playerDEF.setText(Integer.toString(game.getpHP()));
     }
 
     //called in xml file
     public void confirmMove(View view) {
         //send over socket card
+
         isCardPlayable();
     }
 
     @Override
     public void notifyMessage(String msg) {
 
-        Log.d("MESSAGE",msg);
 
 
         if(msg.startsWith("LANDVALUE: ")){
-            String[] split = msg.split(" ");
-            final String landvalue = split[1];
-            runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    opponentMana.setText(landvalue);
-                }
-            });
-
+            handleLandValueMessage(msg);
         }else if(msg.startsWith("CARD&")){
-            String[] split = msg.split("&");
-            String value = split[1];
-            final Card c = new Card(value);
-            game.oCardPlayed(c);
-            //Log.d(TAG,c.getDrawableName());
-            Log.d(TAG, HandleSharedData.getInstance().getOppenentDeckColor() + "_" + c.getDrawableName());
-            runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-
-                    opponentuseCard.setImageDrawable(getODrawable(c.getDrawableName()));
-                    oppATT.setText(Integer.toString(game.getoAtk()));
-                    oppDEF.setText(Integer.toString(game.getoHP()));
-                }
-            });
+            handleCardMessage(msg);
 
         }else if(msg.startsWith("DECKCOLOR&")){
-            String[] split = msg.split("&");
-            String value = split[1];
-            Log.d(TAG, "ODECKCOLOR: "+ value );
-
-            opponentDeckColor = value;
+            handleDeckColorMessage(msg);
         }
-        //parse name
-        //if its an attacking player
-        //check with cards, do math
-        //return object of the deck, players field, the other players field
-        //runs on UI thread updates based off of those fields.
+
     }
+
+    private void handleLandValueMessage(String msg){
+        String[] split = msg.split(" ");
+        final String landvalue = split[1];
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                opponentMana.setText(landvalue);
+            }
+        });
+
+    }
+
+    private void handleDeckColorMessage(String msg){
+        String[] split = msg.split("&");
+        String value = split[1];
+        Log.d(TAG, "ODECKCOLOR: "+ value );
+
+        opponentDeckColor = value;
+    }
+
+    private void handleCardMessage(String msg){
+        String[] split = msg.split("&");
+        String value = split[1];
+        runCardMessageOnGUI(value);
+    }
+
+    private void runCardMessageOnGUI(String value){
+        final Card c = new Card(value);
+        game.oCardPlayed(c);
+        //Log.d(TAG,c.getDrawableName());
+        Log.d(TAG, HandleSharedData.getInstance().getOppenentDeckColor() + "_" + c.getDrawableName());
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                opponentuseCard.setImageDrawable(getODrawable(c.getDrawableName()));
+                oppATT.setText(Integer.toString(game.getoAtk()));
+                oppDEF.setText(Integer.toString(game.getoHP()));
+            }
+        });
+    }
+
+
     private Drawable getODrawable(String cardname){
         return ImageHandler.getImage(this, HandleSharedData.getInstance().getOppenentDeckColor() + "_" + cardname);
     }

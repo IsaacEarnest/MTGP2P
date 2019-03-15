@@ -5,7 +5,6 @@ import java.util.ArrayList;
 public class Player {
     private Deck library;
     private ArrayList<Card> hand;
-    private Permanent monster;
     public Player(ArrayList cards, String lib){
         hand = new ArrayList<>();
         initializeDeck(cards, lib);
@@ -18,9 +17,6 @@ public class Player {
     }
     public ArrayList getHand(){
         return this.hand;
-    }
-    public Deck getLibrary(){
-        return this.library;
     }
     public void drawCard(){
         hand.add(library.drawCard());

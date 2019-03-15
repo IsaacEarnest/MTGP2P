@@ -121,9 +121,9 @@ public class Game {
     }
     public void oCardPlayed(Card c){
         oMana -= c.getCost();
-        oBoard.addStats(c.getPermanentPower(),c.getPermanentHealth());
         oAtk += c.getPermanentPower();
         oHP += c.getPermanentHealth();
+        oBoard.addStats(c.getPermanentPower(),c.getPermanentHealth());
     }
     public ArrayList<Card> getpHand(){
         return player.getHand();
